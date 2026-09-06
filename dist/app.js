@@ -6,7 +6,9 @@ const hospitals=[
  {id:'anam',name:'안암고려대병원',area:'서울·성북'},
  {id:'seoul-stmary',name:'강남성모병원',area:'서울·서초'},
  {id:'boramae',name:'보라매병원',area:'서울·동작'},
- {id:'korea-guro',name:'고대 구로병원',area:'서울·구로'}
+ {id:'korea-guro',name:'고대 구로병원',area:'서울·구로'},
+ {id:'hanyang-seoul',name:'한양대병원',area:'서울·성동'},
+ {id:'hanyang-guri',name:'구리한양대병원',area:'경기·구리'}
 ];
 const diseases=['노인성질환','폐질환','당뇨질환'];
 const key='care24_requests_v1';
