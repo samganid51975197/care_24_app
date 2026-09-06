@@ -19,3 +19,5 @@ const hospitalRows=[
 ['제주','제주','제주대학교병원','대학병원'],['제주','제주','제주한라병원','종합병원'],['제주','제주','제주한마음병원','종합병원'],['제주','서귀포','서귀포의료원','종합병원']
 ];
 const hospitals=hospitalRows.map((h,i)=>({region:h[0],city:h[1],name:h[2],type:h[3],id:h[4]||`hospital-${i+1}`}));
+// 사용자 화면에서는 지점을 명확히 구분해 표시한다.
+hospitals.find(h=>h.id==='severance').name='신촌세브란스병원';
