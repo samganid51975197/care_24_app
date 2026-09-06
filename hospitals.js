@@ -21,3 +21,4 @@ const hospitalRows=[
 const hospitals=hospitalRows.map((h,i)=>({region:h[0],city:h[1],name:h[2],type:h[3],id:h[4]||`hospital-${i+1}`}));
 // 사용자 화면에서는 지점을 명확히 구분해 표시한다.
 hospitals.find(h=>h.id==='severance').name='신촌세브란스병원';
+hospitals.find(h=>h.id==='snuh').name='혜화 서울대학교병원';
