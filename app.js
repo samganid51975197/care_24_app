@@ -4,7 +4,9 @@ const hospitals=[
  {id:'severance',name:'신촌세브란스병원',area:'서울·서대문'},
  {id:'gangnam-sev',name:'강남세브란스병원',area:'서울·강남'},
  {id:'anam',name:'안암고려대병원',area:'서울·성북'},
- {id:'seoul-stmary',name:'강남성모병원',area:'서울·서초'}
+ {id:'seoul-stmary',name:'강남성모병원',area:'서울·서초'},
+ {id:'boramae',name:'보라매병원',area:'서울·동작'},
+ {id:'korea-guro',name:'고대 구로병원',area:'서울·구로'}
 ];
 const diseases=['노인성질환','폐질환','당뇨질환'];
 const key='care24_requests_v1';
