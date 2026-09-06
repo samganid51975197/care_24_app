@@ -100,7 +100,11 @@ hospitalRows.push(
 ['강원','강릉','갈바리의원','호스피스기관',null,'','입원형'],['전북','익산','모현센터의원','호스피스기관',null,'','입원형·가정형'],
 ['광주','북구','천주의성요한병원','호스피스기관',null,'','입원형'],['경남','창원','희연호스피스병원','호스피스기관',null,'','입원형']
 );
-const hospitals=hospitalRows.map((h,i)=>({region:h[0],city:h[1],name:h[2],type:h[3],id:h[4]||`hospital-${i+1}`,specialty:h[5]||'',hospiceServices:h[6]||'',hospice:Boolean(h[6])}));
+// 한국보훈복지의료공단의 전국 6개 보훈병원 중 기존 목록에 없는 기관을 보강한다.
+hospitalRows.push(
+['부산','사상','부산보훈병원','보훈병원'],['대전','대덕','대전보훈병원','보훈병원'],['인천','미추홀','인천보훈병원','보훈병원']
+);
+const hospitals=hospitalRows.map((h,i)=>({region:h[0],city:h[1],name:h[2],type:h[3],id:h[4]||`hospital-${i+1}`,specialty:h[5]||'',hospiceServices:h[6]||'',hospice:Boolean(h[6]),veterans:h[3]==='보훈병원'}));
 [['대구','W병원','관절·수지접합'],['경기','윌스기념병원','척추'],['경기','분당러스크재활병원','재활'],['강원','원주센텀병원','관절·정형'],['충남','천안우리병원','척추'],['전북','전주우리병원','척추'],['전남','순천하나병원','관절·정형'],['전남','목포미래병원','척추'],['경북','포항우리병원','척추'],['제주','제주우리병원','척추']].forEach(([region,name,specialty])=>{const h=hospitals.find(x=>x.region===region&&x.name===name);if(h){h.type='전문병원';h.specialty=specialty}});
 const hospiceRows=[
 ['서울','서울성모병원','입원형·가정형·자문형'],['서울','가톨릭대학교 여의도성모병원','입원형·가정형'],['서울','고려대학교 구로병원','입원형·자문형'],['서울','중앙보훈병원','입원형·가정형'],['서울','국립중앙의료원','입원형·자문형'],
@@ -121,7 +125,9 @@ const hospiceRows=[
 ['제주','제주대학교병원','입원형·자문형'],['제주','서귀포의료원','입원형']
 ];
 hospiceRows.forEach(([region,name,services])=>{const h=hospitals.find(x=>x.region===region&&x.name===name);if(h){h.hospice=true;h.hospiceServices=services}});
-const hospitalCategory=h=>h.type==='호스피스기관'?'호스피스':h.type==='전문병원'?'전문병원':h.type==='한방병원'?'한방병원':h.type==='일반병원'?'일반병원':h.type==='종합병원'?'종합병원':'상급·대학병원';
+[['서울','중앙보훈병원'],['광주','광주보훈병원'],['대구','보훈공단 대구보훈병원']].forEach(([region,name])=>{const h=hospitals.find(x=>x.region===region&&x.name===name);if(h)h.veterans=true});
+const daeguVeterans=hospitals.find(h=>h.region==='대구'&&h.name==='보훈공단 대구보훈병원');if(daeguVeterans)daeguVeterans.name='대구보훈병원';
+const hospitalCategory=h=>h.type==='보훈병원'?'보훈병원':h.type==='호스피스기관'?'호스피스':h.type==='전문병원'?'전문병원':h.type==='한방병원'?'한방병원':h.type==='일반병원'?'일반병원':h.type==='종합병원'?'종합병원':'상급·대학병원';
 // 사용자 화면에서는 지점을 명확히 구분해 표시한다.
 hospitals.find(h=>h.id==='severance').name='신촌세브란스병원';
 hospitals.find(h=>h.id==='snuh').name='혜화 서울대학교병원';
