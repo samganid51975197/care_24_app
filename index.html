@@ -14,15 +14,18 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="directory.css">
   <link rel="stylesheet" href="care.css">
+  <link rel="stylesheet" href="finder.css">
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#home" aria-label="간병24 홈"><img class="brand-logo" src="assets/care24-logo-original.png" alt="간병24"><span class="brand-copy"><strong id="brandHospital">전국 병원</strong><small>대한노인돌봄서비스협회 관리</small></span></a>
+    <nav class="service-links" aria-label="병원 서비스 바로가기"><a href="#hospitals">전국 병원</a><a href="#nursing">요양병원</a><a href="#rehab">재활병원</a></nav>
     <button id="adminBtn" class="ghost">통합 접수함</button>
   </header>
+  <aside class="service-finder"><strong>요양병원·재활병원 찾기</strong><span>PC는 위 메뉴, 휴대폰은 아래 메뉴를 이용하세요.</span><a href="#nursing">요양병원 간병24</a><a href="#rehab">재활병원 간병24</a></aside>
   <main id="app"></main>
   <nav class="bottom" aria-label="주 메뉴">
-    <a href="#home">홈</a><a href="#hospitals">병원</a><a href="#request">간병 신청</a><a href="#guide">환자·보호자</a>
+    <a href="#home">홈</a><a href="#hospitals">전국 병원</a><a href="#nursing">요양병원</a><a href="#rehab">재활병원</a>
   </nav>
   <script src="hospitals.js"></script>
   <script src="care-facilities.js"></script>
