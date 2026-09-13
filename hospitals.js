@@ -128,3 +128,7 @@ const hospitalCategory=h=>h.type==='보훈병원'?'보훈병원':h.type==='호�
 // 사용자 화면에서는 지점을 명확히 구분해 표시한다.
 hospitals.find(h=>h.id==='severance').name='신촌세브란스병원';
 hospitals.find(h=>h.id==='snuh').name='혜화 서울대학교병원';
+
+// Keep existing hospital IDs while placing Bundang Jesaeng beside Bundang CHA.
+const jesaengIndex=hospitals.findIndex(h=>h.name==='분당제생병원');
+if(jesaengIndex>=0){const [jesaeng]=hospitals.splice(jesaengIndex,1);const chaIndex=hospitals.findIndex(h=>h.name==='분당차병원');hospitals.splice(chaIndex+1,0,jesaeng)}
