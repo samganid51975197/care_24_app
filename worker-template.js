@@ -1,6 +1,6 @@
 const TEXT_ASSETS=__TEXT_ASSETS__;
 const BINARY_ASSETS=__BINARY_ASSETS__;
-const categories=new Set(['건의','요청','시정','개선','요구','병원매매','기타','간병의뢰(요청)','간병 신청']);
+const categories=new Set(['건의','요청','시정','개선','요구','병원매매','기타','간병의뢰(요청)','간병 신청','환자·보호자 의뢰','간병인 신청']);
 const recipients=new Set(['association','care24','both']);
 const recipientLabels={association:'대한노인돌봄서비스협회',care24:'간병24',both:'대한노인돌봄서비스협회 + 간병24'};
 const ADMIN_USER_IDS=new Set(['f2d83ab1-c5bd-41aa-8991-e4d70322e4e5']);
