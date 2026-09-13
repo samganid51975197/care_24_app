@@ -38,3 +38,6 @@
 .directory .hospital-list-title,.service-card .hospital-list-title{font-size:22px;line-height:1.4}
 @media(max-width:620px){.nationwide-finder a{font-size:24px}.directory .hospital-list-title,.service-card .hospital-list-title{font-size:19px}}
 
+
+.hospital-card-name{display:flex;align-items:baseline;gap:.35em}
+.hospital-card-name .hospital-name-icon{width:1em;height:1em;object-fit:contain;flex:none;align-self:flex-start;margin-top:.2em}
