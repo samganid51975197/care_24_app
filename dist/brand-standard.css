@@ -41,3 +41,14 @@
 
 .hospital-card-name{display:flex;align-items:baseline;gap:.35em}
 .hospital-card-name .hospital-name-icon{box-sizing:border-box;width:.9em;height:.9em;padding:1px;border:1px solid #71958d;border-radius:2px;object-fit:contain;flex:none;align-self:flex-start;margin-top:.25em}
+
+/* Unified Care24 interface palette; original logo artwork stays intact. */
+:root{--orange:#086a72;--orange2:#0b7d84;--green:#086a72}
+.primary,.secondary,.care-actions a.primary,.care-actions a.secondary{background:#086a72;color:#fff;border:1px solid #086a72}
+.primary:hover,.secondary:hover,.care-actions a:hover,.nationwide-finder a:hover{background:#075961;border-color:#075961;color:#fff}
+.care-actions small{color:#fff}
+.topbar .service-links a,.topbar .ghost,.badge{background:#e9f5f4;color:#086a72;border-color:#c7e3e0}
+.back,.count,.directory .count,.panel a:not(.primary):not(.secondary),.eyebrow{color:#086a72}
+.chip.active{background:#086a72;color:#fff;border-color:#086a72}
+.hospital:hover{border-color:#72aca8}
+a:focus-visible,button:focus-visible{outline:3px solid #54b7b4;outline-offset:3px}
