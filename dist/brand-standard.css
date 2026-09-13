@@ -40,4 +40,4 @@
 
 
 .hospital-card-name{display:flex;align-items:baseline;gap:.35em}
-.hospital-card-name .hospital-name-icon{box-sizing:border-box;width:1em;height:1em;padding:1px;border:1px solid #71958d;border-radius:2px;object-fit:contain;flex:none;align-self:flex-start;margin-top:.2em}
+.hospital-card-name .hospital-name-icon{box-sizing:border-box;width:.9em;height:.9em;padding:1px;border:1px solid #71958d;border-radius:2px;object-fit:contain;flex:none;align-self:flex-start;margin-top:.25em}
