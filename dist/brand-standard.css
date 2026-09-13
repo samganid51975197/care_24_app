@@ -52,3 +52,6 @@
 .chip.active{background:#086a72;color:#fff;border-color:#086a72}
 .hospital:hover{border-color:#72aca8}
 a:focus-visible,button:focus-visible{outline:3px solid #54b7b4;outline-offset:3px}
+
+.care-actions a.primary{background:#c64a0b;border-color:#c64a0b;color:#fff}
+.care-actions a.primary:hover{background:#ad3e07;border-color:#ad3e07;color:#fff}
