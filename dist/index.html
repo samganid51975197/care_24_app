@@ -11,11 +11,11 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/care24-logo-original.png">
   <link rel="apple-touch-icon" href="assets/care24-logo-original.png">
-  <link rel="stylesheet" href="styles.css?v=mobile-auth-20260921">
+  <link rel="stylesheet" href="styles.css?v=password-auth-20260921">
   <link rel="stylesheet" href="directory.css">
   <link rel="stylesheet" href="care.css">
   <link rel="stylesheet" href="finder.css"><link rel="stylesheet" href="brand-standard.css?v=patient-orange-20260913">
-  <link rel="stylesheet" href="ward-board.css?v=mobile-auth-20260921">
+  <link rel="stylesheet" href="ward-board.css?v=password-auth-20260921">
 </head>
 <body>
   <header class="topbar">
@@ -23,7 +23,7 @@
     <nav class="service-links" aria-label="병원 찾기"><a href="#nursing">요양병원 찾기</a><a href="#rehab">재활병원 찾기</a></nav>
     <button id="adminBtn" class="ghost">관리자 통합 접수함</button>
   </header>
-  <nav class="account-controls" aria-label="로그인 및 로그아웃"><span id="accountStatus" role="status">로그인 상태 확인 중…</span><a id="accountLogin" href="/signin-with-chatgpt?return_to=%2F%23home" target="_top">로그인</a><a id="accountLogout" href="/signout-with-chatgpt?return_to=%2F%23home" target="_top" hidden>로그아웃</a><a href="#admin">관리자 접수함</a></nav>
+  <nav class="account-controls" aria-label="로그인 및 로그아웃"><span id="accountStatus" role="status">로그인 상태 확인 중…</span><a id="accountLogin" href="#admin">로그인</a><a id="accountLogout" href="#admin" hidden>로그아웃</a><a href="#admin">관리자 접수함</a></nav>
   <nav class="nationwide-finder" aria-label="전국 병원 찾기"><a href="#hospitals">전국 병원 찾기</a></nav>
   <main id="app"></main><footer style="padding:16px 24px 90px;text-align:center"><a href="#admin">관리자 로그인 · 통합 접수함</a></footer>
   <nav class="bottom" aria-label="주 메뉴">
@@ -32,9 +32,9 @@
   <script src="hospitals.js?v=seoul-top-20260921"></script>
   <script src="care-facilities.js"></script>
   <script src="ward-config.js?v=seoul-top-20260921"></script>
-  <script src="ward-board.js?v=mobile-auth-20260921"></script>
-  <script src="care-review.js?v=mobile-auth-20260921"></script>
-  <script src="room-edit.js?v=mobile-auth-20260921"></script><script src="admin-login.js?v=mobile-auth-20260921"></script><script src="auth-controls.js?v=mobile-auth-20260921"></script><script src="app.js?v=mobile-auth-20260921"></script>
+  <script src="ward-board.js?v=password-auth-20260921"></script>
+  <script src="care-review.js?v=password-auth-20260921"></script>
+  <script src="room-edit.js?v=password-auth-20260921"></script><script src="admin-login.js?v=password-auth-20260921"></script><script src="auth-controls.js?v=password-auth-20260921"></script><script src="app.js?v=password-auth-20260921"></script>
 </body>
 </html>
 

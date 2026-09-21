@@ -1,18 +1,14 @@
+async function adminLogout(){const r=await fetch('/api/admin-auth/logout',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(!r.ok)throw Error('로그아웃하지 못했습니다. 다시 시도해 주세요.');await refreshAccountControls()}
 async function admin(){
- app.innerHTML=`<section class="admin-login card" aria-labelledby="adminLoginTitle"><a class="back" href="#home">← 홈으로</a><img src="assets/care24-brand.webp" alt="간병24" width="56" height="56"><p class="eyebrow">care-24 v2 · 관리자 전용</p><h1 id="adminLoginTitle">관리자 통합 접수함</h1><p>관리자 계정으로 로그인하여 간병의뢰와 간병인 신청을 확인하세요.</p><div id="adminLoginState" role="status">로그인 상태를 확인하고 있습니다…</div><p class="admin-login-note">ChatGPT 로그인 화면에서 계정을 인증합니다. 관리자 권한이 있는 계정만 접수 내용과 연락처를 볼 수 있습니다.</p></section>`;
+ app.innerHTML=`<section class="admin-login card" aria-labelledby="adminLoginTitle"><a class="back" href="#home">← 홈으로</a><img src="assets/care24-brand.webp" alt="간병24" width="56" height="56"><p class="eyebrow">care-24 v2 · 관리자 전용</p><h1 id="adminLoginTitle">관리자 로그인</h1><div id="adminLoginState" role="status">로그인 상태를 확인하고 있습니다…</div></section>`;
  const box=document.querySelector('#adminLoginState');
  try{
-  const response=await fetch('/api/session',{cache:'no-store'});
-  if(!response.ok)throw Error('로그인 상태를 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.');
-  const session=await response.json();if(!box.isConnected)return;
-  if(session.admin){
-   if(new URLSearchParams(location.hash.split('?')[1]||'').get('signedIn')==='1'){openAdminInbox();return}
-   box.innerHTML='<p class="notice success">관리자 계정으로 로그인되어 있습니다.</p><button class="primary" id="enterAdminInbox">통합 접수함 열기</button><a class="secondary" href="/signout-with-chatgpt?return_to=%2F%23admin" target="_top">로그아웃 · 다른 계정으로 로그인</a>';
-   document.querySelector('#enterAdminInbox').onclick=openAdminInbox;
-  }else if(session.authenticated){
-   box.innerHTML='<p class="notice error">현재 계정에는 관리자 권한이 없습니다. 관리자 계정으로 다시 로그인해 주세요.</p><a class="primary" href="/signout-with-chatgpt?return_to=%2F%23admin" target="_top">로그아웃 후 관리자 계정으로 로그인</a>';
-  }else{
-   box.innerHTML='<a class="primary" href="/signin-with-chatgpt?return_to=%2F%23admin%3FsignedIn%3D1" target="_top">ChatGPT 계정으로 관리자 로그인</a>';
-  }
- }catch(error){if(!box.isConnected)return;box.innerHTML='<p class="notice error">'+escapeHtml(error.message)+'</p><button class="secondary" id="retryAdminLogin">다시 확인</button>';document.querySelector('#retryAdminLogin').onclick=admin}
+  if(new URLSearchParams(location.hash.split('?')[1]||'').get('logout')==='1'){await adminLogout();history.replaceState(null,'','#admin')}
+  const r=await fetch('/api/admin-auth/state',{cache:'no-store'});if(!r.ok)throw Error('로그인 상태를 확인하지 못했습니다.');const state=await r.json();if(!box.isConnected)return;
+  if(state.admin){box.innerHTML='<p class="notice success">관리자로 로그인되어 있습니다.</p><button id="enterAdminInbox" class="primary">통합 접수함 열기</button><button id="adminSignOut" class="secondary">로그아웃</button>';document.querySelector('#enterAdminInbox').onclick=openAdminInbox;document.querySelector('#adminSignOut').onclick=async()=>{try{await adminLogout();admin()}catch(e){box.insertAdjacentHTML('beforeend','<p>'+escapeHtml(e.message)+'</p>')}};return}
+  const setup=!state.configured&&state.setupAllowed;
+  if(!state.configured&&!setup){box.innerHTML='<p class="notice">관리자 계정이 아직 설정되지 않았습니다. 사이트 소유자가 최초 관리자 아이디와 비밀번호를 설정해야 합니다.</p>';return}
+  box.innerHTML=`<p>${setup?'최초 관리자 계정 설정입니다. 사용할 아이디와 비밀번호를 직접 입력해 주세요.':'관리자 아이디와 비밀번호를 입력해 주세요.'}</p><form id="adminPasswordForm" class="form"><div class="field"><label for="adminUsername">관리자 아이디</label><input id="adminUsername" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" pattern="[A-Za-z0-9_.-]{3,40}" minlength="3" maxlength="40" required></div><div class="field"><label for="adminPassword">비밀번호</label><input id="adminPassword" name="password" type="password" autocomplete="${setup?'new-password':'current-password'}" ${setup?'minlength="12"':''} maxlength="128" required></div>${setup?'<div class="field"><label for="adminPasswordConfirm">비밀번호 확인</label><input id="adminPasswordConfirm" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></div><p>아이디: 영문·숫자·점·밑줄·하이픈 3~40자<br>비밀번호: 12자 이상. 다른 서비스와 다른 비밀번호를 사용해 주세요.</p>':''}<button class="primary" type="submit">${setup?'관리자 계정 설정 후 로그인':'로그인'}</button><p id="adminPasswordError" role="alert"></p></form>`;
+  const form=document.querySelector('#adminPasswordForm');form.onsubmit=async event=>{event.preventDefault();if(!form.reportValidity())return;const username=form.elements.username.value,password=form.elements.password.value,error=document.querySelector('#adminPasswordError'),button=form.querySelector('button');if(setup&&password!==document.querySelector('#adminPasswordConfirm').value){error.textContent='비밀번호 확인이 일치하지 않습니다.';return}button.disabled=true;error.textContent='확인 중입니다…';try{const response=await fetch('/api/admin-auth/'+(setup?'setup':'login'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});const data=await response.json();form.elements.password.value='';if(!response.ok)throw Error(data.error||'로그인하지 못했습니다.');await refreshAccountControls();if(form.isConnected)openAdminInbox()}catch(e){if(form.isConnected)error.textContent=e.message}finally{button.disabled=false}};
+ }catch(error){if(box.isConnected)box.innerHTML='<p class="notice error">'+escapeHtml(error.message)+'</p><a href="#home">홈으로 돌아가기</a>'}
 }

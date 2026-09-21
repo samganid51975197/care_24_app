@@ -17,3 +17,6 @@ export type SecureMessage = {
 };
 
 export type CareBoardSchedule = { start_date: string; start_time: string; end_date: string | null; end_time: string | null };
+
+export type AdminAccount = { id: 1; username: string; password_hash: string; salt: string; created_at: string };
+export type AdminSession = { token_hash: string; expires_at: number };

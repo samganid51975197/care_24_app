@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
 const {default:worker}=await import('data:text/javascript;base64,'+fs.readFileSync(new URL('../dist/server/index.js',import.meta.url)).toString('base64'));
 const db=new DatabaseSync(':memory:');
-for(const file of ['0001_secure_messages.sql','0002_care_board.sql','0003_care_end_time.sql'])db.exec(fs.readFileSync(new URL('../drizzle/'+file,import.meta.url),'utf8'));
+for(const file of ['0001_secure_messages.sql','0002_care_board.sql','0003_care_end_time.sql','0004_admin_auth.sql'])db.exec(fs.readFileSync(new URL('../drizzle/'+file,import.meta.url),'utf8'));
 const wrap=(sql,args=[])=>({bind(...values){return wrap(sql,values)},async first(){return db.prepare(sql).get(...args)},async all(){return {results:db.prepare(sql).all(...args)}},run(){return db.prepare(sql).run(...args)}});
 const env={DB:{prepare:wrap,async batch(stmts){return stmts.map(s=>s.run())}}};
 const headers={'Content-Type':'application/json','Origin':'https://test.local','oai-authenticated-user-id':'test-user','oai-authenticated-user-email':'test@example.invalid'};
@@ -26,10 +26,11 @@ assert.equal((await api('/api/messages?admin=true')).status,403);
 const own=await (await api('/api/my-messages')).json();assert(own.items.length>0);assert.equal(own.admin,false);
 const outsider=new Request('https://test.local/api/my-messages',{headers:{'oai-authenticated-user-id':'other-user','oai-authenticated-user-email':'other@example.invalid'}});
 assert.deepEqual((await (await worker.fetch(outsider,env)).json()).items,[]);
-for(const ownerHeaders of [{'oai-authenticated-user-id':'f2d83ab1-c5bd-41aa-8991-e4d70322e4e5','oai-authenticated-user-email':'owner@example.invalid'},{'oai-authenticated-user-id':'owner-site-subject','oai-authenticated-user-email':'samganid5197@naver.com'}]){
- const result=await worker.fetch(new Request('https://test.local/api/messages',{headers:ownerHeaders}),env);assert.equal(result.status,200);assert.equal((await result.json()).admin,true);
- const session=await worker.fetch(new Request('https://test.local/api/session',{headers:ownerHeaders}),env);assert.equal((await session.json()).admin,true);
-}
+const ownerHeaders={'Content-Type':'application/json','Origin':'https://test.local','oai-authenticated-user-id':'owner-site-subject','oai-authenticated-user-email':'samganid5197@naver.com'};
+assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{headers:ownerHeaders}),env)).status,403);
+const setup=await worker.fetch(new Request('https://test.local/api/admin-auth/setup',{method:'POST',headers:ownerHeaders,body:JSON.stringify({username:'test-admin',password:'TEST-only-password-123'})}),env);assert.equal(setup.status,200);const adminCookie=setup.headers.get('set-cookie').split(';')[0];
+assert(setup.headers.get('set-cookie').includes('HttpOnly'));assert(setup.headers.get('set-cookie').includes('Secure'));
+assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{headers:{Cookie:adminCookie}}),env)).status,200);
 assert.equal((await (await api('/api/session')).json()).admin,false);
 console.log('PASS: owner-only inbox, anonymous 401, ordinary user 403, no query override, own-message isolation and owner identity mapping');
 
@@ -39,7 +40,7 @@ assert.equal((await api('/api/messages',{...apply,jobReference:undefined,schedul
 console.log('PASS: end time persistence, overnight range and invalid/missing schedule rejection for both forms');
 const location={building:'암병원',floor:'8층',room:'803호 (1인실)',bed:''};
 const edit={reference,expected:request.board,location};
-async function editApi(value,admin=true){return worker.fetch(new Request('https://test.local/api/room-edit',{method:'POST',headers:{...headers,...(admin?{'oai-authenticated-user-id':'f2d83ab1-c5bd-41aa-8991-e4d70322e4e5'}:{})},body:JSON.stringify(value)}),env)}
+async function editApi(value,admin=true){return worker.fetch(new Request('https://test.local/api/room-edit',{method:'POST',headers:{...headers,...(admin?{Cookie:adminCookie}:{})},body:JSON.stringify(value)}),env)}
 assert.equal((await editApi(edit,false)).status,403);
 assert.equal((await editApi({...edit,location:{...location,floor:'bad'}})).status,400);
 assert.equal((await editApi(edit)).status,200);
@@ -52,3 +53,18 @@ const relocation={reference,expected:location,location:{...location,bed:'1번',a
 const moved=await editApi(relocation);assert.equal(moved.status,200);const movedBody=(await moved.json()).body;assert(movedBody.includes('2026-09-21 13:00 (한국 시간) · 808호 (2인실) → 803호 (1인실)'));assert(movedBody.includes('담당 간병인 연락처: TEST PHONE'));
 assert.equal((await editApi({...relocation,expected:{...location,bed:'1번'},location:{...relocation.location,movedTime:''}})).status,400);
 console.log('PASS: historical room move with timestamp and private caregiver contact, incomplete history rejected');
+
+const authCall=(path,data,extra={})=>worker.fetch(new Request('https://test.local/api/admin-auth/'+path,{method:'POST',headers:{'Content-Type':'application/json','Origin':'https://test.local',...extra},body:JSON.stringify(data)}),env);
+assert.equal((await authCall('setup',{username:'hacker',password:'test-other-password'})).status,403);
+assert.equal((await authCall('setup',{username:'test-admin',password:'test-other-password'},ownerHeaders)).status,409);
+assert.equal((await authCall('login',{username:'test-admin',password:'wrong'})).status,401);
+assert.equal((await authCall('login',{username:'test-admin',password:'TEST-only-password-123'},{Origin:'https://evil.test'})).status,403);
+const login=await authCall('login',{username:'test-admin',password:'TEST-only-password-123'});assert.equal(login.status,200);const cookie=login.headers.get('set-cookie').split(';')[0];
+assert.equal((await authCall('logout',{}, {Cookie:cookie})).status,200);
+assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{headers:{Cookie:cookie}}),env)).status,401);
+for(let i=0;i<8;i++)assert.equal((await authCall('login',{username:'test-admin',password:'wrong'})).status,401);
+assert.equal((await authCall('login',{username:'test-admin',password:'wrong'})).status,429);
+assert(!db.prepare('SELECT password_hash FROM admin_accounts').get().password_hash.includes('TEST-only'));
+db.prepare('UPDATE admin_sessions SET expires_at=0').run();
+assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{headers:{Cookie:adminCookie}}),env)).status,401);
+console.log('PASS: password setup ownership, cookie login, platform bypass denied, logout revocation, rate limit, expiry and cross-origin rejection');
