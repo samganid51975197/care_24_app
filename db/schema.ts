@@ -15,3 +15,5 @@ export type SecureMessage = {
   status: "접수" | "검토중" | "완료";
   createdAt: string;
 };
+
+export type CareBoardSchedule = { start_date: string; start_time: string; end_date: string | null; end_time: string | null };

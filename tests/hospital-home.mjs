@@ -11,7 +11,10 @@ console.log('PASS: '+ids.length+' unique hospital home routes, shared board and 
 
 context.FormData=class{constructor(form){this.values=form.values}entries(){return this.values.entries()}get(key){return this.values.get(key)}};
 vm.runInContext("location.hash='#request/seoul-top';request('seoul-top')",context);
-const form=get('#requestForm');form.querySelector=()=>({textContent:'접수',disabled:false});form.reset=()=>{};form.values=new Map([['hospital','seoul-top'],['building','병원 건물'],['floor','3층'],['room','테스트 병실'],['bed','1번'],['date','2026-09-25'],['time','09:30'],['phone','TEST']]);
+const form=get('#requestForm');form.querySelector=()=>({textContent:'접수',disabled:false});form.reset=()=>{};form.values=new Map([['hospital','seoul-top'],['building','병원 건물'],['floor','3층'],['room','테스트 병실'],['bed','1번'],['date','2026-09-25'],['time','09:30'],['endDate','2026-09-26'],['endTime','09:30'],['phone','TEST']]);
 let sent;context.fetch=async(url,options)=>{sent=JSON.parse(options.body);return {ok:true,json:async()=>({reference:'TEST-NEW'})}};
 await form.onsubmit({preventDefault(){}});assert.equal(sent.hospitalId,'seoul-top');assert.equal(sent.board.floor,'3층');assert.equal(context.location.hash,'hospital/seoul-top?submitted=TEST-NEW');
 console.log('PASS: submitted request preserves hospital location and redirects to the matching hospital first-screen board');
+
+for(const id of ids){context.id=id;vm.runInContext('caregiverApply(id)',context);for(const name of ['time','endDate','endTime'])assert(get('#app').innerHTML.includes('name="'+name+'" type="'+(name==='endDate'?'date':'time')+'"'));}
+assert.equal(sent.board.endTime,'09:30');console.log('PASS: all hospitals share caregiver start/end fields and request end time is sent');
