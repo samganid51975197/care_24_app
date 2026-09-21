@@ -1,0 +1,2 @@
+const wardBuildings={"hospital-5": [{"name": "본관", "floors": ["20층", "19층", "18층", "17층", "16층", "15층", "14층", "13층", "12층", "11층", "10층", "9층", "8층", "7층", "6층", "3층", "2층"]}, {"name": "암병원", "floors": ["11층", "10층", "9층", "8층", "7층", "6층", "5층", "3층"]}, {"name": "별관", "floors": ["7층", "6층", "5층", "2층"]}, {"name": "양성자치료센터", "floors": []}]};
+wardBuildings.snubh=[{name:"1동",floors:Array.from({length:10},(_,i)=>(i+4)+"층")},{name:"2동",floors:Array.from({length:7},(_,i)=>(i+5)+"층")}];
