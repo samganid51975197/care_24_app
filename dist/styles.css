@@ -11,4 +11,4 @@
 
 .panel:has(.care-save-bar){padding-bottom:150px}
 
-.service-card .directory-logo-title{display:flex;align-items:center;gap:10px}.directory-logo-title img{width:42px;height:42px;object-fit:contain;flex-shrink:0}.directory-logo-title span{min-width:0}@media(max-width:620px){.directory-logo-title img{width:36px;height:36px}}
+.service-card .directory-logo-title{display:flex;align-items:center;gap:10px}.directory-logo-title img{width:auto;height:1em;object-fit:contain;flex-shrink:0}.directory-logo-title span{min-width:0}
