@@ -5,3 +5,6 @@
 2026-09-21 NHS 침상 운동 및 뇌졸중 재활 자료를 참고한 읽는 교육자료이며 병원별 치료계획을 우선한다.
 
 사용자 위치 수정: 공통/홈/병원 홈 재활 진입 링크 제거. 환자·보호자 의뢰 화면 상단에서만 재활치료(환자) 링크 제공. 일반병원·요양/재활시설 의뢰 모두 적용. 새 탭으로 열어 미제출 의뢰의 입력값을 유지한다.
+
+## Swallowing rehabilitation
+Added a dedicated patient lesson at #rehabilitation/swallow (16 lessons total). Includes individualized treatment, meal support, aspiration warning signs, oral care and medication precautions; links to official NHS patient guidance reviewed 2026-09-21. Speech lesson cross-links to it. No generic exercise prescriptions or simulated video controls.
