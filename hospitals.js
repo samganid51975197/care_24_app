@@ -132,3 +132,6 @@ hospitals.find(h=>h.id==='snuh').name='혜화 서울대학교병원';
 // Keep existing hospital IDs while placing Bundang Jesaeng beside Bundang CHA.
 const jesaengIndex=hospitals.findIndex(h=>h.name==='분당제생병원');
 if(jesaengIndex>=0){const [jesaeng]=hospitals.splice(jesaengIndex,1);const chaIndex=hospitals.findIndex(h=>h.name==='분당차병원');hospitals.splice(chaIndex+1,0,jesaeng)}
+
+// HIRA and NHIS hospital directory, checked 2026-09-21. Preserve all existing IDs.
+hospitals.push({id:'seoul-top',region:'서울',city:'동대문',name:'서울탑병원',type:'일반병원',specialty:'재활의학과',hospiceServices:'',hospice:false,veterans:false});
