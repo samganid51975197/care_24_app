@@ -1,7 +1,7 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
 const elements=new Map(),get=key=>{if(!elements.has(key))elements.set(key,{innerHTML:'',textContent:'',value:'',isConnected:true,querySelector:()=>null,querySelectorAll:()=>[],scrollIntoView(){}});return elements.get(key)};
 const context={enableCareReview(){},document:{querySelector:get,querySelectorAll:()=>[],visibilityState:'visible'},location:{hash:'#caregiver-apply/seoul-top'},URLSearchParams,window:{},localStorage:{getItem:()=>null},addEventListener(){},scrollTo(){},setInterval:()=>1,clearInterval(){},fetch:async()=>({ok:true,json:async()=>({items:[],admin:false})})};vm.createContext(context);
-for(const file of ['hospitals.js','care-facilities.js','ward-config.js','ward-board.js','app.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context);
+for(const file of ['hospitals.js','care-facilities.js','ward-config.js','ward-board.js','admin-login.js','app.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context);
 const ids=vm.runInContext('[...hospitals,...careFacilities].map(h=>h.id)',context);assert.equal(new Set(ids).size,ids.length);
 for(const id of ids){context.id=id;vm.runInContext('hospitalLanding(id)',context);const html=get('#app').innerHTML;assert(html.includes('id="hospitalHomeBoard"'));assert(html.includes('찾아오는 길'));assert(html.includes('map.naver.com'));assert(html.includes('map.kakao.com'));}
 vm.runInContext("hospitalLanding('seoul-top')",context);assert(get('#app').innerHTML.includes('정릉천동로 102'));assert(get('#app').innerHTML.includes('02-2088-0580'));assert.deepEqual(Array.from(vm.runInContext("wardBuildings['seoul-top'][0].floors",context)),['1층','2층','3층','4층']);

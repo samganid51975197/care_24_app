@@ -12,3 +12,5 @@
 .panel:has(.care-save-bar){padding-bottom:150px}
 
 .service-card .directory-logo-title{display:flex;align-items:center;gap:10px}.directory-logo-title img{width:auto;height:1em;object-fit:contain;flex-shrink:0}.directory-logo-title span{min-width:0}
+
+.admin-login{max-width:480px;margin:32px auto;padding:28px;display:flex;flex-direction:column;gap:14px}.admin-login h1{font-size:26px;margin:0}.admin-login p{line-height:1.65;margin:0}.admin-login img{object-fit:contain}.admin-login #adminLoginState{display:grid;gap:14px;margin:12px 0}.admin-login .primary,.admin-login .secondary{text-align:center;white-space:normal;line-height:1.5}.admin-login .admin-login-note{font-size:14px;color:#53616b}@media(max-width:620px){.admin-login{margin:16px auto;padding:22px}.admin-login h1{font-size:23px}}
