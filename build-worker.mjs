@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root=process.cwd();
-const textFiles=['index.html','styles.css','directory.css','care.css','finder.css','brand-standard.css','hospitals.js','care-facilities.js','app.js','care-review.js','ward-config.js','ward-board.js','ward-board.css','manifest.webmanifest','sw.js'];
+const textFiles=['index.html','styles.css','directory.css','care.css','finder.css','brand-standard.css','hospitals.js','care-facilities.js','app.js','care-review.js','room-edit.js','ward-config.js','ward-board.js','ward-board.css','manifest.webmanifest','sw.js'];
 const binaryFiles=['assets/care24-brand.webp','assets/care24-logo-original.png','assets/snubh-logo.png','assets/hichart.png','assets/icon-192.png','assets/icon-512.png','assets/icon.svg'];
 const textAssets=Object.fromEntries(textFiles.map(name=>['/'+name,fs.readFileSync(path.join(root,name),'utf8')]));
 textAssets['/']=textAssets['/index.html'];

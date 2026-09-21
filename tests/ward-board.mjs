@@ -37,3 +37,14 @@ assert.equal(board.items[0].endTime,'09:00');
 for(const delta of [{endTime:''},{endDate:'2026-09-25',endTime:'12:00'},{endDate:'2026-02-30'},{endTime:'24:00'}]){assert.equal((await api('/api/messages',{...request,board:{...request.board,...delta}})).status,400);assert.equal((await api('/api/messages',{...apply,jobReference:undefined,schedule:{...request.board,...delta}})).status,400)}
 assert.equal((await api('/api/messages',{...apply,jobReference:undefined,schedule:undefined})).status,400);
 console.log('PASS: end time persistence, overnight range and invalid/missing schedule rejection for both forms');
+const location={building:'암병원',floor:'8층',room:'803호 (1인실)',bed:''};
+const edit={reference,expected:request.board,location};
+async function editApi(value,admin=true){return worker.fetch(new Request('https://test.local/api/room-edit',{method:'POST',headers:{...headers,...(admin?{'oai-authenticated-user-id':'f2d83ab1-c5bd-41aa-8991-e4d70322e4e5'}:{})},body:JSON.stringify(value)}),env)}
+assert.equal((await editApi(edit,false)).status,403);
+assert.equal((await editApi({...edit,location:{...location,floor:'bad'}})).status,400);
+assert.equal((await editApi(edit)).status,200);
+assert.equal(db.prepare('SELECT room FROM care_board_requests WHERE reference=?').get(reference).room,location.room);
+assert(db.prepare('SELECT body FROM secure_messages WHERE reference=?').get(reference).body.includes('병실: 803호 (1인실)'));
+assert.equal((await editApi(edit)).status,409);
+assert(db.prepare("SELECT action FROM secure_message_audit WHERE action LIKE '%room_updated%'").get());
+console.log('PASS: admin-only room editing, persistence, body sync, audit and stale edit protection');
