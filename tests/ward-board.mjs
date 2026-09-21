@@ -10,7 +10,7 @@ const headers={'Content-Type':'application/json','Origin':'https://test.local','
 async function api(path,body,auth=true){return worker.fetch(new Request('https://test.local'+path,{method:body?'POST':'GET',headers:auth?headers:{},...(body?{body:JSON.stringify(body)}:{})}),env)}
 const request={hospitalId:'hospital-5',hospitalName:'삼성서울병원',category:'환자·보호자 의뢰',recipient:'both',title:'환자·보호자 의뢰 · 삼성서울병원',body:'PRIVATE MEDICAL MEMO',contact:'PRIVATE PHONE',board:{building:'암병원',floor:'8층',room:'확인된 병실',bed:'2번',date:'2026-09-25',time:'13:45',endDate:'2026-09-26',endTime:'09:00'}};
 let res=await api('/api/messages',request);assert.equal(res.status,201);const {reference}=await res.json();
-assert.equal((await api('/api/board?hospitalId=hospital-5',null,false)).status,401);
+assert.equal((await api('/api/board?hospitalId=hospital-5',null,false)).status,200);const publicBoard=await (await api('/api/board?hospitalId=hospital-5',null,false)).json();assert(!JSON.stringify(publicBoard).includes('PRIVATE'));assert.equal((await api('/api/messages',request,false)).status,401);
 let board=await (await api('/api/board?hospitalId=hospital-5')).json();assert.equal(board.items.length,1);assert.equal(board.items[0].time,'13:45');assert.equal(board.items[0].reference,reference);assert(!JSON.stringify(board).includes('PRIVATE'));assert.deepEqual((await (await api('/api/board?hospitalId=snubh')).json()).items,[]);
 const apply={hospitalId:'hospital-5',hospitalName:'삼성서울병원',category:'간병인 신청',recipient:'both',title:'간병인 신청 · 삼성서울병원',body:'지원 의뢰번호: '+reference,contact:'TEST',jobReference:reference,schedule:request.board};
 assert.equal((await api('/api/messages',apply)).status,201);assert.equal((await api('/api/messages',{...apply,hospitalId:'snubh'})).status,400);

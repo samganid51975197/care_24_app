@@ -13,3 +13,7 @@ Released 2026-09-21. Existing Site URL, application identity and D1 data are ret
 - Directory title logo aligned to adjacent text height.
 
 Older records without an end time remain marked as unregistered. Assigned caregiver contact and relocation history are not included in the situation-board API. This release does not add automatic assignment, payroll or notifications.
+
+## Public browsing
+
+Hospital listings and the sanitized request board allow anonymous access. Admin APIs, editing, own messages and submission remain authenticated. Site audience changed to public at the owner's explicit request.
