@@ -48,3 +48,7 @@ assert(db.prepare('SELECT body FROM secure_messages WHERE reference=?').get(refe
 assert.equal((await editApi(edit)).status,409);
 assert(db.prepare("SELECT action FROM secure_message_audit WHERE action LIKE '%room_updated%'").get());
 console.log('PASS: admin-only room editing, persistence, body sync, audit and stale edit protection');
+const relocation={reference,expected:location,location:{...location,bed:'1번',assignedName:'TEST CAREGIVER',assignedPhone:'TEST PHONE',movedDate:'2026-09-21',movedTime:'13:00',previousRoom:'808호 (2인실)'}};
+const moved=await editApi(relocation);assert.equal(moved.status,200);const movedBody=(await moved.json()).body;assert(movedBody.includes('2026-09-21 13:00 (한국 시간) · 808호 (2인실) → 803호 (1인실)'));assert(movedBody.includes('담당 간병인 연락처: TEST PHONE'));
+assert.equal((await editApi({...relocation,expected:{...location,bed:'1번'},location:{...relocation.location,movedTime:''}})).status,400);
+console.log('PASS: historical room move with timestamp and private caregiver contact, incomplete history rejected');
