@@ -19,3 +19,16 @@ assert.equal((await api('/api/messages',{...request,board:{...request.board,date
 db.prepare("UPDATE secure_messages SET status='배정 완료' WHERE reference=?").run(reference);
 assert.equal((await api('/api/messages',apply)).status,400);assert.deepEqual((await (await api('/api/board?hospitalId=hospital-5')).json()).items,[]);
 console.log('PASS: migrations, request persistence, sanitized board, hospital isolation, selected application, closed request, authentication and time validation.');
+
+assert.equal((await api('/api/messages',null,false)).status,401);
+assert.equal((await api('/api/messages')).status,403);
+assert.equal((await api('/api/messages?admin=true')).status,403);
+const own=await (await api('/api/my-messages')).json();assert(own.items.length>0);assert.equal(own.admin,false);
+const outsider=new Request('https://test.local/api/my-messages',{headers:{'oai-authenticated-user-id':'other-user','oai-authenticated-user-email':'other@example.invalid'}});
+assert.deepEqual((await (await worker.fetch(outsider,env)).json()).items,[]);
+for(const ownerHeaders of [{'oai-authenticated-user-id':'f2d83ab1-c5bd-41aa-8991-e4d70322e4e5','oai-authenticated-user-email':'owner@example.invalid'},{'oai-authenticated-user-id':'owner-site-subject','oai-authenticated-user-email':'samganid5197@naver.com'}]){
+ const result=await worker.fetch(new Request('https://test.local/api/messages',{headers:ownerHeaders}),env);assert.equal(result.status,200);assert.equal((await result.json()).admin,true);
+ const session=await worker.fetch(new Request('https://test.local/api/session',{headers:ownerHeaders}),env);assert.equal((await session.json()).admin,true);
+}
+assert.equal((await (await api('/api/session')).json()).admin,false);
+console.log('PASS: owner-only inbox, anonymous 401, ordinary user 403, no query override, own-message isolation and owner identity mapping');
