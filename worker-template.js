@@ -29,10 +29,11 @@ async function editRoom(request,env,user){
  if(!old)return json({error:'수정할 의뢰를 찾을 수 없습니다.'},404);
  if(Object.keys(fields).some(k=>data.expected?.[k]!==old[k]))return json({error:'다른 변경이 있습니다. 접수함을 새로고침하고 다시 수정해 주세요.'},409);
  let body=old.body;for(const [key,label] of Object.entries({building:'건물',floor:'층',room:'병실',bed:'침상'})){const re=new RegExp('^'+label+':[^\\n]*','m');body=re.test(body)?body.replace(re,()=>label+': '+loc[key]):body+'\n'+label+': '+loc[key]}
+ for(const [key,label,max] of [['assignedName','담당 간병인 · 자격',80],['assignedPhone','담당 간병인 연락처',30]]){const value=data.location?.[key];if(value!==undefined){if(typeof value!=='string'||value.length>max||/[\r\n]/.test(value))return json({error:'담당 간병인 정보를 확인해 주세요.'},400);const re=new RegExp('^'+label+':[^\\n]*','m');body=re.test(body)?body.replace(re,()=>label+': '+value.trim()):body+'\n'+label+': '+value.trim()}}
  const changed=await env.DB.batch([
  env.DB.prepare('UPDATE care_board_requests SET building=?, floor=?, room=?, bed=? WHERE reference=? AND building=? AND floor=? AND room=? AND bed=?').bind(loc.building,loc.floor,loc.room,loc.bed,old.reference,old.building,old.floor,old.room,old.bed),
  env.DB.prepare('UPDATE secure_messages SET body=? WHERE id=? AND changes()=1').bind(body,old.message_id),
- env.DB.prepare('INSERT INTO secure_message_audit (message_id,actor_user_id,action,created_at) SELECT ?,?,?,? WHERE changes()=1').bind(old.message_id,user.id,JSON.stringify({action:'room_updated',before:Object.fromEntries(Object.keys(fields).map(k=>[k,old[k]])),after:loc}),new Date().toISOString())]);
+ env.DB.prepare('INSERT INTO secure_message_audit (message_id,actor_user_id,action,created_at) SELECT ?,?,?,? WHERE changes()=1').bind(old.message_id,user.id,JSON.stringify({action:'room_updated',before:Object.fromEntries(Object.keys(fields).map(k=>[k,old[k]])),after:loc,staffUpdated:data.location?.assignedName!==undefined}),new Date().toISOString())]);
  if((changed[0]?.meta?.changes??changed[0]?.changes)===0)return json({error:'다른 변경이 있습니다. 새로고침 후 다시 수정해 주세요.'},409);
  return json({location:loc,body});
 }
