@@ -4,6 +4,7 @@ import {useState} from "react";
 import {ArrowLeft, Building2, ChevronRight, ExternalLink} from "lucide-react";
 import guide from "@/lib/samsung-guide.json";
 import WardBoard from "./ward-board";
+import SamsungCancerEighth from "./samsung-cancer-eighth";
 import "./samsung-hospital.css";
 
 const buildings = guide.buildings.filter(building => building.id !== "proton");
@@ -64,7 +65,7 @@ export function SamsungFloorDetail({buildingName, floorId, onBack}: {buildingNam
       <a href={floor.source} target="_blank" rel="noopener noreferrer">{building.name} {floor.label} 공식 안내도 열기 ↗</a>
       <details><summary>공식 층별 안내도 펼치기</summary>{floor.planUrl && !imageFailed ? <a href={floor.source} target="_blank" rel="noopener noreferrer"><img src={floor.planUrl} alt={`삼성서울병원 ${building.name} ${floor.label} 공식 층별 안내도`} onError={() => setImageFailed(true)}/></a> : <p>위의 공식 안내도 링크에서 확인해 주세요.</p>}</details>
     </section>
-    {floor.hasWard && <><p className="samsung-source-note">아래 병실·침상 평면은 현장 확인용 예시입니다. 실제 병실번호·침상·문·창문 위치는 현장 도면을 받아 반영합니다.</p><WardBoard key={building.id+floor.id} building={building.name} ward={`${floor.label} · 병동`} hospitalName="삼성서울병원" hideKeyPlan onBack={onBack}/></>}
+    {building.id === "cancer" && floor.id === "8F" ? <SamsungCancerEighth/> : floor.hasWard && <><p className="samsung-source-note">아래 병실·침상 평면은 현장 확인용 예시입니다. 실제 병실번호·침상·문·창문 위치는 현장 도면을 받아 반영합니다.</p><WardBoard key={building.id+floor.id} building={building.name} ward={`${floor.label} · 병동`} hospitalName="삼성서울병원" hideKeyPlan onBack={onBack}/></>}
   </div>;
 }
 
