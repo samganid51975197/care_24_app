@@ -22,3 +22,5 @@
 .rehabilitation-fields{min-width:0;border:1px solid #acd0c7;border-radius:12px;padding:16px;background:#fff}.rehabilitation-fields legend{padding:0 6px;font-weight:800;color:#176343}.rehabilitation-fields p{font-size:13px;margin:0 0 12px;color:#526a72}.rehabilitation-fields small{font-size:12px;color:#526a72;line-height:1.6}.rehabilitation-fields .request-grid{margin-bottom:0}
 
 .request-save-receipt{margin:20px 0;padding:20px;border:2px solid #16816b;border-radius:16px;background:#effaf5}.request-save-receipt h3{color:#176343;margin:0 0 10px}.request-save-receipt p{margin:0 0 14px}
+
+#patient-care-request-title{font-weight:800}
