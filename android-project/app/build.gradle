@@ -15,7 +15,7 @@ android {
         targetSdk 36
         versionCode 15
         versionName '1.1.5'
-        manifestPlaceholders = [twaHost: 'xn--24-ts1i486c.com', twaUrl: 'https://xn--24-ts1i486c.com/', launcherActivity: '.MainActivity', launcherTheme: '@android:style/Theme.Translucent.NoTitleBar']
+        manifestPlaceholders = [twaHost: 'care.xn--24-ts1i486c.com', twaUrl: 'https://care.xn--24-ts1i486c.com/', launcherActivity: '.MainActivity', launcherTheme: '@android:style/Theme.Translucent.NoTitleBar']
     }
 
     signingConfigs {
@@ -34,8 +34,8 @@ android {
             applicationIdSuffix '.dev'
             manifestPlaceholders.launcherActivity = '.LocalPreviewActivity'
             manifestPlaceholders.launcherTheme = '@style/Theme.Care24'
-            manifestPlaceholders.twaHost = 'xn--24-ts1i486c.com'
-            manifestPlaceholders.twaUrl = 'https://xn--24-ts1i486c.com/'
+            manifestPlaceholders.twaHost = 'care.xn--24-ts1i486c.com'
+            manifestPlaceholders.twaUrl = 'https://care.xn--24-ts1i486c.com/'
         }
         release {
             if (signingPath && signingPassword) signingConfig signingConfigs.production

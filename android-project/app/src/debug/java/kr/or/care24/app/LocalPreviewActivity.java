@@ -12,7 +12,7 @@ import android.widget.*;
 public class LocalPreviewActivity extends androidx.activity.ComponentActivity {
     private WebView web;
     private ValueCallback<Uri[]> pendingFiles;
-    private static final String URL = "https://xn--24-ts1i486c.com/";
+    private static final String URL = "https://care.xn--24-ts1i486c.com/";
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
         LinearLayout layout = new LinearLayout(this);
@@ -46,7 +46,7 @@ public class LocalPreviewActivity extends androidx.activity.ComponentActivity {
                     }
                     return true;
                 }
-                return !("https".equals(uri.getScheme()) && "xn--24-ts1i486c.com".equals(uri.getHost()) && (uri.getPort() == -1 || uri.getPort() == 443));
+                return !("https".equals(uri.getScheme()) && "care.xn--24-ts1i486c.com".equals(uri.getHost()) && (uri.getPort() == -1 || uri.getPort() == 443));
             }
             @Override public void onPageFinished(WebView view, String url) {
                 Log.i("Care24Preview", "Page loaded: " + Uri.parse(url).getPath());

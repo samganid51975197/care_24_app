@@ -15,7 +15,7 @@ Google Android Browser Helper의 LauncherActivity로 기존 PWA를 실행합니�
 
 폴더는 Git 밖에 있고 Windows 사용자/SYSTEM 및 작업 계정으로 ACL을 제한했습니다. 키는 암호화된 별도 매체에, 비밀번호는 별도 비밀번호 관리 도구에 백업하세요. 별도 매체 백업은 아직 하지 않았습니다. 키/비밀번호를 GitHub, 메일, 채팅, 웹 폴더에 올리지 마세요. 파일 유실 시 동일 서명으로 직접 앱 업데이트가 불가능할 수 있습니다.
 
-연결 주소는 https://xn--24-ts1i486c.com/ (간병24.com)입니다. 앱 리소스 twa.xml의 웹 관계, Gradle의 호스트/URL, 웹 서버 CARE24_ORIGIN이 같은 도메인을 가리켜야 합니다.
+연결 주소는 https://care.xn--24-ts1i486c.com/ (care.간병24.com, 신규 병원 서비스 전용 서브도메인)입니다. 앱 리소스 twa.xml의 웹 관계, Gradle의 호스트/URL, 웹 서버 CARE24_ORIGIN이 같은 도메인을 가리켜야 합니다.
 
 ## 현재 미완료인 운영 연결
 
