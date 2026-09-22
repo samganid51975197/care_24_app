@@ -1,6 +1,7 @@
 import { getClient } from "../../../../db";
 import { AccessError, currentActor, privateJson, rateLimit, readToken, requireOrigin, sessionCookie } from "../../../../lib/auth";
 import { hashPassword, newToken, tokenHash, verifyPassword } from "../../../../lib/auth-crypto.mjs";
+import { isLegacyPreviewLogout } from "../../../../lib/logout-origin.mjs";
 export const runtime = "nodejs";
 const actionOf = (req: Request) => new URL(req.url).pathname.split('/').pop();
 export async function GET(req: Request) {
@@ -9,11 +10,16 @@ export async function GET(req: Request) {
 }
 export async function POST(req: Request) {
   try {
-    requireOrigin(req);
-    const db = getClient(), action = actionOf(req);
+    const action = actionOf(req);
+    const legacyLogout = action === 'logout' && isLegacyPreviewLogout(req);
+    if (!legacyLogout) requireOrigin(req);
+    const db = getClient();
     if (action === 'logout') {
       await db.execute({sql:'DELETE FROM auth_sessions WHERE token_hash=?',args:[tokenHash(readToken(req))]});
-      return privateJson({ok:true},200,{'Set-Cookie':sessionCookie('',true)});
+      const clearCookie = legacyLogout
+        ? 'care24_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0'
+        : sessionCookie('',true);
+      return privateJson({ok:true},200,{'Set-Cookie':clearCookie});
     }
     if (!['signup','login'].includes(action || '')) return privateJson({error:"찾을 수 없습니다."},404);
     if (Number(req.headers.get('content-length')) > 8192) throw new AccessError(413,"입력이 너무 깁니다.");

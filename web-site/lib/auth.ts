@@ -1,7 +1,9 @@
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
+import {recordScope} from './hospital-scope.mjs';
+export {hospitalFilter} from './hospital-scope.mjs';
 import { getClient } from "../db";
 import { tokenHash } from "./auth-crypto.mjs";
-export type Actor = { id: string; username: string; name: string; role: "admin" | "hospital" | "caregiver"; hospitalId: string | null; status: string };
+export type Actor = { id: string; username: string; name: string; role: "admin" | "hospital" | "caregiver"; hospitalId: string | null; contextHospitalId?:string; legacyHospital?:boolean; status: string };
 export const cookieName = "care24_session";
 export class AccessError extends Error { constructor(public status: number, message: string) { super(message); } }
 export function requireOrigin(req: Request) {
@@ -25,18 +27,18 @@ export async function withActor(req: Request, handler: (actor: Actor) => Promise
     if (!actor) throw new AccessError(401, "로그인이 필요합니다.");
     if (actor.status !== "active") throw new AccessError(403, "관리자 승인 후 이용할 수 있습니다.");
     if (admin && actor.role !== "admin") throw new AccessError(403, "관리자만 이용할 수 있습니다.");
+    const hospital=new URL(req.url).searchParams.get('hospital');
+    if(hospital){const {resolveHospital}=await import('./hospital-context');actor.contextHospitalId=await resolveHospital(hospital,actor,req.method!=='GET');actor.legacyHospital=hospital==='snubh';}
     const response = await handler(actor);
     response.headers.set("Cache-Control", "no-store");
     return response;
   } catch(e) { return privateJson({error: e instanceof AccessError ? e.message : "요청을 처리하지 못했습니다."}, e instanceof AccessError ? e.status : 500); }
 }
 export function scope(table: any, actor: Actor) {
-  if (actor.role === "admin") return sql`1 = 1`;
-  if (actor.role === "hospital") return actor.hospitalId ? eq(table.hospitalId, actor.hospitalId) : sql`1 = 0`;
-  return eq(table.ownerUserId, actor.id);
+  return recordScope(table,actor);
 }
 export function scopedId(table: any, id: number, actor: Actor) { return and(eq(table.id,id),scope(table,actor)); }
-export function ownership(actor: Actor) { return {ownerUserId: actor.id, hospitalId: actor.hospitalId}; }
+export function ownership(actor: Actor) { return {ownerUserId: actor.id, hospitalId: actor.contextHospitalId||actor.hospitalId}; }
 export async function workflowGuard(req: Request, actor: Actor) {
   if (req.method === "GET" || actor.role !== "caregiver") return;
   const body = req.headers.get("content-type")?.includes("multipart/form-data") ? Object.fromEntries(await req.clone().formData()) : await req.clone().json();

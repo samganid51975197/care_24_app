@@ -1,4 +1,5 @@
-import {withActor,scope,scopedId,ownership,workflowGuard,type Actor} from "../../../lib/auth";
+import {requestBoardStatus} from "@/lib/request-board-status.mjs";
+import {withActor,hospitalFilter,scope,scopedId,ownership,workflowGuard,type Actor} from "../../../lib/auth";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
 import { getDb, getClient } from "../../../db";
 import { applications, careRequests } from "../../../db/schema";
@@ -11,7 +12,7 @@ async function handleGET(req:Request, actor:Actor) {
   try {
     const db = getDb();
     const [allRequests, profiles] = await Promise.all([
-      db.select().from(careRequests).where(actor.role==='caregiver'?eq(careRequests.publicConsent,"동의"):scope(careRequests,actor)).orderBy(asc(careRequests.id)).limit(1000),
+      db.select().from(careRequests).where(actor.role==='caregiver'?and(eq(careRequests.publicConsent,"동의"),hospitalFilter(careRequests,actor)):scope(careRequests,actor)).orderBy(asc(careRequests.id)).limit(1000),
       db.select({ id: applications.id, applicantName: applications.applicantName, applicantGender: applications.applicantGender, careerYears: applications.careerYears, qualification: applications.qualification, preferredDate: applications.preferredDate, status: applications.status }).from(applications).where(scope(applications,actor)).orderBy(desc(applications.id)).limit(100),
     ]);
     const now = new Date(), dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime(), day = 86400000;
@@ -19,16 +20,14 @@ async function handleGET(req:Request, actor:Actor) {
     await ensureWorkflow(getClient());
     const workflowRows=await getClient().execute('SELECT request_id,payload FROM care_workflows');
     const {decryptText}=await import('../../../lib/data-crypto.mjs');
-    const sentRequests=new Set(workflowRows.rows.filter(row=>{
-      const workflow=JSON.parse(decryptText(row.payload,'care_workflows.'+row.request_id));
-      return workflow.applications.some((application:any)=>application.status==='sent');
-    }).map(row=>Number(row.request_id)));
-    const boardStatus=(item:typeof allRequests[number])=>sentRequests.has(item.id)?'matched':item.status;
+    const workflows=new Map(workflowRows.rows.map(row=>[Number(row.request_id),JSON.parse(decryptText(row.payload,'care_workflows.'+row.request_id))]));
+    const boardStatus=(item:typeof allRequests[number])=>requestBoardStatus(item,workflows.get(item.id));
     const stats = Object.fromEntries(Object.entries(starts).map(([key, start]) => {
       const rows = allRequests.filter((item) => new Date(item.createdAt.replace(" ", "T") + "Z").getTime() >= start);
       return [key, { total: rows.length, matched: rows.filter((item) => boardStatus(item) === "matched").length }];
     }));
     const progress=workflowRows.rows.filter(row=>{
+      if(actor.contextHospitalId&&!allRequests.some(r=>r.id===Number(row.request_id)))return false;
       if(actor.role==='admin'||allRequests.some(r=>r.id===Number(row.request_id)&&r.ownerUserId===actor.id))return true;
       const w=JSON.parse(decryptText(row.payload,'care_workflows.'+row.request_id));
       return w.applications.some((a:any)=>a.ownerId===actor.id);

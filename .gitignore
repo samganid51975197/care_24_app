@@ -12,3 +12,11 @@ android-project/app/build/
 **/*.key
 .DS_Store
 Thumbs.db
+
+# Local archives and generated Android outputs
+/care-24-v2-android.zip
+**/build/
+**/*.db
+**/*.db-*
+**/*.sqlite
+**/*.sqlite-*

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./auth.css";
 import AuthGate from "./auth-gate";
+import PrivacyFooter from "./privacy-footer";
 
 export const metadata: Metadata = {
   title: "분당서울대학교병원 통합간병 앱",
@@ -35,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="antialiased"><AuthGate>{children}</AuthGate><footer className="privacy-footer"><a href="/privacy">개인정보처리방침</a></footer></body>
+      <body className="antialiased"><AuthGate>{children}</AuthGate><PrivacyFooter/></body>
     </html>
   );
 }

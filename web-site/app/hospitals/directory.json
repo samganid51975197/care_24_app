@@ -1,0 +1,2557 @@
+[
+  {
+    "id": "snuh",
+    "name": "혜화 서울대학교병원",
+    "region": "서울",
+    "city": "종로",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "severance",
+    "name": "신촌세브란스병원",
+    "region": "서울",
+    "city": "서대문",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "gangnam-sev",
+    "name": "강남세브란스병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "seoul-stmary",
+    "name": "서울성모병원",
+    "region": "서울",
+    "city": "서초",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-5",
+    "name": "삼성서울병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-6",
+    "name": "서울아산병원",
+    "region": "서울",
+    "city": "송파",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "anam",
+    "name": "고려대학교 안암병원",
+    "region": "서울",
+    "city": "성북",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "korea-guro",
+    "name": "고려대학교 구로병원",
+    "region": "서울",
+    "city": "구로",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-9",
+    "name": "경희대학교병원",
+    "region": "서울",
+    "city": "동대문",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-10",
+    "name": "강동경희대학교병원",
+    "region": "서울",
+    "city": "강동",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hanyang-seoul",
+    "name": "한양대학교병원",
+    "region": "서울",
+    "city": "성동",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-12",
+    "name": "건국대학교병원",
+    "region": "서울",
+    "city": "광진",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-13",
+    "name": "중앙대학교병원",
+    "region": "서울",
+    "city": "동작",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-14",
+    "name": "이대목동병원",
+    "region": "서울",
+    "city": "양천",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-15",
+    "name": "이대서울병원",
+    "region": "서울",
+    "city": "강서",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "boramae",
+    "name": "서울특별시 보라매병원",
+    "region": "서울",
+    "city": "동작",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-17",
+    "name": "국립중앙의료원",
+    "region": "서울",
+    "city": "중구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-18",
+    "name": "서울의료원",
+    "region": "서울",
+    "city": "중랑",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-19",
+    "name": "순천향대학교 서울병원",
+    "region": "서울",
+    "city": "용산",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-20",
+    "name": "강북삼성병원",
+    "region": "서울",
+    "city": "종로",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-21",
+    "name": "인제대학교 상계백병원",
+    "region": "서울",
+    "city": "노원",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-22",
+    "name": "노원을지대학교병원",
+    "region": "서울",
+    "city": "노원",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-23",
+    "name": "은평성모병원",
+    "region": "서울",
+    "city": "은평",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-24",
+    "name": "한림대학교 강남성심병원",
+    "region": "서울",
+    "city": "영등포",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-25",
+    "name": "가톨릭대학교 여의도성모병원",
+    "region": "서울",
+    "city": "영등포",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-26",
+    "name": "강동성심병원",
+    "region": "서울",
+    "city": "강동",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-27",
+    "name": "삼육서울병원",
+    "region": "서울",
+    "city": "동대문",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-28",
+    "name": "중앙보훈병원",
+    "region": "서울",
+    "city": "강동",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-29",
+    "name": "부산대학교병원",
+    "region": "부산",
+    "city": "서구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-30",
+    "name": "동아대학교병원",
+    "region": "부산",
+    "city": "서구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-31",
+    "name": "고신대학교복음병원",
+    "region": "부산",
+    "city": "서구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-32",
+    "name": "인제대학교 부산백병원",
+    "region": "부산",
+    "city": "부산진",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-33",
+    "name": "인제대학교 해운대백병원",
+    "region": "부산",
+    "city": "해운대",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-34",
+    "name": "부산성모병원",
+    "region": "부산",
+    "city": "남구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-35",
+    "name": "부산의료원",
+    "region": "부산",
+    "city": "연제",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-36",
+    "name": "좋은문화병원",
+    "region": "부산",
+    "city": "동구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-37",
+    "name": "대동병원",
+    "region": "부산",
+    "city": "동래",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-38",
+    "name": "동남권원자력의학원",
+    "region": "부산",
+    "city": "기장",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-39",
+    "name": "경북대학교병원",
+    "region": "대구",
+    "city": "중구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-40",
+    "name": "계명대학교 동산병원",
+    "region": "대구",
+    "city": "달서",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-41",
+    "name": "영남대학교병원",
+    "region": "대구",
+    "city": "남구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-42",
+    "name": "대구가톨릭대학교병원",
+    "region": "대구",
+    "city": "남구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-43",
+    "name": "칠곡경북대학교병원",
+    "region": "대구",
+    "city": "북구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-44",
+    "name": "대구파티마병원",
+    "region": "대구",
+    "city": "동구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-45",
+    "name": "대구의료원",
+    "region": "대구",
+    "city": "서구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-46",
+    "name": "대구보훈병원",
+    "region": "대구",
+    "city": "달서",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-47",
+    "name": "인하대학교병원",
+    "region": "인천",
+    "city": "중구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-48",
+    "name": "가천대학교 길병원",
+    "region": "인천",
+    "city": "남동",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-49",
+    "name": "가톨릭대학교 인천성모병원",
+    "region": "인천",
+    "city": "부평",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-50",
+    "name": "가톨릭관동대학교 국제성모병원",
+    "region": "인천",
+    "city": "서구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-51",
+    "name": "인천의료원",
+    "region": "인천",
+    "city": "동구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-52",
+    "name": "인천사랑병원",
+    "region": "인천",
+    "city": "미추홀",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-53",
+    "name": "근로복지공단 인천병원",
+    "region": "인천",
+    "city": "부평",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-54",
+    "name": "전남대학교병원",
+    "region": "광주",
+    "city": "동구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-55",
+    "name": "조선대학교병원",
+    "region": "광주",
+    "city": "동구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-56",
+    "name": "광주기독병원",
+    "region": "광주",
+    "city": "남구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-57",
+    "name": "광주보훈병원",
+    "region": "광주",
+    "city": "광산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-58",
+    "name": "상무병원",
+    "region": "광주",
+    "city": "서구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-59",
+    "name": "충남대학교병원",
+    "region": "대전",
+    "city": "중구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-60",
+    "name": "건양대학교병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-61",
+    "name": "대전을지대학교병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-62",
+    "name": "가톨릭대학교 대전성모병원",
+    "region": "대전",
+    "city": "중구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-63",
+    "name": "대전선병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-64",
+    "name": "유성선병원",
+    "region": "대전",
+    "city": "유성",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-65",
+    "name": "근로복지공단 대전병원",
+    "region": "대전",
+    "city": "대덕",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-66",
+    "name": "울산대학교병원",
+    "region": "울산",
+    "city": "동구",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-67",
+    "name": "울산병원",
+    "region": "울산",
+    "city": "남구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-68",
+    "name": "동강병원",
+    "region": "울산",
+    "city": "중구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-69",
+    "name": "울산제일병원",
+    "region": "울산",
+    "city": "남구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-70",
+    "name": "세종충남대학교병원",
+    "region": "세종",
+    "city": "도담",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "snubh",
+    "name": "분당서울대학교병원",
+    "region": "경기",
+    "city": "성남",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-72",
+    "name": "아주대학교병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-73",
+    "name": "가톨릭대학교 성빈센트병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-74",
+    "name": "분당차병원",
+    "region": "경기",
+    "city": "성남",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-88",
+    "name": "분당제생병원",
+    "region": "경기",
+    "city": "성남",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-75",
+    "name": "인제대학교 일산백병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-76",
+    "name": "동국대학교 일산병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-77",
+    "name": "국민건강보험공단 일산병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-78",
+    "name": "국립암센터",
+    "region": "경기",
+    "city": "고양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-79",
+    "name": "순천향대학교 부천병원",
+    "region": "경기",
+    "city": "부천",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-80",
+    "name": "고려대학교 안산병원",
+    "region": "경기",
+    "city": "안산",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-81",
+    "name": "한림대학교 성심병원",
+    "region": "경기",
+    "city": "안양",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-82",
+    "name": "한림대학교 동탄성심병원",
+    "region": "경기",
+    "city": "화성",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hanyang-guri",
+    "name": "한양대학교 구리병원",
+    "region": "경기",
+    "city": "구리",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-84",
+    "name": "용인세브란스병원",
+    "region": "경기",
+    "city": "용인",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-85",
+    "name": "가톨릭대학교 의정부성모병원",
+    "region": "경기",
+    "city": "의정부",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-86",
+    "name": "가톨릭대학교 부천성모병원",
+    "region": "경기",
+    "city": "부천",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-87",
+    "name": "명지병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-89",
+    "name": "성남시의료원",
+    "region": "경기",
+    "city": "성남",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-90",
+    "name": "평택성모병원",
+    "region": "경기",
+    "city": "평택",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-91",
+    "name": "경기도의료원 의정부병원",
+    "region": "경기",
+    "city": "의정부",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-92",
+    "name": "경기도의료원 이천병원",
+    "region": "경기",
+    "city": "이천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-93",
+    "name": "경기도의료원 파주병원",
+    "region": "경기",
+    "city": "파주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-94",
+    "name": "강원대학교병원",
+    "region": "강원",
+    "city": "춘천",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-95",
+    "name": "한림대학교 춘천성심병원",
+    "region": "강원",
+    "city": "춘천",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-96",
+    "name": "원주세브란스기독병원",
+    "region": "강원",
+    "city": "원주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-97",
+    "name": "강릉아산병원",
+    "region": "강원",
+    "city": "강릉",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-98",
+    "name": "강원특별자치도 강릉의료원",
+    "region": "강원",
+    "city": "강릉",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-99",
+    "name": "강원특별자치도 속초의료원",
+    "region": "강원",
+    "city": "속초",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-100",
+    "name": "강원특별자치도 삼척의료원",
+    "region": "강원",
+    "city": "삼척",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-101",
+    "name": "충북대학교병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-102",
+    "name": "청주성모병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-103",
+    "name": "건국대학교 충주병원",
+    "region": "충북",
+    "city": "충주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-104",
+    "name": "청주의료원",
+    "region": "충북",
+    "city": "청주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-105",
+    "name": "충주의료원",
+    "region": "충북",
+    "city": "충주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-106",
+    "name": "명지병원 제천",
+    "region": "충북",
+    "city": "제천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-107",
+    "name": "단국대학교병원",
+    "region": "충남",
+    "city": "천안",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-108",
+    "name": "순천향대학교 천안병원",
+    "region": "충남",
+    "city": "천안",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-109",
+    "name": "천안충무병원",
+    "region": "충남",
+    "city": "천안",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-110",
+    "name": "공주의료원",
+    "region": "충남",
+    "city": "공주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-111",
+    "name": "홍성의료원",
+    "region": "충남",
+    "city": "홍성",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-112",
+    "name": "서산의료원",
+    "region": "충남",
+    "city": "서산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-113",
+    "name": "아산충무병원",
+    "region": "충남",
+    "city": "아산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-114",
+    "name": "전북대학교병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-115",
+    "name": "원광대학교병원",
+    "region": "전북",
+    "city": "익산",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-116",
+    "name": "예수병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-117",
+    "name": "대자인병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-118",
+    "name": "군산의료원",
+    "region": "전북",
+    "city": "군산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-119",
+    "name": "남원의료원",
+    "region": "전북",
+    "city": "남원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-120",
+    "name": "정읍아산병원",
+    "region": "전북",
+    "city": "정읍",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-121",
+    "name": "화순전남대학교병원",
+    "region": "전남",
+    "city": "화순",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-122",
+    "name": "성가롤로병원",
+    "region": "전남",
+    "city": "순천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-123",
+    "name": "목포한국병원",
+    "region": "전남",
+    "city": "목포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-124",
+    "name": "목포기독병원",
+    "region": "전남",
+    "city": "목포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-125",
+    "name": "순천의료원",
+    "region": "전남",
+    "city": "순천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-126",
+    "name": "목포시의료원",
+    "region": "전남",
+    "city": "목포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-127",
+    "name": "여수전남병원",
+    "region": "전남",
+    "city": "여수",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-128",
+    "name": "빛가람종합병원",
+    "region": "전남",
+    "city": "나주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-129",
+    "name": "동국대학교 경주병원",
+    "region": "경북",
+    "city": "경주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-130",
+    "name": "포항성모병원",
+    "region": "경북",
+    "city": "포항",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-131",
+    "name": "포항세명기독병원",
+    "region": "경북",
+    "city": "포항",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-132",
+    "name": "안동병원",
+    "region": "경북",
+    "city": "안동",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-133",
+    "name": "순천향대학교 구미병원",
+    "region": "경북",
+    "city": "구미",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-134",
+    "name": "차의과학대학교 구미차병원",
+    "region": "경북",
+    "city": "구미",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-135",
+    "name": "김천제일병원",
+    "region": "경북",
+    "city": "김천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-136",
+    "name": "김천의료원",
+    "region": "경북",
+    "city": "김천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-137",
+    "name": "포항의료원",
+    "region": "경북",
+    "city": "포항",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-138",
+    "name": "경상국립대학교병원",
+    "region": "경남",
+    "city": "진주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-139",
+    "name": "양산부산대학교병원",
+    "region": "경남",
+    "city": "양산",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-140",
+    "name": "삼성창원병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-141",
+    "name": "창원경상국립대학교병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-142",
+    "name": "창원파티마병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-143",
+    "name": "진주고려병원",
+    "region": "경남",
+    "city": "진주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-144",
+    "name": "마산의료원",
+    "region": "경남",
+    "city": "창원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-145",
+    "name": "조은금강병원",
+    "region": "경남",
+    "city": "김해",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-146",
+    "name": "대우병원",
+    "region": "경남",
+    "city": "거제",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-147",
+    "name": "제주대학교병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "상급·대학병원"
+  },
+  {
+    "id": "hospital-148",
+    "name": "제주한라병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-149",
+    "name": "제주한마음병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-150",
+    "name": "서귀포의료원",
+    "region": "제주",
+    "city": "서귀포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-151",
+    "name": "녹색병원",
+    "region": "서울",
+    "city": "중랑",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-152",
+    "name": "서울적십자병원",
+    "region": "서울",
+    "city": "종로",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-153",
+    "name": "홍익병원",
+    "region": "서울",
+    "city": "양천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-154",
+    "name": "서울부민병원",
+    "region": "서울",
+    "city": "강서",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-155",
+    "name": "혜민병원",
+    "region": "서울",
+    "city": "광진",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-156",
+    "name": "에이치플러스 양지병원",
+    "region": "서울",
+    "city": "관악",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-157",
+    "name": "성애병원",
+    "region": "서울",
+    "city": "영등포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-158",
+    "name": "한일병원",
+    "region": "서울",
+    "city": "도봉",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-159",
+    "name": "좋은강안병원",
+    "region": "부산",
+    "city": "수영",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-160",
+    "name": "좋은삼선병원",
+    "region": "부산",
+    "city": "사상",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-161",
+    "name": "부산부민병원",
+    "region": "부산",
+    "city": "북구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-162",
+    "name": "해운대부민병원",
+    "region": "부산",
+    "city": "해운대",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-163",
+    "name": "봉생기념병원",
+    "region": "부산",
+    "city": "동구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-164",
+    "name": "온종합병원",
+    "region": "부산",
+    "city": "부산진",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-165",
+    "name": "해동병원",
+    "region": "부산",
+    "city": "영도",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-166",
+    "name": "삼육부산병원",
+    "region": "부산",
+    "city": "서구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-167",
+    "name": "곽병원",
+    "region": "대구",
+    "city": "중구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-168",
+    "name": "구병원",
+    "region": "대구",
+    "city": "달서",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-169",
+    "name": "드림종합병원",
+    "region": "대구",
+    "city": "남구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-170",
+    "name": "천주성삼병원",
+    "region": "대구",
+    "city": "수성",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-171",
+    "name": "나은병원",
+    "region": "인천",
+    "city": "서구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-172",
+    "name": "인천세종병원",
+    "region": "인천",
+    "city": "계양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-173",
+    "name": "부평세림병원",
+    "region": "인천",
+    "city": "부평",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-174",
+    "name": "한림병원",
+    "region": "인천",
+    "city": "계양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-175",
+    "name": "비에스종합병원",
+    "region": "인천",
+    "city": "남동",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-176",
+    "name": "KS병원",
+    "region": "광주",
+    "city": "광산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-177",
+    "name": "첨단종합병원",
+    "region": "광주",
+    "city": "광산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-178",
+    "name": "하남성심병원",
+    "region": "광주",
+    "city": "광산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-179",
+    "name": "광주현대병원",
+    "region": "광주",
+    "city": "북구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-180",
+    "name": "대청병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-181",
+    "name": "충남대학교병원 대전광역시립제2노인전문병원",
+    "region": "대전",
+    "city": "중구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-182",
+    "name": "울산시티병원",
+    "region": "울산",
+    "city": "북구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-183",
+    "name": "좋은삼정병원",
+    "region": "울산",
+    "city": "남구",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-184",
+    "name": "서울산보람병원",
+    "region": "울산",
+    "city": "울주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-185",
+    "name": "엔케이세종병원",
+    "region": "세종",
+    "city": "나성",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-186",
+    "name": "화홍병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-187",
+    "name": "동수원병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-188",
+    "name": "윌스기념병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-189",
+    "name": "안양샘병원",
+    "region": "경기",
+    "city": "안양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-190",
+    "name": "원광대학교 산본병원",
+    "region": "경기",
+    "city": "군포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-191",
+    "name": "오산한국병원",
+    "region": "경기",
+    "city": "오산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-192",
+    "name": "박애병원",
+    "region": "경기",
+    "city": "평택",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-193",
+    "name": "화성디에스병원",
+    "region": "경기",
+    "city": "화성",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-194",
+    "name": "센트럴병원",
+    "region": "경기",
+    "city": "시흥",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-195",
+    "name": "단원병원",
+    "region": "경기",
+    "city": "안산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-196",
+    "name": "김포우리병원",
+    "region": "경기",
+    "city": "김포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-197",
+    "name": "뉴고려병원",
+    "region": "경기",
+    "city": "김포",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-198",
+    "name": "추병원",
+    "region": "경기",
+    "city": "의정부",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-199",
+    "name": "현대병원",
+    "region": "경기",
+    "city": "남양주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-200",
+    "name": "윤서병원",
+    "region": "경기",
+    "city": "구리",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-201",
+    "name": "양주예쓰병원",
+    "region": "경기",
+    "city": "양주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-202",
+    "name": "원주성지병원",
+    "region": "강원",
+    "city": "원주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-203",
+    "name": "동해동인병원",
+    "region": "강원",
+    "city": "동해",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-204",
+    "name": "근로복지공단 태백병원",
+    "region": "강원",
+    "city": "태백",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-205",
+    "name": "영월의료원",
+    "region": "강원",
+    "city": "영월",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-206",
+    "name": "하나병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-207",
+    "name": "효성병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-208",
+    "name": "제천서울병원",
+    "region": "충북",
+    "city": "제천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-209",
+    "name": "천안우리병원",
+    "region": "충남",
+    "city": "천안",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-210",
+    "name": "당진종합병원",
+    "region": "충남",
+    "city": "당진",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-211",
+    "name": "보령아산병원",
+    "region": "충남",
+    "city": "보령",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-212",
+    "name": "백제종합병원",
+    "region": "충남",
+    "city": "논산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-213",
+    "name": "전주병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-214",
+    "name": "익산병원",
+    "region": "전북",
+    "city": "익산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-215",
+    "name": "동군산병원",
+    "region": "전북",
+    "city": "군산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-216",
+    "name": "여수제일병원",
+    "region": "전남",
+    "city": "여수",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-217",
+    "name": "순천한국병원",
+    "region": "전남",
+    "city": "순천",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-218",
+    "name": "광양사랑병원",
+    "region": "전남",
+    "city": "광양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-219",
+    "name": "고흥종합병원",
+    "region": "전남",
+    "city": "고흥",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-220",
+    "name": "해남종합병원",
+    "region": "전남",
+    "city": "해남",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-221",
+    "name": "영광종합병원",
+    "region": "전남",
+    "city": "영광",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-222",
+    "name": "좋은선린병원",
+    "region": "경북",
+    "city": "포항",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-223",
+    "name": "계명대학교 경주동산병원",
+    "region": "경북",
+    "city": "경주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-224",
+    "name": "안동성소병원",
+    "region": "경북",
+    "city": "안동",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-225",
+    "name": "문경제일병원",
+    "region": "경북",
+    "city": "문경",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-226",
+    "name": "상주적십자병원",
+    "region": "경북",
+    "city": "상주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-227",
+    "name": "영주적십자병원",
+    "region": "경북",
+    "city": "영주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-228",
+    "name": "한마음병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-229",
+    "name": "청아병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-230",
+    "name": "김해복음병원",
+    "region": "경남",
+    "city": "김해",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-231",
+    "name": "베데스다복음병원",
+    "region": "경남",
+    "city": "양산",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-232",
+    "name": "한일병원",
+    "region": "경남",
+    "city": "진주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-233",
+    "name": "새통영병원",
+    "region": "경남",
+    "city": "통영",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-234",
+    "name": "맑은샘병원",
+    "region": "경남",
+    "city": "거제",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-235",
+    "name": "밀양윤병원",
+    "region": "경남",
+    "city": "밀양",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-236",
+    "name": "한국병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-237",
+    "name": "중앙병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "종합병원"
+  },
+  {
+    "id": "hospital-238",
+    "name": "서울특별시 북부병원",
+    "region": "서울",
+    "city": "도봉",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-239",
+    "name": "서울특별시 서북병원",
+    "region": "서울",
+    "city": "은평",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-240",
+    "name": "서부산센텀병원",
+    "region": "부산",
+    "city": "사상",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-241",
+    "name": "부산본병원",
+    "region": "부산",
+    "city": "사하",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-242",
+    "name": "W병원",
+    "region": "대구",
+    "city": "달서",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-243",
+    "name": "굳센병원",
+    "region": "대구",
+    "city": "수성",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-244",
+    "name": "국제바로병원",
+    "region": "인천",
+    "city": "남동",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-245",
+    "name": "인천광역시의료원 백령병원",
+    "region": "인천",
+    "city": "옹진",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-246",
+    "name": "광주새우리병원",
+    "region": "광주",
+    "city": "서구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-247",
+    "name": "광주씨티병원",
+    "region": "광주",
+    "city": "남구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-248",
+    "name": "바로세움병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-249",
+    "name": "대전본병원",
+    "region": "대전",
+    "city": "중구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-250",
+    "name": "울산H병원",
+    "region": "울산",
+    "city": "중구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-251",
+    "name": "울산엘리야병원",
+    "region": "울산",
+    "city": "북구",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-252",
+    "name": "세종프라우메디병원",
+    "region": "세종",
+    "city": "나성",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-253",
+    "name": "바른세상병원",
+    "region": "경기",
+    "city": "성남",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-254",
+    "name": "부천우리병원",
+    "region": "경기",
+    "city": "부천",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-255",
+    "name": "나누리수원병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-256",
+    "name": "원주센텀병원",
+    "region": "강원",
+    "city": "원주",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-257",
+    "name": "마이크로병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-258",
+    "name": "전주우리병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-259",
+    "name": "수병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-260",
+    "name": "목포미래병원",
+    "region": "전남",
+    "city": "목포",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-261",
+    "name": "순천하나병원",
+    "region": "전남",
+    "city": "순천",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-262",
+    "name": "포항우리병원",
+    "region": "경북",
+    "city": "포항",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-263",
+    "name": "강동병원",
+    "region": "경북",
+    "city": "구미",
+    "type": "일반병원"
+  },
+  {
+    "id": "hospital-264",
+    "name": "제주우리병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-265",
+    "name": "경희대학교한방병원",
+    "region": "서울",
+    "city": "동대문",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-266",
+    "name": "강남자생한방병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-267",
+    "name": "강동경희대학교한방병원",
+    "region": "서울",
+    "city": "강동",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-268",
+    "name": "모커리한방병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-269",
+    "name": "광동한방병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-270",
+    "name": "꽃마을한방병원",
+    "region": "서울",
+    "city": "서초",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-271",
+    "name": "노원자생한방병원",
+    "region": "서울",
+    "city": "노원",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-272",
+    "name": "목동자생한방병원",
+    "region": "서울",
+    "city": "양천",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-273",
+    "name": "동의대학교부속한방병원",
+    "region": "부산",
+    "city": "부산진",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-274",
+    "name": "해운대자생한방병원",
+    "region": "부산",
+    "city": "해운대",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-275",
+    "name": "삼세한방병원",
+    "region": "부산",
+    "city": "금정",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-276",
+    "name": "대구한의대학교부속 대구한방병원",
+    "region": "대구",
+    "city": "수성",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-277",
+    "name": "수성한방병원",
+    "region": "대구",
+    "city": "수성",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-278",
+    "name": "대구자생한방병원",
+    "region": "대구",
+    "city": "달서",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-279",
+    "name": "인천자생한방병원",
+    "region": "인천",
+    "city": "남동",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-280",
+    "name": "가천대학교부속 길한방병원",
+    "region": "인천",
+    "city": "중구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-281",
+    "name": "부평한방병원",
+    "region": "인천",
+    "city": "부평",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-282",
+    "name": "원광대학교 광주한방병원",
+    "region": "광주",
+    "city": "남구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-283",
+    "name": "동신대학교 광주한방병원",
+    "region": "광주",
+    "city": "남구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-284",
+    "name": "광주자생한방병원",
+    "region": "광주",
+    "city": "서구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-285",
+    "name": "대전대학교 대전한방병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-286",
+    "name": "대전대학교 둔산한방병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-287",
+    "name": "대전자생한방병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-288",
+    "name": "필한방병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-289",
+    "name": "울산자생한방병원",
+    "region": "울산",
+    "city": "남구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-290",
+    "name": "동의대학교 울산한방병원",
+    "region": "울산",
+    "city": "남구",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-291",
+    "name": "세종경희한방병원",
+    "region": "세종",
+    "city": "나성",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-292",
+    "name": "세종에스한방병원",
+    "region": "세종",
+    "city": "대평",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-293",
+    "name": "분당자생한방병원",
+    "region": "경기",
+    "city": "성남",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-294",
+    "name": "수원자생한방병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-295",
+    "name": "일산자생한방병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-296",
+    "name": "부천자생한방병원",
+    "region": "경기",
+    "city": "부천",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-297",
+    "name": "안산자생한방병원",
+    "region": "경기",
+    "city": "안산",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-298",
+    "name": "평촌자생한방병원",
+    "region": "경기",
+    "city": "안양",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-299",
+    "name": "동국대학교일산불교한방병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-300",
+    "name": "동국대학교분당한방병원",
+    "region": "경기",
+    "city": "성남",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-301",
+    "name": "상지대학교부속한방병원",
+    "region": "강원",
+    "city": "원주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-302",
+    "name": "춘천한방병원",
+    "region": "강원",
+    "city": "춘천",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-303",
+    "name": "대전대학교 청주한방병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-304",
+    "name": "청주자생한방병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-305",
+    "name": "세명대학교 충주한방병원",
+    "region": "충북",
+    "city": "충주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-306",
+    "name": "대전대학교 천안한방병원",
+    "region": "충남",
+    "city": "천안",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-307",
+    "name": "천안자생한방병원",
+    "region": "충남",
+    "city": "천안",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-308",
+    "name": "원광대학교 전주한방병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-309",
+    "name": "우석대학교부속한방병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-310",
+    "name": "전주자생한방병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-311",
+    "name": "동신대학교 목포한방병원",
+    "region": "전남",
+    "city": "목포",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-312",
+    "name": "동신대학교 순천한방병원",
+    "region": "전남",
+    "city": "순천",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-313",
+    "name": "동국대학교 경주한방병원",
+    "region": "경북",
+    "city": "경주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-314",
+    "name": "대구한의대학교 포항한방병원",
+    "region": "경북",
+    "city": "포항",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-315",
+    "name": "부산대학교한방병원",
+    "region": "경남",
+    "city": "양산",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-316",
+    "name": "창원자생한방병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-317",
+    "name": "당당한방병원 김해점",
+    "region": "경남",
+    "city": "김해",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-318",
+    "name": "제주한방병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-319",
+    "name": "솔담한방병원",
+    "region": "제주",
+    "city": "제주",
+    "type": "한방병원"
+  },
+  {
+    "id": "hospital-320",
+    "name": "명지성모병원",
+    "region": "서울",
+    "city": "영등포",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-321",
+    "name": "강동연세병원",
+    "region": "서울",
+    "city": "강동",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-322",
+    "name": "CM병원",
+    "region": "서울",
+    "city": "영등포",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-323",
+    "name": "우리들병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-324",
+    "name": "나누리병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-325",
+    "name": "서울척병원",
+    "region": "서울",
+    "city": "은평",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-326",
+    "name": "한림대학교 한강성심병원",
+    "region": "서울",
+    "city": "영등포",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-327",
+    "name": "베스티안서울병원",
+    "region": "서울",
+    "city": "강남",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-328",
+    "name": "부산센텀병원",
+    "region": "부산",
+    "city": "수영",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-329",
+    "name": "부산미래병원",
+    "region": "부산",
+    "city": "동래",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-330",
+    "name": "부산우리들병원",
+    "region": "부산",
+    "city": "동래",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-331",
+    "name": "세일병원",
+    "region": "부산",
+    "city": "동구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-332",
+    "name": "베스티안부산병원",
+    "region": "부산",
+    "city": "북구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-333",
+    "name": "척탑병원",
+    "region": "대구",
+    "city": "중구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-334",
+    "name": "보광병원",
+    "region": "대구",
+    "city": "달서",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-335",
+    "name": "부평힘찬병원",
+    "region": "인천",
+    "city": "부평",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-336",
+    "name": "인천나누리병원",
+    "region": "인천",
+    "city": "미추홀",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-337",
+    "name": "세계로병원",
+    "region": "광주",
+    "city": "광산",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-338",
+    "name": "광주우리들병원",
+    "region": "광주",
+    "city": "서구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-339",
+    "name": "대전센텀병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-340",
+    "name": "대전우리병원",
+    "region": "대전",
+    "city": "서구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-341",
+    "name": "굿모닝병원",
+    "region": "울산",
+    "city": "남구",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-342",
+    "name": "세종마디랑정형외과병원",
+    "region": "세종",
+    "city": "한누리",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-343",
+    "name": "예손병원",
+    "region": "경기",
+    "city": "부천",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-344",
+    "name": "이춘택병원",
+    "region": "경기",
+    "city": "수원",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-345",
+    "name": "든든한병원",
+    "region": "경기",
+    "city": "고양",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-346",
+    "name": "의정부서울척병원",
+    "region": "경기",
+    "city": "의정부",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-347",
+    "name": "PMC박병원",
+    "region": "경기",
+    "city": "평택",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-348",
+    "name": "청주프라임병원",
+    "region": "충북",
+    "city": "청주",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-349",
+    "name": "아산충무병원 관절센터",
+    "region": "충남",
+    "city": "아산",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-350",
+    "name": "본병원",
+    "region": "전북",
+    "city": "전주",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-351",
+    "name": "에스포항병원",
+    "region": "경북",
+    "city": "포항",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-352",
+    "name": "창원센텀병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-353",
+    "name": "진주세란병원",
+    "region": "경남",
+    "city": "진주",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-354",
+    "name": "김해바른병원",
+    "region": "경남",
+    "city": "김해",
+    "type": "전문병원"
+  },
+  {
+    "id": "hospital-355",
+    "name": "서울특별시 서북병원 호스피스병동",
+    "region": "서울",
+    "city": "은평",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-356",
+    "name": "성가복지병원",
+    "region": "서울",
+    "city": "성북",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-357",
+    "name": "샘물호스피스병원",
+    "region": "경기",
+    "city": "용인",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-358",
+    "name": "수원기독의원",
+    "region": "경기",
+    "city": "수원",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-359",
+    "name": "갈바리의원",
+    "region": "강원",
+    "city": "강릉",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-360",
+    "name": "모현센터의원",
+    "region": "전북",
+    "city": "익산",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-361",
+    "name": "천주의성요한병원",
+    "region": "광주",
+    "city": "북구",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-362",
+    "name": "희연호스피스병원",
+    "region": "경남",
+    "city": "창원",
+    "type": "호스피스"
+  },
+  {
+    "id": "hospital-363",
+    "name": "부산보훈병원",
+    "region": "부산",
+    "city": "사상",
+    "type": "보훈병원"
+  },
+  {
+    "id": "hospital-364",
+    "name": "대전보훈병원",
+    "region": "대전",
+    "city": "대덕",
+    "type": "보훈병원"
+  },
+  {
+    "id": "hospital-365",
+    "name": "인천보훈병원",
+    "region": "인천",
+    "city": "미추홀",
+    "type": "보훈병원"
+  }
+]

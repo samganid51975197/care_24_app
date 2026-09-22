@@ -8,3 +8,25 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 - Logo click links to the nationwide hospital site. Never navigate on hover.
 - Preserve this layout across hospitals. Do not add another native app branding header or let the fixed home panel cover the web header.
 - Verify the actual rendered header after related edits; source diffs alone do not show the user the result.
+
+# Hospital room layout authority
+- Current room and bed geometry is a basic example, not a surveyed hospital plan.
+- Each hospital app representative will inspect the site and provide a drawn floor plan to the team lead.
+- Reconfigure that hospital's rooms, beds, doors, toilets and windows from the supplied plan; do not invent surveyed positions.
+- Editable bed numbers and recorded names do not establish the physical accuracy of the example plan.
+
+# Shared hospital app composition
+- Use the Bundang Seoul National University Hospital app as the common composition baseline for all hospital apps.
+- Preserve the approved Care24 logo and two-line hospital/association branding. Logo alone links to /hospitals, the original regional directory; do not add redundant nationwide back links to hospital introductions.
+- Include a brief, source-verified hospital introduction and a "찾아오는 길" section with the hospital-specific address/map search.
+- Preserve building → floor/ward → room → bed navigation. Use only that hospital's verified data or clearly marked field-survey placeholders; never copy another hospital's real room/bed/patient assignments.
+
+- In directions, prioritize rail/subway, then intercity bus, city bus, and village bus. Show only verified applicable routes; use map links for current schedules.
+- When a hospital operates a shuttle, prioritize shuttle directions above other transport. Include connecting station, exit, boarding point, and the official schedule link. Never infer shuttle availability.
+
+# Hospital caregiver registration policy
+- Association (including Care24) and the hospital room nurse must both approve before registration is complete.
+- After registration, the caregiver obtains a certificate from the association (including Care24) and wears it as a badge while working.
+- Registration approval is not proof that a certificate was issued. Do not fabricate issuance or credential verification.
+
+- On /hospital-registration, finish with the registration/certificate workflow; omit the global privacy-policy footer as requested. Keep /privacy available on other screens.

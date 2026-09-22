@@ -1,0 +1,927 @@
+{
+  "name": "삼성서울병원",
+  "hospitalIds": [
+    "hospital-5"
+  ],
+  "address": "서울특별시 강남구 일원로 81",
+  "checkedAt": "2026-09-20",
+  "buildings": [
+    {
+      "id": "hospital",
+      "name": "본관",
+      "floors": [
+        {
+          "id": "20F",
+          "label": "20층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/20F.html",
+          "facilities": [
+            "간호사실(VIP병동)",
+            "병동(VIP)"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/20F/hospital-20F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "19F",
+          "label": "19층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/19F.html",
+          "facilities": [
+            "간호사실(VIP병동)",
+            "병동(특실)",
+            "비디오뇌파집중검사실",
+            "진료부회의실",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/19F/hospital-19F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "18F",
+          "label": "18층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/18F.html",
+          "facilities": [
+            "간호사실(호흡기내과)",
+            "간호사실(흉부외과, 폐식도외과,격리병동)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/18F/hospital-18F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "17F",
+          "label": "17층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/17F.html",
+          "facilities": [
+            "간호사실(호흡기내과)",
+            "간호사실(흉부외과, 폐식도외과, 격리병동)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/17F/hospital-17F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "16F",
+          "label": "16층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/16F.html",
+          "facilities": [
+            "간호사실(심장혈관센터)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "심장초음파실",
+            "심혈관단기입원실",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/16F/hospital-16F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "15F",
+          "label": "15층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/15F.html",
+          "facilities": [
+            "간호사실(혈액종양내과)",
+            "뇌혈류검사실",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "조혈모세포이식병동(무균실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/15F/hospital-15F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "14F",
+          "label": "14층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/14F.html",
+          "facilities": [
+            "간호사실(뇌졸중센터)",
+            "간호사실(신경과, 재활의학과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "준중환자실(4인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/14F/hospital-14F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "13F",
+          "label": "13층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/13F.html",
+          "facilities": [
+            "간호사실(소화기내과, 외과)",
+            "간호사실(신경외과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/13F/hospital-13F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "12F",
+          "label": "12층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/12F.html",
+          "facilities": [
+            "간호사실(소화기내과, 외과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/12F/hospital-12F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "11F",
+          "label": "11층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/11F.html",
+          "facilities": [
+            "간호사실(소화기내과, 외과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/11F/hospital-11F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "10F",
+          "label": "10층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/10F.html",
+          "facilities": [
+            "간호사실(소화기내과, 외과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(3인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "준중환자실(4인실)",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/10F/hospital-10F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "9F",
+          "label": "9층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/9F.html",
+          "facilities": [
+            "간호사실(소화기내과, 외과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(3인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "신생아중환자실(5인실)",
+            "임상시험센터",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/9F/hospital-9F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "8F",
+          "label": "8층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/8F.html",
+          "facilities": [
+            "간호사실(소아청소년과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "병원학교",
+            "소아조혈모세포이식실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/8F/hospital-8F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "7F",
+          "label": "7층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/7F.html",
+          "facilities": [
+            "간호사실(내분비내과,이식외과, 산부인과)",
+            "간호사실(산부인과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(3인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "사회복지상담실",
+            "치료실",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/7F/hospital-7F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "6F",
+          "label": "6층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/6F.html",
+          "facilities": [
+            "간호사실(산부인과)",
+            "격리실",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "분만실",
+            "분만장초음파실",
+            "신생아실",
+            "제1신생아중환자실",
+            "제2신생아중환자실",
+            "회복/관찰실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/6F/hospital-6F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "5F",
+          "label": "5층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/5F.html",
+          "facilities": [],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/5F/hospital-5F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "4F",
+          "label": "4층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/4F.html",
+          "facilities": [
+            "내시경실",
+            "내시경접수",
+            "내시경회복실",
+            "소화기능검사실",
+            "소화기센터(소화기내과, 소화기외과)",
+            "췌담도검사실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/4F/hospital-4F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "3F",
+          "label": "3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/3F.html",
+          "facilities": [
+            "병리과",
+            "부인암상담실",
+            "산부인과",
+            "산부인과접수",
+            "수술및레이져치료실",
+            "수술실보호자대기실",
+            "예진실",
+            "원무수납/접수",
+            "장기이식센터",
+            "중앙수술장",
+            "중환자보호대기실",
+            "중환자실(심장내과/소아심장,혈관)",
+            "중환자실(외과/신경외과/심장외과)",
+            "초음파검사실",
+            "초음파접수",
+            "태아안전검사실",
+            "호흡기약물상담실",
+            "회복실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/3F/hospital-3F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "2F",
+          "label": "2층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/2F.html",
+          "facilities": [
+            "기립경사검사실/심박동기.제세동기검사실",
+            "내과 (알레르기/호흡기/신장/감염/ 류마티스/일반)",
+            "뇌신경센터(신경과/신경외과)",
+            "단기응급병상",
+            "복막투석실",
+            "소아심장/선천성심장질환 초음파실",
+            "신경검사실",
+            "심장 폐기능 혈관 검사접수",
+            "심장뇌혈관병원 (순환기내과/심장외과/혈관외과/신경과/신경외과)",
+            "심장초음파검사실",
+            "심장초음파실 (운동부하검사실/부하심초음파검사실)",
+            "심장혈관MRI",
+            "심전도실",
+            "일상활동중심전도실",
+            "중환자보호대기실",
+            "중환자실(내과계/신경, 소아)",
+            "채혈실",
+            "폐기능검사실",
+            "항응고약물상담실",
+            "혈관검사실",
+            "혈당검사실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/2F/hospital-2F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "1F",
+          "label": "1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/1F.html",
+          "facilities": [
+            "건강검진 예약/상담",
+            "검사예약",
+            "고객상담실",
+            "놀이방",
+            "내분비대사내과당뇨센터",
+            "당뇨병센터/내분비대사내과/갑상선센터",
+            "모유수유실",
+            "세중여행사",
+            "소아채혈실",
+            "소아청소년센터 (소아청소년과/소아외과)",
+            "소아청소년센터 접수/수납",
+            "소아청소년주사실",
+            "소아청소년 통원치료센터",
+            "안내데스크(일반안내)",
+            "영상운영실",
+            "영상의학과(일반촬영실)",
+            "영상의학과(접수)",
+            "영상의학과(초음파검사실)",
+            "영상의학과(투시조영실)",
+            "영상의학과(CT 검사실)",
+            "영상의학과(MRI 검사실)",
+            "외래약국",
+            "외래치료실(주사실)",
+            "원무팀",
+            "원무수납/접수",
+            "응급실",
+            "의무기록복사/영상복사",
+            "인터넷 정보방",
+            "입퇴원 수속",
+            "정형외과",
+            "진료상담",
+            "척추센터",
+            "커피전문점(아티제)",
+            "투석실",
+            "혈당검사실",
+            "CT접수",
+            "응급관찰실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/1F/hospital-1F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B1F",
+          "label": "지하 1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/B1F.html",
+          "facilities": [
+            "가정의학과",
+            "기독교실",
+            "내분비/당뇨검사실",
+            "당뇨교육실",
+            "대강당",
+            "불교실",
+            "생활도움방(우편/택배)",
+            "선물의집(자스민)",
+            "신한은행",
+            "안경점(금강안경)",
+            "영양교육실",
+            "의료용품점",
+            "이/미용실",
+            "재활의학과",
+            "주차관제실",
+            "중강당1",
+            "중강당2",
+            "직원식당",
+            "천주교실",
+            "커피전문점(아티제)",
+            "편의점(CU)",
+            "식당(한그루)",
+            "식당(delacourt)",
+            "핵의학과"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/B1F/hospital-B1F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B2F",
+          "label": "지하 2층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/B2F.html",
+          "facilities": [
+            "교육수련부",
+            "병동약국/야간약국",
+            "사회복지팀",
+            "스포츠의학센터",
+            "전화예약실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/B2F/hospital-B2F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B3F",
+          "label": "지하 3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/hospital/B3F.html",
+          "facilities": [
+            "감마나이프센터",
+            "MRI촬영실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/hospital/B3F/hospital-B3F-0.jpg",
+          "hasWard": false
+        }
+      ]
+    },
+    {
+      "id": "cancer",
+      "name": "암병원",
+      "floors": [
+        {
+          "id": "11F",
+          "label": "11층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/11F.html",
+          "facilities": [
+            "가족대기실",
+            "간호사실(혈액종양)",
+            "간호사실(혈액종양/조혈모세포이식)",
+            "무균실",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "병동(특실)",
+            "정맥주사혼합실",
+            "주사조제약국",
+            "환자휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/11F/cancer-11F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "10F",
+          "label": "10층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/10F.html",
+          "facilities": [
+            "간호사실(일반암센터)",
+            "간호사실(혈액종양)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "병동(특실)",
+            "환자휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/10F/cancer-10F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "9F",
+          "label": "9층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/9F.html",
+          "facilities": [
+            "간호사실(두경부/폐식도암센터)",
+            "간호사실(폐식도암센터)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "병동(특실)",
+            "이비인후과치료실/두경부센터치료실",
+            "환자휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/9F/cancer-9F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "8F",
+          "label": "8층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/8F.html",
+          "facilities": [
+            "간호사실(간암센터)",
+            "간호사실(췌담도/대장/간암센터)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "병동(특실)",
+            "환자휴게실",
+            "VRE격리실(5인실)"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/8F/cancer-8F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "7F",
+          "label": "7층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/7F.html",
+          "facilities": [
+            "간호사실(대장암센터)",
+            "간호사실(췌담도/대장암센터)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "병동(특실)",
+            "환자휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/7F/cancer-7F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "6F",
+          "label": "6층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/6F.html",
+          "facilities": [
+            "간호사실(위암/비뇨기암센터)",
+            "간호사실(위암센터)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "병동(특실)",
+            "환자휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/6F/cancer-6F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "5F",
+          "label": "5층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/5F.html",
+          "facilities": [
+            "간호사실",
+            "건강검진상담접수",
+            "건강의학결과상담실",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(6인실)",
+            "숙박건진간호사실",
+            "숙박건진실",
+            "진료예약데스크",
+            "특실",
+            "환자휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/5F/cancer-5F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "4F",
+          "label": "4층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/4F.html",
+          "facilities": [
+            "가족대기실",
+            "갱의실(여)",
+            "건강의학검사접수",
+            "검사대기실",
+            "내시경검사실",
+            "뇌혈류/영양검사실",
+            "신체측정/심전도/초음파검사실",
+            "운동부하검사실",
+            "유방/골밀도/경동맥/초음파",
+            "진료실",
+            "채혈/채뇨검사",
+            "초음파검사실",
+            "회복실",
+            "휴게실",
+            "CT검사실",
+            "건강검진센터로비"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/4F/cancer-4F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "3F",
+          "label": "3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/3F.html",
+          "facilities": [
+            "기관지내시경실",
+            "내과계중환자실",
+            "동결절편실",
+            "수술실/회복실/기관지내시경실/마취통증의학과",
+            "수술환자가족대기실",
+            "흉부외과중환자실",
+            "육안표본검사실",
+            "중환자가족대기실",
+            "혈관조영실/인터벤션실",
+            "외과계중환자실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/3F/cancer-3F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "2F",
+          "label": "2층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/2F.html",
+          "facilities": [
+            "병리과",
+            "삼성생명보험데스크",
+            "세침흡인세포검사실",
+            "심장/폐기능검사실",
+            "일반안내",
+            "조혈모세포이식클리닉",
+            "원무수납",
+            "유방/갑상선검사실",
+            "유방센터",
+            "외래주사조제약국",
+            "통원치료센터",
+            "진단검사의학과",
+            "채혈실",
+            "채혈접수",
+            "폐/식도센터",
+            "혈액종양내과/완화치료클리닉",
+            "혈액종양내과접수",
+            "다학제 협진실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/2F/cancer-2F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "1F",
+          "label": "1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/1F.html",
+          "facilities": [
+            "간센터",
+            "내시경실",
+            "내시경접수",
+            "대장센터",
+            "방사선검사접수",
+            "복약상담실/항응고약물상담실",
+            "첫방문 안내/첫방문 상담실",
+            "영상의학과(방사선검사실)",
+            "영상의학과(MRI/CT)",
+            "외래수납",
+            "외래약국",
+            "암치유센터",
+            "원무수납",
+            "위/췌담도센터",
+            "의무기록복사/영상복사",
+            "이비인후과",
+            "안내데스크",
+            "진료접수",
+            "채혈실",
+            "HIFU센터",
+            "다학제 협진실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/1F/cancer-1F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B1F",
+          "label": "지하 1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/B1F.html",
+          "facilities": [
+            "암병원운영지원실",
+            "방사선종양학과(VR)",
+            "방사선치료접수/외래접수/수납",
+            "선물의집(란)",
+            "신한은행",
+            "암교육센터",
+            "의료용품점",
+            "커피전문점(스프링가든)",
+            "편의점(CU)",
+            "푸드코트",
+            "한식당(가화원)",
+            "핵의학과(PET/감마카메라)"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/B1F/cancer-B1F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B2F",
+          "label": "지하 2층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/B2F.html",
+          "facilities": [
+            "간호부사무실",
+            "영양과",
+            "의무기록파트",
+            "제3세미나실",
+            "직원식당",
+            "CPR운영사무실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/B2F/cancer-B2F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B3F",
+          "label": "지하 3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/cancer/B3F.html",
+          "facilities": [
+            "기독교실",
+            "불교실",
+            "자원봉사자실",
+            "천주교실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/cancer/B3F/cancer-B3F-0.jpg",
+          "hasWard": false
+        }
+      ]
+    },
+    {
+      "id": "etc",
+      "name": "별관",
+      "floors": [
+        {
+          "id": "8F",
+          "label": "8층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/8F.html",
+          "facilities": [
+            "의사실 및 약국"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/8F/etc-8F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "7F",
+          "label": "7층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/7F.html",
+          "facilities": [
+            "간호사실(안과)",
+            "간호사실(이비인후과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "안과검사실",
+            "이비인후과치료실",
+            "휴게실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/7F/etc-7F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "6F",
+          "label": "6층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/6F.html",
+          "facilities": [
+            "간호사실(비뇨기과,정신과)",
+            "간호사실(정신과)",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(3인실)",
+            "병동(4인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "비뇨기과검사실",
+            "소아청소년학습놀이치료실",
+            "집단치료실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/6F/etc-6F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "5F",
+          "label": "5층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/5F.html",
+          "facilities": [
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(3인실)",
+            "비뇨기과",
+            "비뇨기과(경직장초음파/방광내시경)",
+            "비뇨기과(접수)",
+            "상처장루치료실",
+            "정신건강의학과(낮병동)",
+            "정신건강의학과(접수)",
+            "정신건강의학과(우울증센터)",
+            "피부병리실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/5F/etc-5F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "4F",
+          "label": "4층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/4F.html",
+          "facilities": [
+            "기자실",
+            "수면센터",
+            "알레르기센터",
+            "알레르기센터접수",
+            "영양과사무실",
+            "영양교육실",
+            "원무수납/접수",
+            "직원식당",
+            "피부과",
+            "피부과접수",
+            "커뮤니케이션실",
+            "환경보건센터",
+            "환경유발검사실"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/4F/etc-4F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "3F",
+          "label": "3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/3F.html",
+          "facilities": [
+            "의사실 및 약국"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/3F/etc-3F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "2F",
+          "label": "2층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/2F.html",
+          "facilities": [
+            "간호사실(성형외과)",
+            "국제진료소/캐나다비자신체검사",
+            "병동(1인실)",
+            "병동(2인실)",
+            "병동(5인실)",
+            "병동(6인실)",
+            "성형외과",
+            "성형외과(레이저치료실)",
+            "성형외과(접수)"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/2F/etc-2F-0.jpg",
+          "hasWard": true
+        },
+        {
+          "id": "1F",
+          "label": "1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/1F.html",
+          "facilities": [
+            "안과",
+            "안과검사실",
+            "안과(접수)",
+            "원무(수납)",
+            "치과(교정과)",
+            "치과(구강악안면외과)",
+            "치과(기공실)",
+            "치과(보존/보철과)",
+            "치과(소아치과)",
+            "치과(접수)",
+            "치과(치주과)",
+            "SMC파트너즈 센터"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/1F/etc-1F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B1F",
+          "label": "지하 1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/B1F.html",
+          "facilities": [
+            "기관내시경실",
+            "임상의학연구소",
+            "별관수술실접수(보호자대기실)",
+            "별관수술실",
+            "통증관리센터"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/B1F/etc-B1F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B2F",
+          "label": "지하 2층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/B2F.html",
+          "facilities": [
+            "건강의학센터",
+            "삼성생명과학연구소"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/B2F/etc-B2F-0.jpg",
+          "hasWard": false
+        },
+        {
+          "id": "B3F",
+          "label": "지하 3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/etc/B3F.html",
+          "facilities": [
+            "의공학연구부/임상의학연구부",
+            "의학정보팀",
+            "의무기록팀"
+          ],
+          "planUrl": "https://www.samsunghospital.com/_newhome/ui/home/static/img/hospital/guide/etc/B3F/etc-B3F-0.jpg",
+          "hasWard": false
+        }
+      ]
+    },
+    {
+      "id": "proton",
+      "name": "양성자치료센터",
+      "floors": [
+        {
+          "id": "B1F",
+          "label": "지하 1층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/proton/B1F.html",
+          "facilities": [],
+          "planUrl": "",
+          "hasWard": false
+        },
+        {
+          "id": "B3F",
+          "label": "지하 3층",
+          "source": "https://www.samsunghospital.com/_newhome/info/guide/proton/B3F.html",
+          "facilities": [],
+          "planUrl": "",
+          "hasWard": false
+        }
+      ]
+    }
+  ]
+}

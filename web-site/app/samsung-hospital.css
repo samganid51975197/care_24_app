@@ -1,0 +1,22 @@
+.samsung-buildings{grid-template-columns:repeat(3,minmax(0,1fr))}
+.samsung-source-note{color:#526773;font-size:13px;line-height:1.7;margin:16px 0}
+.samsung-source-note a,.samsung-official-plan a,.samsung-introduction a{color:#086b74;text-decoration:underline;text-underline-offset:3px}
+.samsung-treatment-link{display:inline-flex;align-items:center;gap:8px;padding:10px 0;color:#086b74;font-weight:700}
+.samsung-floor-filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.samsung-floor-filters button{border:1px solid #b8cdd0;border-radius:10px;padding:10px 16px;background:white;color:#244a52;cursor:pointer;font-weight:700}
+.samsung-floor-filters button[aria-pressed=true]{background:#0a6873;border-color:#0a6873;color:white}
+.samsung-floors .legacy-ward-grid b{min-width:0}
+.samsung-floors .legacy-ward-grid em{display:block;font-style:normal;font-weight:400;color:#587078;font-size:12px;line-height:1.6;margin-top:7px;word-break:keep-all;overflow-wrap:anywhere}
+.samsung-floors .legacy-ward-grid button>svg{flex-shrink:0}
+.samsung-official-plan{margin-top:16px;padding:24px}
+.samsung-official-plan h1{font-size:24px;font-weight:800;margin:8px 0}
+.samsung-official-plan p{line-height:1.7;color:#526773}
+.samsung-facilities{list-style:disc;padding-left:22px;margin:16px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px;line-height:1.6}
+.samsung-official-plan details{margin-top:20px;border-top:1px solid #dce7e8;padding-top:16px}
+.samsung-official-plan summary{cursor:pointer;color:#086b74;font-weight:700}
+.samsung-official-plan img{display:block;max-width:100%;height:auto;margin:16px auto}
+.samsung-introduction{margin:20px 0;padding:24px}
+.samsung-introduction h2{font-size:20px;font-weight:800}.samsung-introduction h3{font-weight:700;margin-top:16px}
+.samsung-introduction p{line-height:1.8;margin:10px 0}
+.samsung-direction-links{display:flex;flex-wrap:wrap;gap:12px 24px}
+@media(max-width:680px){.samsung-buildings{grid-template-columns:1fr}.samsung-facilities{grid-template-columns:1fr}.samsung-official-plan,.samsung-introduction{padding:18px}.samsung-floor-filters button{flex:1}.samsung-floors .legacy-ward-grid{grid-template-columns:1fr}}

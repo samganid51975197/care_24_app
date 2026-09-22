@@ -1,4 +1,5 @@
 "use client";
+import {hospitalFetch as fetch} from "@/lib/hospital-fetch";
 import { useEffect, useState } from "react";
 import { Camera, Newspaper, Plus, Trash2, Upload, Video, X } from "lucide-react";
 import { Button } from "@/components/ui/button";

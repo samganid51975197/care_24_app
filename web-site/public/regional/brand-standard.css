@@ -1,0 +1,57 @@
+/* User-approved Care24 header, 2026-09-13. Do not redesign without request. */
+.topbar{height:78px;gap:12px;z-index:20}
+.topbar .brand{display:flex;align-items:center;gap:0;min-width:0}
+.care24-logo-link{display:flex;flex:none;align-items:center}
+.topbar .brand-logo{box-sizing:border-box;width:42px;height:40px;padding:3px;border:1px solid #71958d;border-radius:4px;object-fit:contain;background:#fff;flex:none}
+.topbar .brand-copy{display:flex;flex-direction:column;justify-content:flex-start;height:40px;margin-left:7.9px;padding-left:8px;gap:5px;position:relative;min-width:0}
+.topbar .brand-copy:before{content:"";position:absolute;left:0;top:0;width:2px;height:100%;border-radius:2px;background:linear-gradient(180deg,#e7232f,#ff747d)}
+.topbar .brand-copy strong{font-size:18px;font-weight:700;letter-spacing:-.025em;line-height:20px;white-space:nowrap}
+.topbar .brand-copy small{font-size:13px;color:#667783;line-height:15px;margin:0;white-space:nowrap}
+.care24-logo-link:focus-visible{outline:2px solid #16824b;outline-offset:3px}
+@media(max-width:1000px){.topbar .service-links{display:none}}
+@media(max-width:620px){
+ .topbar{padding-left:16px;padding-right:16px;flex-wrap:wrap;height:auto;min-height:78px;padding-top:10px;padding-bottom:10px}
+ .topbar .brand-logo{width:38px;height:36px}
+ .topbar .brand-copy{height:36px;gap:4px}
+ .topbar .brand-copy strong{font-size:15px;line-height:18px}
+ .topbar .brand-copy small{font-size:12px;line-height:14px}
+ .topbar #adminBtn{font-size:12px;margin-left:auto}
+}
+@media(max-width:390px){
+ .topbar .brand-logo{width:34px;height:32px;padding:2px}
+ .topbar .brand-copy{height:32px}
+ .topbar .brand-copy strong{font-size:13px;line-height:15px}
+ .topbar .brand-copy small{font-size:11px;line-height:13px}
+}
+
+/* Requested nationwide landing navigation; keep approved logo geometry. */
+.topbar .service-links{display:flex;gap:8px;margin-left:auto;justify-content:flex-end}
+.nationwide-finder{max-width:1100px;margin:18px auto 0;padding:0 20px}
+.nationwide-finder a{display:inline-block;background:#086a72;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:800}
+.care-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.care-actions a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;text-decoration:none;min-height:76px;font-size:20px}
+.care-actions small{font-size:13px;font-weight:500}
+@media(max-width:760px){.topbar{flex-wrap:wrap;height:auto;padding-top:12px;padding-bottom:12px}.topbar .service-links{order:3;width:100%;justify-content:flex-end}.topbar .service-links a{font-size:13px;padding:8px 10px}.care-actions a{font-size:18px;padding:12px 8px}.nationwide-finder{margin-top:12px;padding:0 16px}}
+
+
+.nationwide-finder a{font-size:28px;line-height:1.25}
+.directory .hospital-list-title,.service-card .hospital-list-title{font-size:22px;line-height:1.4}
+@media(max-width:620px){.nationwide-finder a{font-size:24px}.directory .hospital-list-title,.service-card .hospital-list-title{font-size:19px}}
+
+
+.hospital-card-name{display:flex;align-items:baseline;gap:.35em}
+.hospital-card-name .hospital-name-icon{box-sizing:border-box;width:.9em;height:.9em;padding:1px;border:1px solid #71958d;border-radius:2px;object-fit:contain;flex:none;align-self:flex-start;margin-top:.25em}
+
+/* Unified Care24 interface palette; original logo artwork stays intact. */
+:root{--orange:#086a72;--orange2:#0b7d84;--green:#086a72}
+.primary,.secondary,.care-actions a.primary,.care-actions a.secondary{background:#086a72;color:#fff;border:1px solid #086a72}
+.primary:hover,.secondary:hover,.care-actions a:hover,.nationwide-finder a:hover{background:#075961;border-color:#075961;color:#fff}
+.care-actions small{color:#fff}
+.topbar .service-links a,.topbar .ghost,.badge{background:#e9f5f4;color:#086a72;border-color:#c7e3e0}
+.back,.count,.directory .count,.panel a:not(.primary):not(.secondary),.eyebrow{color:#086a72}
+.chip.active{background:#086a72;color:#fff;border-color:#086a72}
+.hospital:hover{border-color:#72aca8}
+a:focus-visible,button:focus-visible{outline:3px solid #54b7b4;outline-offset:3px}
+
+.care-actions a.primary{background:#c64a0b;border-color:#c64a0b;color:#fff}
+.care-actions a.primary:hover{background:#ad3e07;border-color:#ad3e07;color:#fff}
