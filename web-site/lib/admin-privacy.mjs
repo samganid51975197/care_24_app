@@ -3,7 +3,7 @@ const privateRoutes=new Set(['/api/applications','/api/submissions','/api/docume
 export function requiresPrivateAdmin(path,method,body={}) {
  if(privateRoutes.has(path)||/^\/api\/care-requests\/[^/]+$/.test(path))return true;
  if(path==='/api/care-requests')return !['GET','POST'].includes(method)||(method==='POST'&&['careFee','feePeriod','paymentMethod','paymentDue','contractNote','contractVersion','contractSignedAt'].some(key=>String(body[key]||'').trim()));
- if(path==='/api/care-workflow'&&method!=='GET')return !['save_application','send_application','uniform','start'].includes(body.action)||(['save_application','send_application'].includes(body.action)&&!!String(body.note||'').trim());
+ if(path==='/api/care-workflow'&&method!=='GET')return !['save_application','send_application','uniform','start','save_diary','ack_instruction'].includes(body.action)||(['save_application','send_application'].includes(body.action)&&!!String(body.note||'').trim());
  return false;
 }
 const statusKeys=['requesting','matching','matched'];
@@ -27,7 +27,7 @@ export function nonAdminResponse(path,data) {
   id:data.id,admin:false,restricted:true,ownPatient:false,ownSelected:!!data.ownSelected,
   applications:(data.applications||[]).map(a=>({profileId:a.profileId,status:a.status==='sent'?'sent':'draft',name:'비공개'})),
   selected:data.selected,notifiedAt:data.notifiedAt,uniformAt:data.uniformAt,startedAt:data.startedAt,
-  canWriteDiary:false,diary:[],submissions:{}
+  canWriteDiary:!!data.ownSelected&&!!data.canWriteDiary,diary:data.ownSelected?(data.diary||[]):[],submissions:{}
  };
  if(path==='/api/hospital-registrations')return {
   role:data.role,hospitals:data.hospitals,

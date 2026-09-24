@@ -59,4 +59,10 @@ test('central admin endpoint rejects non-admin and anonymous actors before execu
  const response=await withActor(request('/api/admin/central'),async()=>{called=true;return Response.json({ok:true});},true);
  assert.equal(response.status,role==='admin'?200:role?403:401);assert.equal(called,role==='admin');
  }
+});test('담당 간병인의 일지 작성과 조회만 허용하고 계약과 다른 의뢰 일지는 숨긴다',async()=>{
+ actor={id:'assigned',status:'active',role:'caregiver'};
+ for(const action of ['save_diary','ack_instruction']){const r=await withActor(request('/api/care-workflow','POST',{action}),async()=>Response.json({ok:true}));assert.equal(r.status,200);}
+ const data={ownSelected:true,canWriteDiary:true,diary:[{id:1,care:'식사 보조'}],patientContract:'비공개 계약'};
+ const own=privacy.nonAdminResponse('/api/care-workflow',data);assert.equal(own.canWriteDiary,true);assert.equal(own.diary.length,1);assert.equal(own.patientContract,undefined);
+ const other=privacy.nonAdminResponse('/api/care-workflow',{...data,ownSelected:false});assert.equal(other.canWriteDiary,false);assert.deepEqual(other.diary,[]);
 });
