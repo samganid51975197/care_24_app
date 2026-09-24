@@ -29,7 +29,7 @@ if(seoulHyun)seoulHyun.specialty='정형외과';
 // Keep old IDs intact; unverified Sejong entries are not presented as inpatient hospitals.
 const directoryHospitals=[...new Map([
  ...hospitals.filter(h=>h.region!=='세종'||h.inpatientVerified).map(h=>[h.id,h]),
- ...careFacilities.map(h=>[h.id,{...h,type:h.kind}])
+ ...careFacilities.filter(h=>!h.directoryHidden).map(h=>[h.id,{...h,type:h.kind}])
 ]).values()];
 const directoryCategories=['종합병원','대학병원','일반병원','한방병원','요양병원','재활병원','의원','성형외과','정형외과','전문병원','호스피스','보훈병원'];
 const directoryCategory=h=>['요양병원','재활병원','성형외과','정형외과'].includes(h.type)?h.type:hospitalCategory(h)==='상급·대학병원'?'대학병원':hospitalCategory(h);

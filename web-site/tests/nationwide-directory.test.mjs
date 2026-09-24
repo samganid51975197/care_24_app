@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const context=vm.createContext({});
+const root=new URL('../public/regional/',import.meta.url);
+for(const file of ['hospitals.js','care-facilities.js','inpatient-hospitals.js','hospice-directory.js'])vm.runInContext(fs.readFileSync(new URL(file,root),'utf8'),context);
+const {nursing,rehab,care,directory}=vm.runInContext('({nursing:nursingHospitals,rehab:rehabilitationHospitals,care:careFacilities,directory:directoryHospitals})',context);
+const catalog=JSON.parse(fs.readFileSync(new URL('../lib/hospital-catalog.json',import.meta.url),'utf8'));
+test('official snapshots cover 17 nursing regions, with exact duplicate names/addresses removed',()=>{assert.equal(nursing.length,1285);assert.equal(new Set(nursing.map(h=>h.region)).size,17);assert.equal(new Set(nursing.map(h=>h.name+'|'+h.address)).size,1285);assert.equal(rehab.length,71);assert(rehab.every(h=>h.rehabDesignation));});
+test('every listed facility has one common hospital route and verified provenance',()=>{assert.equal(new Set(care.map(h=>h.id)).size,care.length);for(const h of [...nursing,...rehab]){assert(catalog.some(x=>x.id===h.id&&x.name===h.name&&x.directoryVerified));assert(directory.some(x=>x.id===h.id));assert(h.source.startsWith('https://'));}assert(directory.every(h=>!h.directoryHidden));});
+test('legacy hospitals remain accessible and unconfirmed addresses are not guessed',()=>{assert.equal(nursing.find(h=>h.name==='서초프라임요양병원').id,'seocho-prime');assert(catalog.some(h=>h.id==='hospital-5'));assert(catalog.some(h=>h.id==='snubh'));assert(care.some(h=>h.id==='rehab-1'&&h.directoryHidden&&!h.rehabDesignation));const pending=rehab.filter(h=>h.addressPending);assert.equal(pending.length,7);assert(pending.every(h=>!h.address&&!h.phone));});
