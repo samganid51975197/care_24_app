@@ -1,5 +1,5 @@
 export function maskPatientName(value){const name=Array.from(String(value||'').trim());if(name.length<2)return '○';if(name.length===2)return name[0]+'○';return name[0]+'○'.repeat(name.length-2)+name[name.length-1];}
-const privateRoutes=new Set(['/api/applications','/api/submissions','/api/documents','/api/consents','/api/care-contracts','/api/document-media','/api/ward-board','/api/ward-assignments','/api/contribution']);
+const privateRoutes=new Set(['/api/applications','/api/submissions','/api/documents','/api/consents','/api/care-contracts','/api/document-media','/api/ward-board','/api/ward-assignments','/api/contribution','/api/payment-notices']);
 export function requiresPrivateAdmin(path,method,body={}) {
  if(privateRoutes.has(path)||/^\/api\/care-requests\/[^/]+$/.test(path))return true;
  if(path==='/api/care-requests')return !['GET','POST'].includes(method)||(method==='POST'&&['careFee','feePeriod','paymentMethod','paymentDue','contractNote','contractVersion','contractSignedAt'].some(key=>String(body[key]||'').trim()));

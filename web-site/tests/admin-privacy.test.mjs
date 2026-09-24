@@ -22,7 +22,7 @@ function request(path,method='GET',body){return new Request('https://test.invali
 test('실제 인증 래퍼가 일반 계정의 문서 조회·변경을 거부하고 관리자 접근은 유지한다',async()=>{
  for(const role of ['hospital','caregiver','admin']){
  actor={id:'user',status:'active',role};
- for(const path of ['/api/applications','/api/%63are-contracts/','/api/documents','/api/consents','/api/submissions','/api/care-contracts','/api/document-media','/api/ward-board','/api/ward-assignments','/api/contribution','/api/care-requests/31'])for(const method of ['GET','POST','PATCH']){
+ for(const path of ['/api/applications','/api/%63are-contracts/','/api/documents','/api/consents','/api/submissions','/api/care-contracts','/api/document-media','/api/ward-board','/api/ward-assignments','/api/contribution','/api/payment-notices','/api/care-requests/31'])for(const method of ['GET','POST','PATCH']){
  let called=false;
  const response=await withActor(request(path,method),async()=>{called=true;return Response.json({private:'secret'});});
  assert.equal(response.status,role==='admin'?200:403,`${role} ${method} ${path}`);
