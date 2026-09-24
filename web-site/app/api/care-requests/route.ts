@@ -42,7 +42,7 @@ async function handleGET(req:Request, actor:Actor) {
         floorName: item.floorName || "미입력",
         ward: actor.role==="admin"?item.ward:publicCareText(item.ward,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
         patientGender: item.patientGender,
-        patientAge: item.patientAge,
+        patientAge: item.patientAge, patientBirthYear: item.patientBirthYear,
         patientWeight: item.patientWeight,
         patientName: maskPatientName(item.patientName),
         diagnosis: actor.role==="admin"?item.diagnosis:publicCareText(item.diagnosis,[item.patientName,item.requesterName,item.requesterPhone,item.room]),

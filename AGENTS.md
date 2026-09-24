@@ -40,3 +40,5 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 - Patients/guardians may create an initial care request; caregivers can view consented care needs and apply from the board.
 - Mask patient names in board responses (홍길동 → 홍○동; two characters → 김○). Do not send contact details, exact rooms, contract content, fees, banking data or financial totals to non-admin accounts.
 - Only admins may retrieve/edit private records or enter/edit contract amounts. Enforce this on the server, including attachments and owner access; UI hiding is insufficient.
+
+- The board may show patient birth year and age. Full date of birth is not currently collected; never invent missing month/day.

@@ -18,7 +18,7 @@ export function publicCareText(value,privateValues=[]) {
 export function nonAdminResponse(path,data) {
  if(path==='/api/care-requests')return {
   restricted:true,admin:false,
-  requests:(data.requests||[]).map(r=>({id:r.id,status:statusKeys.includes(r.status)?r.status:'requesting',canPrepareContract:false,patientName:maskPatientName(r.patientName),...Object.fromEntries(['building','floorName','ward','patientGender','patientAge','patientWeight','diagnosis','patientCondition','precautions','specialNotes','desiredGender','desiredNationality','desiredExpertise','desiredAge','desiredPersonality','desiredOther'].map(key=>[key,publicCareText(r[key])]))})),
+  requests:(data.requests||[]).map(r=>({id:r.id,status:statusKeys.includes(r.status)?r.status:'requesting',canPrepareContract:false,patientName:maskPatientName(r.patientName),...Object.fromEntries(['building','floorName','ward','patientGender','patientAge','patientBirthYear','patientWeight','diagnosis','patientCondition','precautions','specialNotes','desiredGender','desiredNationality','desiredExpertise','desiredAge','desiredPersonality','desiredOther'].map(key=>[key,publicCareText(r[key])]))})),
   profiles:(data.profiles||[]).map(p=>({id:p.id,applicantName:`본인 프로필 ${p.id}`,careerYears:'비공개'})),
   progress:(data.progress||[]).map(p=>({id:p.id,status:'진행'})),
   stats:Object.fromEntries(['day','week','month','year'].map(k=>[k,{total:Number(data.stats?.[k]?.total)||0,matched:Number(data.stats?.[k]?.matched)||0}]))

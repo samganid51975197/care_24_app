@@ -48,7 +48,7 @@ test('가운데 이름 가림과 공개 돌봄 설명의 연락처·병실·금�
  const text=privacy.publicCareText('홍길동 010-1234-5678 808호 150,000원 이동 보조',['홍길동','808']);
  for(const secret of ['홍길동','010-1234-5678','808','150,000'])assert.ok(!text.includes(secret));
  assert.ok(text.includes('이동 보조'));
- const response=privacy.nonAdminResponse('/api/care-requests',{requests:[{id:31,patientName:'홍길동',room:'808',requesterPhone:'01012345678',careFee:'150000',status:'requesting',patientCondition:'이동 보조'}]});
- assert.equal(response.requests[0].patientName,'홍○동');assert.equal(response.requests[0].patientCondition,'이동 보조');
+ const response=privacy.nonAdminResponse('/api/care-requests',{requests:[{id:31,patientName:'홍길동',patientBirthYear:'1950',patientAge:'76',room:'808',requesterPhone:'01012345678',careFee:'150000',status:'requesting',patientCondition:'이동 보조'}]});
+ assert.equal(response.requests[0].patientBirthYear,'1950');assert.equal(response.requests[0].patientAge,'76');assert.equal(response.requests[0].patientName,'홍○동');assert.equal(response.requests[0].patientCondition,'이동 보조');
  for(const key of ['room','requesterPhone','careFee'])assert.ok(!(key in response.requests[0]));
 });
