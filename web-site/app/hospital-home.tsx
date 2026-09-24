@@ -1,5 +1,6 @@
 "use client";
 import SeochoPrimeIntroduction from "./seocho-prime-introduction";
+import HospitalDirections from "./hospital-directions";
 import BoramaeDirections from "./boramae-directions";
 import {hospitalFetch as fetch} from "@/lib/hospital-fetch";
 import { useEffect, useRef, useState } from "react";
@@ -288,7 +289,7 @@ export default function Home({hospital}:{hospital?:{id:string;name:string;region
         <div className="home-screen-inner">{completionNotice&&<div className="document-completion" role="status"><span>{completionNotice}</span><Button type="button" variant="outline" onClick={()=>setCompletionNotice("")}>확인</Button></div>}
           {homeStep === "buildings" ? <>
             <div className="legacy-home-title"><p>{hospitalName} 통합간병 앱</p><h1>입원 병동을 선택하세요</h1><span>{isSamsung?"본관·암병원·별관을 누르면 층별 병동이 표시됩니다.":hospital?"병동 안내를 확인하거나 간병 의뢰서를 작성하세요.":"동을 누르면 층별 병동이 표시됩니다."}</span><b className="logo-navigation-guide">아이콘(<img className="inline-care24-icon" src="/ganbyeong24-logo-cropped.webp" alt="간병24 아이콘" />)을 클릭하면 전국병원 사이트가 열립니다.</b></div>
-            <div className="legacy-cloud"><ShieldCheck /><div><b>병원 클라우드와 분리 운영</b><p>이 사이트는 {hospitalName} 전산·EMR·클라우드와 연결되지 않은 별도 관리 서비스입니다. 대한노인돌봄서비스협회(간병24)가 관리하며, 실제 연동은 병원 승인 후에만 가능합니다.</p></div><span>외부 독립 운영</span></div>
+            <HospitalDirections name={hospitalName} address={hospital?.address} region={hospital?.region} city={hospital?.city}/><div className="legacy-cloud"><ShieldCheck /><div><b>병원 클라우드와 분리 운영</b><p>이 사이트는 {hospitalName} 전산·EMR·클라우드와 연결되지 않은 별도 관리 서비스입니다. 대한노인돌봄서비스협회(간병24)가 관리하며, 실제 연동은 병원 승인 후에만 가능합니다.</p></div><span>외부 독립 운영</span></div>
             {isSamsung ? <SamsungBuildings onSelect={building => {setSelectedBuilding(building);setHomeStep("wards")}}/> : <div className="legacy-buildings">{hospital&&<button type="button" onClick={()=>hospital.name==='혜민병원'?window.location.assign('/hospitals/hyemin/wards'):setMenuCard("병동·병실 안내")}><div className="teal"><Building2/><strong>입원병동</strong></div><section><h2>병동·병실 안내</h2><p>{hospital.name==='혜민병원'?'층별 병동·병실 보기':'현장 배치 자료 등록 대기'}</p><b>안내 보기 <ChevronRight/></b></section></button>}
               {!hospital&&Object.keys(hospitalWards).map((building, index) => <button type="button" key={building} onClick={() => { setSelectedBuilding(building); setHomeStep("wards"); }}><div className={index === 0 ? "teal" : "navy"}><Building2 /><strong>{building}</strong></div><section><h2>{building} 입원병동</h2><p>{hospitalWards[building].length}개 층별 병동 안내</p><b>층별 병동 보기 <ChevronRight /></b></section></button>)}
             </div>}
