@@ -24,3 +24,5 @@
 .request-save-receipt{margin:20px 0;padding:20px;border:2px solid #16816b;border-radius:16px;background:#effaf5}.request-save-receipt h3{color:#176343;margin:0 0 10px}.request-save-receipt p{margin:0 0 14px}
 
 #patient-care-request-title{font-weight:800}
+
+.request-contract-editor .request-contract-signature{margin:18px 0;gap:8px}.request-contract-editor .request-contract-signature input{width:100%;min-width:0;border:0;border-bottom:2px solid #334155;border-radius:0;background:transparent;padding:8px 4px;font:inherit;box-shadow:none}.request-contract-editor textarea.request-contract-tail{min-height:100px!important}
