@@ -19,3 +19,5 @@
 @media(max-width:360px){.account-bar{padding:8px;gap:4px}.account-name{max-width:76px}.account-bar .account-link{padding:0 5px}.account-bar .account-logout svg{display:none}.account-bar .account-logout{padding:0 6px}}
 main>.topbar{height:78px;z-index:20}
 main>.home-screen{top:146px}
+
+.account-bar .central-admin-link{background:#0a6470;color:#fff;font-weight:800}.account-bar .central-admin-link:hover,.account-bar .central-admin-link[aria-current=page]{background:#084d56;color:#fff}@media(max-width:620px){.account-bar nav{flex-shrink:1;min-width:0;overflow-x:auto}.account-bar nav>*{flex-shrink:0}.account-bar .central-admin-link{white-space:normal;max-width:100px;text-align:center;line-height:1.4}}

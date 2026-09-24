@@ -52,3 +52,11 @@ test('가운데 이름 가림과 공개 돌봄 설명의 연락처·병실·금�
  assert.equal(response.requests[0].patientBirthYear,'1950');assert.equal(response.requests[0].patientAge,'76');assert.equal(response.requests[0].patientName,'홍○동');assert.equal(response.requests[0].patientCondition,'이동 보조');
  for(const key of ['room','requesterPhone','careFee'])assert.ok(!(key in response.requests[0]));
 });
+
+test('central admin endpoint rejects non-admin and anonymous actors before executing queries',async()=>{
+ for(const role of ['caregiver','hospital','admin',null]){
+ actor=role?{id:'user',status:'active',role}:undefined;let called=false;
+ const response=await withActor(request('/api/admin/central'),async()=>{called=true;return Response.json({ok:true});},true);
+ assert.equal(response.status,role==='admin'?200:role?403:401);assert.equal(called,role==='admin');
+ }
+});
