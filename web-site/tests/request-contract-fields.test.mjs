@@ -10,7 +10,7 @@ test('기존 계약의 서명과 날짜를 유지하고 수정 후 다시 읽을
  assert.equal(fields.body,'조건: 원문 유지');
  const updated=writeContractFields(fields);
  assert.ok(updated.includes('지급 단위: 24시간'));
- const roundTrip=readContractFields(updated);assert.ok(roundTrip.body.startsWith(fields.body));for(const key of ['fee','patientSignature','associationSignature','date'])assert.equal(roundTrip[key],fields[key]);assert.ok(updated.includes('1005-804-669803'));assert.ok(updated.includes('1005-304-803945'));assert.equal(writeContractFields(roundTrip),updated);
+ const roundTrip=readContractFields(updated);assert.ok(roundTrip.body.startsWith(fields.body));for(const key of ['fee','patientSignature','associationSignature','date'])assert.equal(roundTrip[key],fields[key]);assert.ok(updated.includes('1005-804-669803'));assert.ok(!updated.includes('1005-304-803945'));assert.equal(writeContractFields(roundTrip),updated);
 });
 test('미작성 계약에는 예시 성명이나 계약일을 넣지 않는다',()=>{
  const fields=readContractFields('계약 내용\n환자·보호자 성명 및 서명: ____\n계약일: ____');
