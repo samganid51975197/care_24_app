@@ -1,3 +1,4 @@
+import {publicCareText,maskPatientName} from "@/lib/admin-privacy.mjs";
 import {requestBoardStatus} from "@/lib/request-board-status.mjs";
 import {withActor,hospitalFilter,scope,scopedId,ownership,workflowGuard,type Actor} from "../../../lib/auth";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
@@ -37,23 +38,23 @@ async function handleGET(req:Request, actor:Actor) {
         id: item.id,
         contractNumber: contractNumber(item.id, item.createdAt),
         canPrepareContract: actor.role==='admin'||item.ownerUserId===actor.id,
-        building: item.building,
+        building: actor.role==="admin"?item.building:publicCareText(item.building,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
         floorName: item.floorName || "미입력",
-        ward: item.ward,
+        ward: actor.role==="admin"?item.ward:publicCareText(item.ward,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
         patientGender: item.patientGender,
         patientAge: item.patientAge,
         patientWeight: item.patientWeight,
-        patientName: maskName(item.patientName),
-        diagnosis: item.diagnosis,
-        patientCondition: [item.patientCondition, item.patientAge && `${item.patientAge}세`, item.patientWeight && `${item.patientWeight}kg`].filter(Boolean).join(" · "),
-        precautions: item.precautions,
-        specialNotes: item.specialNotes,
+        patientName: maskPatientName(item.patientName),
+        diagnosis: actor.role==="admin"?item.diagnosis:publicCareText(item.diagnosis,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+        patientCondition: [actor.role==="admin"?item.patientCondition:publicCareText(item.patientCondition,[item.patientName,item.requesterName,item.requesterPhone,item.room]), item.patientAge && `${item.patientAge}세`, item.patientWeight && `${item.patientWeight}kg`].filter(Boolean).join(" · "),
+        precautions: actor.role==="admin"?item.precautions:publicCareText(item.precautions,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+        specialNotes: actor.role==="admin"?item.specialNotes:publicCareText(item.specialNotes,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
         desiredGender: item.desiredGender,
         desiredNationality: item.desiredNationality,
-        desiredExpertise: item.desiredExpertise,
+        desiredExpertise: actor.role==="admin"?item.desiredExpertise:publicCareText(item.desiredExpertise,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
         desiredAge: item.desiredAge,
-        desiredPersonality: item.desiredPersonality,
-        desiredOther: item.desiredOther,
+        desiredPersonality: actor.role==="admin"?item.desiredPersonality:publicCareText(item.desiredPersonality,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+        desiredOther: actor.role==="admin"?item.desiredOther:publicCareText(item.desiredOther,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
         status: boardStatus(item),
       })),
       profiles: profiles.map((profile) => ({
@@ -73,6 +74,7 @@ async function handleGET(req:Request, actor:Actor) {
 async function handlePOST(req:Request, actor:Actor) {
   try {
     const body = await req.json() as Record<string, unknown>;
+    if(actor.role!=="admin"&&["careFee","feePeriod","paymentMethod","paymentDue","contractNote","contractVersion","contractSignedAt"].some(key=>String(body[key]||"").trim()))return Response.json({error:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});
     const required = ["requesterName", "requesterPhone", "patientName", "patientGender", "patientAge", "patientWeight", "diagnosis", "patientCondition", "building", "floorName", "ward", "careType", "startDate"];
     if (!required.every((key) => String(body[key] || "").trim())) return Response.json({ error: "필수 의뢰 항목을 모두 작성해 주세요." }, { status: 400 });
     if (String(body.publicConsent) !== "동의") return Response.json({ error: "민감정보 공개 동의가 필요합니다." }, { status: 400 });

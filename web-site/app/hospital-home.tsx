@@ -121,6 +121,8 @@ function Title({
 }
 export default function Home({hospital}:{hospital?:{id:string;name:string;region:string;city:string;type?:string;kind?:string;address?:string}}) {
   const hospitalName=hospital?.name||"분당서울대학교병원";
+  const [privateAdmin,setPrivateAdmin]=useState(false);
+  useEffect(()=>{fetch("/api/auth/me",{cache:"no-store"}).then(r=>r.json()).then(d=>setPrivateAdmin(d.user?.role==="admin")).catch(()=>setPrivateAdmin(false))},[]);
   const isSamsung = hospitalName === "삼성서울병원";
   const [completionNotice,setCompletionNotice]=useState("");
   const [tab, setTab] = useState("forms"),
@@ -225,6 +227,7 @@ export default function Home({hospital}:{hospital?:{id:string;name:string;region
     };
   }, []);
   function moveTo(nextTab: string, target?: string) {
+    if(!privateAdmin&&["forms","inbox"].includes(nextTab)){setCompletionNotice("개인정보·간병비·계약 문서는 관리자만 작성·확인할 수 있습니다. 간병 신청은 상황판의 의뢰번호를 눌러 진행하세요.");return;}
     setHomeOpen(false);
     setMenuCard("");
     setRailOpen(false);
@@ -329,7 +332,7 @@ export default function Home({hospital}:{hospital?:{id:string;name:string;region
               </TabsTrigger>
             </TabsList>
           </div>
-          <TabsContent value="forms">
+          <TabsContent value="forms">{privateAdmin?<>
             <div id="care-request" className="rail-anchor"><ApplicationForm onDone={finishDocument} onClose={closeDocument} /></div>
             <div className="document-divider">
               <Camera />
@@ -362,7 +365,7 @@ export default function Home({hospital}:{hospital?:{id:string;name:string;region
                 <span>전자서명 후 협회(간병24)에 전송합니다.</span>
               </div>
             </div>
-            <ConsentForm onDone={finishDocument} onClose={closeDocument} />
+            <ConsentForm onDone={finishDocument} onClose={closeDocument} /></>:<p>관리자만 개인정보·계약 문서를 작성·확인할 수 있습니다.</p>}
           </TabsContent>
           <TabsContent value="inbox">
             <section className="card inbox">

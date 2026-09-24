@@ -1,3 +1,4 @@
+import {requiresPrivateAdmin,nonAdminResponse} from "./admin-privacy.mjs";
 import { and, eq } from "drizzle-orm";
 import {recordScope} from './hospital-scope.mjs';
 export {hospitalFilter} from './hospital-scope.mjs';
@@ -27,9 +28,15 @@ export async function withActor(req: Request, handler: (actor: Actor) => Promise
     if (!actor) throw new AccessError(401, "로그인이 필요합니다.");
     if (actor.status !== "active") throw new AccessError(403, "관리자 승인 후 이용할 수 있습니다.");
     if (admin && actor.role !== "admin") throw new AccessError(403, "관리자만 이용할 수 있습니다.");
+    const privacyPath=decodeURIComponent(new URL(req.url).pathname).toLowerCase().replace(/\/$/,'');
+    if(actor.role!=='admin'){
+      const privacyBody=['/api/care-workflow','/api/care-requests'].includes(privacyPath)&&req.method!=='GET'?await req.clone().json():{};
+      if(requiresPrivateAdmin(privacyPath,req.method,privacyBody))throw new AccessError(403,'개인정보·간병비·계약서는 관리자만 작성·조회·수정할 수 있습니다.');
+    }
     const hospital=new URL(req.url).searchParams.get('hospital');
     if(hospital){const {resolveHospital}=await import('./hospital-context');actor.contextHospitalId=await resolveHospital(hospital,actor,req.method!=='GET');actor.legacyHospital=hospital==='snubh';}
-    const response = await handler(actor);
+    let response = await handler(actor);
+    if(actor.role!=="admin"&&req.method==="GET"&&response.ok&&["/api/care-requests","/api/care-workflow","/api/hospital-registrations"].includes(privacyPath)){response=privateJson(nonAdminResponse(privacyPath,await response.json()),response.status);}
     response.headers.set("Cache-Control", "no-store");
     return response;
   } catch(e) { return privateJson({error: e instanceof AccessError ? e.message : "요청을 처리하지 못했습니다."}, e instanceof AccessError ? e.status : 500); }

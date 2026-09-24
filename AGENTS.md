@@ -35,3 +35,8 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 - All hospital document forms use the visible action order: 저장 → 보내기 → 확인. Place close or additional completion controls after these actions. Preserve actual approval and signature requirements; a content review must not imply submission or approval.
 
 - Use 협회(간병24) consistently for the association recipient in every hospital UI; label its send button 협회(간병24) 보내기.
+
+# Patient privacy and contract access
+- Patients/guardians may create an initial care request; caregivers can view consented care needs and apply from the board.
+- Mask patient names in board responses (홍길동 → 홍○동; two characters → 김○). Do not send contact details, exact rooms, contract content, fees, banking data or financial totals to non-admin accounts.
+- Only admins may retrieve/edit private records or enter/edit contract amounts. Enforce this on the server, including attachments and owner access; UI hiding is insufficient.
