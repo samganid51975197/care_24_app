@@ -1,4 +1,5 @@
 "use client";
+import CareDepositGuide from './care-deposit-guide';
 import {useState} from 'react';
 import {Button} from '@/components/ui/button';
 import {readContractFields,writeContractFields} from '../lib/request-contract-fields.mjs';
@@ -17,7 +18,7 @@ export default function RequestContractEditor({id,content,busy,onSubmit}:{id:num
    <label>간병비 (원)<input name="fee" type="number" min="0" step="1" required value={fields.fee} onChange={e=>update('fee',e.target.value)} placeholder="합의한 금액"/></label>
    <label>간병비 지급 기준<input name="period" value="24시간" readOnly/></label>
   </div>
-  <label>의뢰계약서 내용<textarea name="content" required maxLength={10500} rows={16} value={fields.body} onChange={e=>update('body',e.target.value)}/></label>
+  <CareDepositGuide/><label>의뢰계약서 내용<textarea name="content" required maxLength={10500} rows={16} value={fields.body} onChange={e=>update('body',e.target.value)}/></label>
   <label className="request-contract-signature">환자(보호자) 성명 및 서명:<input name="patientSignature" value={fields.patientSignature} maxLength={200} placeholder="성명 및 서명" onChange={e=>update('patientSignature',e.target.value)}/></label>
   <label className="request-contract-signature">협회(간병24) 담당자 성명 및 서명:<input name="associationSignature" value={fields.associationSignature} maxLength={200} placeholder="성명 및 서명" onChange={e=>update('associationSignature',e.target.value)}/></label>
   <label>계약일<input name="contractDate" type="date" required value={fields.date} onChange={e=>update('date',e.target.value)}/></label>

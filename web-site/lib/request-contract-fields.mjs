@@ -1,3 +1,4 @@
+import {withDepositGuide} from './care-deposit-accounts.mjs';
 export function readContractFields(content) {
   const fields = {body:'',fee:'',patientSignature:'',associationSignature:'',date:''};
   const body=[];
@@ -19,7 +20,7 @@ export function readContractFields(content) {
   return fields;
 }
 export function writeContractFields(fields) {
-  return [fields.body.trim(),`간병비: ${fields.fee}원 / 지급 단위: 24시간`,
+  return [withDepositGuide(fields.body.trim()),`간병비: ${fields.fee}원 / 지급 단위: 24시간`,
     `환자(보호자) 성명 및 서명: ${fields.patientSignature}`,
     `협회(간병24) 담당자 성명 및 서명: ${fields.associationSignature}`,
     `계약일: ${fields.date}`].join('\n');

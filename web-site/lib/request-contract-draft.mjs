@@ -1,3 +1,4 @@
+import {depositGuide} from './care-deposit-accounts.mjs';
 // Copy recorded facts only. Unagreed terms and signatures remain unfilled.
 export function requestContractDraft(request, workflow, actor) {
   if(actor.role!=='admin'&&request.ownerUserId!==actor.id)return undefined;
@@ -21,6 +22,8 @@ export function requestContractDraft(request, workflow, actor) {
     `휴게시간: ${value('restTime')} / 휴일 조건: ${value('holidayTerms')}`,
     `요청사항: ${value('requestNote')}`,
     `변경·취소 조건: ${value('cancellationTerms')}`,
+    '',
+    depositGuide,
     '',
     '위 내용은 저장된 의뢰정보를 옮긴 초안입니다. 미기재 항목과 계약 조건을 당사자가 확인한 후 작성해 주세요.',
     '환자·보호자 성명 및 서명: ____________________',
