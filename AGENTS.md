@@ -33,3 +33,5 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 
 # Shared document action order
 - All hospital document forms use the visible action order: 저장 → 보내기 → 확인. Place close or additional completion controls after these actions. Preserve actual approval and signature requirements; a content review must not imply submission or approval.
+
+- Use 협회(간병24) consistently for the association recipient in every hospital UI; label its send button 협회(간병24) 보내기.
