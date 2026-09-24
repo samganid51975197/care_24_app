@@ -22,7 +22,7 @@ export default function RequestContractEditor({id,content,busy,onSubmit}:{id:num
   <label className="request-contract-signature">협회(간병24) 담당자 성명 및 서명:<input name="associationSignature" value={fields.associationSignature} maxLength={200} placeholder="성명 및 서명" onChange={e=>update('associationSignature',e.target.value)}/></label>
   <label>계약일<input name="contractDate" type="date" required value={fields.date} onChange={e=>update('date',e.target.value)}/></label>
   <small>저장·보내기가 완료되면 결과 화면의 ‘확인’을 눌러 주세요. 저장·보내기는 당사자의 서명이나 계약 체결을 대신하지 않습니다.</small>
-  <div className="workflow-actions"><Button type="submit" value="save_contract" disabled={busy}>의뢰계약서 저장</Button><Button type="submit" value="send_contract" disabled={busy}>협회·간병24로 보내기</Button><Button type="button" variant="outline" disabled={busy} aria-expanded={review} onClick={()=>setReview(!review)}>확인</Button></div>
+  <p className="document-action-order">저장 → 보내기 → 확인</p><div className="workflow-actions"><Button type="submit" value="save_contract" disabled={busy}>의뢰계약서 저장</Button><Button type="submit" value="send_contract" disabled={busy}>협회·간병24로 보내기</Button><Button type="button" variant="outline" disabled={busy} aria-expanded={review} onClick={()=>setReview(!review)}>확인</Button></div>
   {review&&<section className="request-contract-review" aria-label="작성한 계약서 확인"><h4>작성한 계약서 확인</h4><p role="status">아래 내용을 확인해 주세요. 아직 저장하거나 보내지 않았습니다.</p><pre style={{whiteSpace:"pre-wrap",overflowWrap:"anywhere"}}>{writeContractFields(fields)}</pre></section>}
  </form>;
 }

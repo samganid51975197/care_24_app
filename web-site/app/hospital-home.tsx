@@ -35,6 +35,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LiveMatching from "./live-matching";
+import FormReviewButton from "./form-review-button";
 import Contribution from "./contribution";
 import CaregiverGuide from "./caregiver-guide";
 import BoardModal from "./board-modal";
@@ -546,8 +547,8 @@ function ApplicationForm({ onDone,onClose }: { onDone: (action?:string) => void;
           />
         </div>
         <HandwritingPad />
-        <div className="mini-actions">
-          <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button>
+        <p className="document-action-order">저장 → 보내기 → 확인</p><div className="mini-actions">
+          
           <Button type="submit" value="save" variant="outline" disabled={busy}>
             <Save />
             신청서 저장
@@ -556,7 +557,7 @@ function ApplicationForm({ onDone,onClose }: { onDone: (action?:string) => void;
             <Send />
             협회·간병24에 보내기
           </Button>
-        </div>
+        <FormReviewButton disabled={busy}/><Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button></div>
         {msg && (
           <div className={msg.includes("완료") ? "result ok" : "result"}>
             {msg}
@@ -984,8 +985,8 @@ function DocumentForm({ onDone,onClose }: { onDone: (action?:string) => void;onC
             </div>
           </div>
         </div>
-        <div className="mini-actions document-actions">
-          <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button>
+        <p className="document-action-order">저장 → 보내기 → 확인</p><div className="mini-actions document-actions">
+          
           <Button type="submit" value="save" variant="outline" disabled={busy}>
             <Save />
             서류 저장
@@ -1003,7 +1004,7 @@ function DocumentForm({ onDone,onClose }: { onDone: (action?:string) => void;onC
             <ClipboardCheck />
             확인 완료
           </Button>
-        </div>
+        <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button></div>
         {msg && (
           <div className={msg.includes("완료") ? "result ok" : "result"}>
             {msg}
@@ -1176,8 +1177,8 @@ function CareContractForm({
           <Field label="계약일" name="signedAt" type="date" />
         </div>
         <HandwritingPad />
-        <div className="mini-actions consent-actions">
-          <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button>
+        <p className="document-action-order">저장 → 보내기 → 확인</p><div className="mini-actions consent-actions">
+          
           <Button type="submit" value="save" variant="outline" disabled={busy}>
             <Save />
             저장
@@ -1204,7 +1205,7 @@ function CareContractForm({
             <ClipboardCheck />
             완료
           </Button>
-        </div>
+        <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button></div>
         {msg && (
           <div className={msg.includes("완료") ? "result ok" : "result"}>
             {msg}
@@ -1358,8 +1359,8 @@ function ConsentForm({ onDone,onClose }: { onDone: (action?:string) => void;onCl
           </div>
         </div>
         <HandwritingPad />
-        <div className="mini-actions consent-actions">
-          <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button>
+        <p className="document-action-order">저장 → 보내기 → 확인</p><div className="mini-actions consent-actions">
+          
           <Button type="submit" value="save" variant="outline" disabled={busy}>
             <Save />
             저장
@@ -1386,7 +1387,7 @@ function ConsentForm({ onDone,onClose }: { onDone: (action?:string) => void;onCl
             <ClipboardCheck />
             완료
           </Button>
-        </div>
+        <Button type="button" variant="outline" onClick={onClose} disabled={busy}>작성 닫기</Button></div>
         {msg && (
           <div className={msg.includes("완료") ? "result ok" : "result"}>
             {msg}

@@ -30,3 +30,6 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 - Registration approval is not proof that a certificate was issued. Do not fabricate issuance or credential verification.
 
 - On /hospital-registration, finish with the registration/certificate workflow; omit the global privacy-policy footer as requested. Keep /privacy available on other screens.
+
+# Shared document action order
+- All hospital document forms use the visible action order: 저장 → 보내기 → 확인. Place close or additional completion controls after these actions. Preserve actual approval and signature requirements; a content review must not imply submission or approval.
