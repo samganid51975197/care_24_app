@@ -53,6 +53,7 @@ public final class MainActivity extends Activity {
         addButton(content, R.string.open_home, "home");
         addButton(content, R.string.open_hospitals, "hospitals");
         addButton(content, R.string.open_admin, "admin");
+        addButton(content, R.string.open_education, "education");
         content.addView(text(getString(R.string.login_help), 16));
         status = text("", 16);
         status.setAccessibilityLiveRegion(android.view.View.ACCESSIBILITY_LIVE_REGION_POLITE);
@@ -74,9 +75,9 @@ public final class MainActivity extends Activity {
 
     private void openSite(String route) {
         // Routes originate only from the app's fixed buttons, not external Intent data.
-        String path = "admin".equals(route) ? "admin" : "regional/index.html";
+        String path = "education".equals(route) ? "education/index.html" : "admin".equals(route) ? "admin" : "regional/index.html";
         Uri url = Uri.parse(getString(R.string.site_url)).buildUpon().encodedPath("/" + path)
-                .fragment("admin".equals(route) ? null : "hospitals").build();
+                .fragment("admin".equals(route) || "education".equals(route) ? null : "hospitals").build();
         status.setText("");
         try {
             CustomTabsIntent tab = new CustomTabsIntent.Builder()

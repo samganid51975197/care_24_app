@@ -7,8 +7,8 @@ android {
         applicationId 'kr.or.care24.v2'
         minSdk 26
         targetSdk 36
-        versionCode 20002
-        versionName '2.0.2'
+        versionCode 20005
+        versionName '2.0.5'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17

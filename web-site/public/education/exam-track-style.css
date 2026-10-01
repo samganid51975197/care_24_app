@@ -1,0 +1,8 @@
+.exam-track-selector{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.exam-track-selector button{display:flex;flex-direction:column;align-items:flex-start;gap:5px;border:2px solid #d7e0e6;border-radius:14px;background:#fff;padding:16px 18px;text-align:left;cursor:pointer}
+.exam-track-selector button b{font-size:19px;color:#173f5f}
+.exam-track-selector button span{font-size:14px;color:#667785}
+.exam-track-selector button.active{border-color:#08796c;background:#eaf8f5;box-shadow:0 0 0 3px rgba(8,121,108,.08)}
+.exam-track-selector button.active b{color:#08796c}
+.active-exam-track-title{margin:18px 0 10px;padding-left:12px;border-left:5px solid #08796c;color:#173f5f}
+@media(max-width:650px){.exam-track-selector{grid-template-columns:1fr}}

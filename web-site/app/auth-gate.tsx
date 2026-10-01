@@ -4,7 +4,7 @@ import {usePathname} from 'next/navigation';
 type User={name:string;role:string;status:string};
 export default function AuthGate({children}:{children:React.ReactNode}) {
  const path=usePathname(),[user,setUser]=useState<User|null>(null),[loading,setLoading]=useState(true),[error,setError]=useState('');
- const publicPage=['/login','/signup','/setup','/privacy'].includes(path);
+ const publicPage=['/login','/signup','/setup','/privacy','/password-reset','/email-setup'].includes(path);
  useEffect(()=>{if(publicPage){setLoading(false);return;}let live=true;setLoading(true);fetch('/api/auth/me',{cache:'no-store'}).then(async r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{if(!live)return;if(!d.user||d.user.status!=='active'){window.location.replace('/login?next='+encodeURIComponent(path));return;}setUser(d.user);setLoading(false);}).catch(()=>{if(live){setError('로그인 상태를 확인하지 못했습니다. 새로고침해 주세요.');setLoading(false);}});return()=>{live=false};},[path,publicPage]);
  async function logout(){const r=await fetch('/api/auth/logout',{method:'POST'});if(r.ok){setUser(null);window.location.replace('/login');}else setError('로그아웃하지 못했습니다. 다시 시도해 주세요.');}
  if(publicPage)return children;

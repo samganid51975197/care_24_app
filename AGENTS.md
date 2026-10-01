@@ -42,3 +42,6 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 - Only admins may retrieve/edit private records or enter/edit contract amounts. Enforce this on the server, including attachments and owner access; UI hiding is insufficient.
 
 - The board may show patient birth year and age. Full date of birth is not currently collected; never invent missing month/day.
+
+# Deployment completion preference (2026-09-24)
+- User requests every future completed change be reflected in the production site and Android APK. Verify production after deployment and build the matching APK; report site deployment, APK build, and phone installation separately. Never claim phone installation without device verification. Report concrete blockers.

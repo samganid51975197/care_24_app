@@ -1,0 +1,11 @@
+"use client";
+import {useState} from "react";
+import "../auth.css";
+
+export default function PasswordReset(){
+  const token=typeof window==="undefined"?"":new URLSearchParams(window.location.search).get("token")||"";
+  const[message,setMessage]=useState(""),[busy,setBusy]=useState(false);
+  async function request(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setBusy(true);setMessage("");try{const r=await fetch("/api/auth/password-reset/request",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(e.currentTarget)))}),d=await r.json();if(!r.ok)throw Error(d.error);setMessage("인증 이메일을 보냈습니다. 이메일의 링크를 열어 새 비밀번호를 입력하세요.");}catch(e){setMessage(e instanceof Error?e.message:"인증 이메일을 보내지 못했습니다.");}finally{setBusy(false)}}
+  async function confirm(e:React.FormEvent<HTMLFormElement>){e.preventDefault();const data=new FormData(e.currentTarget),password=String(data.get("password")||"");if(password!==String(data.get("passwordConfirm")||"")){setMessage("새 비밀번호가 서로 다릅니다.");return;}setBusy(true);setMessage("");try{const r=await fetch("/api/auth/password-reset/confirm",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token,password})}),d=await r.json();if(!r.ok)throw Error(d.error);window.location.replace("/login");}catch(e){setMessage(e instanceof Error?e.message:"비밀번호를 재설정하지 못했습니다.");}finally{setBusy(false)}}
+  return <main className="auth-page"><section className="auth-card"><img src="/ganbyeong24-logo-cropped.webp" alt="간병24" width="130"/><h1>관리자 비밀번호 재설정</h1>{token?<form onSubmit={confirm}><label>새 비밀번호<input name="password" type="password" autoComplete="new-password" required minLength={12} maxLength={128}/></label><label>새 비밀번호 확인<input name="passwordConfirm" type="password" autoComplete="new-password" required minLength={12} maxLength={128}/></label><p role="alert">{message}</p><button disabled={busy}>{busy?"변경 중…":"새 비밀번호 저장"}</button></form>:<form onSubmit={request}><label>관리자 아이디<input name="username" defaultValue="samganid5197" required minLength={4} maxLength={32}/></label><p role="alert">{message}</p><button disabled={busy}>{busy?"발송 중…":"인증 이메일 보내기"}</button></form>}<a href="/login">로그인으로 돌아가기</a></section></main>;
+}
