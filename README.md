@@ -8,6 +8,8 @@
 | [`legacy-care24/`](legacy-care24/) | **구 간병24 앱** (`com.fivegram.gb`, 간병24.com) | Android 4.0.2 |
 | [`archive/`](archive/) | 참고용 보관 자료 (간병24 1.1.5, hospital-hub) | 실행·배포 대상 아님 |
 
+> 작업을 시작하기 전에 [HANDOFF-2026-10-03.md](HANDOFF-2026-10-03.md)를 먼저 읽어 주세요. 남은 기능에 대한 결정 질문이 정리되어 있습니다.
+
 ## 어디를 고치면 되나요?
 
 - 병원 화면·의뢰·신청·교육 등 **웹 기능** → `nationwide/web/`
