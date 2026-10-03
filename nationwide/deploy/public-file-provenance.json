@@ -1,0 +1,257 @@
+[
+  {
+    "path": "web/public/ganbyeong24-logo.webp",
+    "sha256": "f6354b0814f44b5bdfb3b6244c2ce982b9c80fd5cacbbff8dd15d0f4d7e2d640",
+    "source": "local"
+  },
+  {
+    "path": "web/public/file.svg",
+    "sha256": "81a9ce5ca9bc60870c1d72c0fd5b98b2bc5c8c02b0e04fefeab9efcc11277228",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/comprehensive-course.js",
+    "sha256": "0f929040509710b639c81ff8c3e460f08a2fadad41312642f8a3992528bcaf71",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/education-center.js",
+    "sha256": "68a620ecd17464262bbda84c21f2c437435d058623c1b523c110e51166cda60d",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/course-separation.js",
+    "sha256": "b0b772e4c031624b5388d678801629bbc7dd9f2a26f3e3db7db4f579827e8918",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-center.js",
+    "sha256": "1e542b44f5d6ba837ac9f11cf77e42478a22e9dffbc3776c7a9197f3e0f6c7b6",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/qualification-question-bank.js",
+    "sha256": "01566fd3d058c45da210b6361f6132e3bafe4b94f2cc5f07440f1fe268491f35",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-answer-sheet.css",
+    "sha256": "061a15d6df25abdda7d9ccf8881a8fa518590cdd466a58b193fa265a7d87cd8d",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-result-support.js",
+    "sha256": "95deeb09652f4387b73661a497ad5ee78346cc065ff7ea795427166fbb24fe4e",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/bootstrap.js",
+    "sha256": "5ad6433c591a6730f62a4b2fd48b40becd9b9a3b6cba47b4e03a08332f190fd5",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/course-separation.css",
+    "sha256": "db7c8046af8e1e48648338785c86ec24aafaad991da1ac48250634888814640b",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/dementia-course.js",
+    "sha256": "d27c3b9f4c66abbf87765a0dbdd1b5db88a43dab02e7b2ccbf629a0e7a8a99d5",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/specialist-new-courses.js",
+    "sha256": "449cee8f3cc4511b7c815e26f64ed06f1d26ce7bd7637a28b30f45a5f1ef23a6",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-answer-sheet.js",
+    "sha256": "42a9695d7ade9dc5ebe515dd07accb9445b1d08005a1bbefcb3aeae6893a7675",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/lesson-print.js",
+    "sha256": "b721f90295aa92c5fd330c1dc663a27a18b5e76b65101d96e102ad29b5c1e96c",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/disease-specific-questions.js",
+    "sha256": "7bc1b080820d44019a9b0cf22994670ad25ddbcc4d0cc1012157cebdcbac3cbc",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-track-style.css",
+    "sha256": "0ce91041902ddf6806674bd26877debb8ec52ecfe2ed57eccc5c6ece95faf965",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/specialist-course-picker.js",
+    "sha256": "30041ca41c17a9a72bed02c5728f511205bbeef446721232d8711571db6d8fa2",
+    "source": "deployment archive"
+  },
+  {
+    "path": "web/public/education/specialist-system.js",
+    "sha256": "51b7a018fc74ad57745a94ccdcee15ad7d272c0e693d10e9880e0a64f82fa209",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/disease-course-catalog.js",
+    "sha256": "fd7bdacbf6ccb91d871347ecb1b506e3510cbbf15c734a3cd6d8fa8caebc770e",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-policy.js",
+    "sha256": "7b08cb2c388c5cef20edad8b22c55b4761647e503488f7e97c01cd93b668c700",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/education-practicum.js",
+    "sha256": "5ba757760e873dc84e8c6489b57c2dc19e31497327d957a153079c5be1b27585",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/exam-answer-sync.js",
+    "sha256": "a305350825a068d7e48450e90eccecc7c065413df36834c300d9f70affb8cb6d",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/education-center.css",
+    "sha256": "e934337a26c1218ff72990fd75352a60902f427e3fcdf9ef8fcbd784bd54906b",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/styles.css",
+    "sha256": "aaaccc002fc3b2887bc5d81b54044145bd1b4ac7d38e6f7442170b5bb13e17a2",
+    "source": "local"
+  },
+  {
+    "path": "web/public/education/index.html",
+    "sha256": "7f73b971e4c6ae9fd3b6b84aecc5ae210622d04bc6e7865cbcbbe92b2b12faa5",
+    "source": "running server (read-only copy)"
+  },
+  {
+    "path": "web/public/education/practice-checklist.js",
+    "sha256": "484082f5b21d502c29f287ddc603c547711f5b81919127cd400a67b48a591450",
+    "source": "running server (read-only copy)"
+  },
+  {
+    "path": "web/public/globe.svg",
+    "sha256": "13187c071b4d369df3a7a179f69a927165bf624e1a524ee6c93b7d3be75d6fc8",
+    "source": "local"
+  },
+  {
+    "path": "web/public/icons/icon-512.png",
+    "sha256": "bdc89c759090ee8abd716af874472384898c56d82c0716640f217306671373e5",
+    "source": "local"
+  },
+  {
+    "path": "web/public/icons/apple-touch-icon.png",
+    "sha256": "2f3d809cadc53ae7cb804ace7d5a2595d091ff4c8d267ded381370e9434e1c33",
+    "source": "local"
+  },
+  {
+    "path": "web/public/icons/icon-192.png",
+    "sha256": "1a3e099e433a400bdc0be7c885a3e69ade8557b0ab3ff9494437f19b40e83d8b",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/directory.css",
+    "sha256": "c4f32cfbec9262efc51b18e216c626a705f49c7de67cd80a5007df1d44c9683f",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/care.css",
+    "sha256": "31e436515b2faed09456da9686ef10407e9e5bc18b3e8e81b86ee0457e62e3b7",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/inpatient-hospitals.js",
+    "sha256": "9074df27c69ba803c1cd8fba0834f378135adc0e6d6cd44ff7c757db95c8828a",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/care-facilities.js",
+    "sha256": "2b94d32ae110b9588f9bcd73760c658e2af6dacb580dddf3c090656cb66beaf5",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/assets/care24-logo-original.png",
+    "sha256": "b414f7b071392eb19a58937589727aa0299482df312a5331964f7df6e5907301",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/assets/care24-brand.webp",
+    "sha256": "0d08af150bfdb4d60fa302deeeb8654e18407321f393f7e3f790fda06955aa9e",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/hospital-directory-sources.json",
+    "sha256": "58cdb921b86edc1664e4e4d79e18b47d9065590d1bd05cf1eda5dc13a1f31ced",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/brand-standard.css",
+    "sha256": "b7b3be3f36fc1e928fc1c2ed9bd9304d447c790e85122a60ba0075488d38aae0",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/hospitals.js",
+    "sha256": "ac4a7cb4612f1a9f65bf6ad9e0d9ccac902800a0356df2fcbd868a553d82d92c",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/hospice-directory.js",
+    "sha256": "8aa908bf4e5311ad4dab6f6001a00df06c411a87bf17380ea13132b77bc02fb6",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/finder.css",
+    "sha256": "8e57003d5f9422e876f6b28b168d07b2d74496e6180c4bada89ac9bb45df28d0",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/styles.css",
+    "sha256": "c11cc6854abc5c526bc1b85dbe14491275d5d41d1a7fa3ef17a341e913dfed0f",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/directory-navigation.js",
+    "sha256": "95ee61a5b2347eb23ab7958a85b629f13d0127fba8d273fddc0e092349cdc0ba",
+    "source": "local"
+  },
+  {
+    "path": "web/public/regional/index.html",
+    "sha256": "6972586f1767c134f2292e7e7fc94fabede5ef6edec3f5104e9d738c5eee8d26",
+    "source": "deployment archive"
+  },
+  {
+    "path": "web/public/ganbyeong24-logo-cropped.webp",
+    "sha256": "0d08af150bfdb4d60fa302deeeb8654e18407321f393f7e3f790fda06955aa9e",
+    "source": "local"
+  },
+  {
+    "path": "web/public/window.svg",
+    "sha256": "d3cd4bf0c1123258fcc266409856e28c93d4fc1cf8476702225e17842900ca63",
+    "source": "local"
+  },
+  {
+    "path": "web/public/favicon.svg",
+    "sha256": "3e8863288c2d43dd33d2a71de317dcf9198f09932ea8d61e0def1b846a865435",
+    "source": "local"
+  },
+  {
+    "path": "web/public/downloads/index.html",
+    "sha256": "fa408a03bbed92a21718185ed72c92bccc987f9679b05fbf25b8b8ac5f691b17",
+    "source": "local"
+  },
+  {
+    "path": "web/public/sw.js",
+    "sha256": "a67ddb0ce5b50aab37b5d266cd4547d1f560c1abeb92cd26147a71923ca854fc",
+    "source": "local"
+  },
+  {
+    "path": "web/public/manifest.webmanifest",
+    "sha256": "613c74f3baeb8f1b605c9d24ba691866ac9645e64d0608c374f90f88feda2deb",
+    "source": "local"
+  }
+]

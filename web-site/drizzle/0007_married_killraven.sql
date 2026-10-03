@@ -1,1 +1,0 @@
-ALTER TABLE `document_bundles` ADD `criminal_request_data` text DEFAULT '{}' NOT NULL;

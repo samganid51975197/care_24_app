@@ -1,22 +1,31 @@
-# 간병24 1.1.5
+# 간병24 통합 저장소
 
-1.1.4 이후 수정 내용을 포함한 웹·안드로이드 소스입니다.
+이 저장소에는 **두 가지 앱만** 최신 상태로 둡니다.
 
-- Android: 1.1.5 (versionCode 15), SDK 36
-- 웹: web-site/package.json 1.1.5
-- 변경 내역: [CHANGELOG.md](CHANGELOG.md)
-- [개발용 APK](releases/care_24_1.1.5-debug.apk): 로컬 서버 3100과 USB 연결 필요
-- [서명된 APK](releases/care_24_1.1.5-release.apk): 간병24.com 운영 서버에 연결
-- [Play 업로드용 AAB](releases/care_24_1.1.5-release.aab)
+| 폴더 | 앱 | 상태 |
+|---|---|---|
+| [`nationwide/`](nationwide/) | **전국병원간병** (신규, 현재 운영) | 운영 웹 소스 + Android 3.0.1 |
+| [`legacy-care24/`](legacy-care24/) | **간병24 1.1.5** (구 앱, 분당서울대학교병원) | 보존용. 새 기능 개발 대상 아님 |
+| [`archive/`](archive/) | 참고용 보관 자료 | 실행·배포 대상 아님 |
 
-문자·카카오톡 발송 연결, 운영 웹 배포 및 Play 출시는 완료된 것으로 간주하지 않습니다. APK에는 웹 수정본이 내장되지 않으므로 운영 사용에는 web-site 배포가 필요합니다.
+## 어디를 고치면 되나요?
 
-개인키·비밀번호·운영 데이터베이스는 소스 및 배포 압축 파일에 포함하지 않습니다.
+- 병원 화면·의뢰·신청·교육 등 **웹 기능** → `nationwide/web/`
+  - Android 앱은 운영 웹(`https://care.간병24.com`)을 여는 방식이므로, 화면 수정은 대부분 웹만 배포하면 앱에도 반영됩니다.
+- **Android 앱**(Play "전국병원간병", `kr.or.care24.app`) → `nationwide/android/`
+  - 다음 버전은 versionCode **30002 이상**이어야 합니다.
+- 운영 현황·배포 기록 → `nationwide/STATUS.md` (코드를 바꾸면 함께 갱신)
+- 수동 배포 방법 → `nationwide/deploy/README.md`
 
-## 개발 서버 설정
+## 주의
 
-로컬 실행 전 web-site/.env.local에 CARE24_ORIGIN=http://127.0.0.1:3100 및 CARE24_DATABASE_URL=file:.private/preview.db를 설정하세요. CARE24_UPLOAD_DIR은 비공개 첨부 폴더, CARE24_KEY_FILE은 기존 암호화 키 파일을 가리켜야 합니다. 키를 새로 덮어쓰면 기존 자료를 읽을 수 없습니다. 환경 파일과 DB는 Git에 올리지 않습니다.
+- 서명키·비밀번호·`.env`·DB·업로드 서류는 절대 커밋하지 않습니다 (`.gitignore`로 차단).
+- 가비아 DNS의 `@`, `www`는 구형 서비스용이므로 수정하지 않습니다.
+- 공통 작업 규칙은 [`AGENTS.md`](AGENTS.md)를 따릅니다.
 
-관리자 비밀번호 복구용 scripts/reset-local-admin.ps1은 이 개발 PC의 기존 관리자 계정 전용 도구이며, 실행자가 새 비밀번호를 직접 입력합니다. 비밀번호 자체는 포함되어 있지 않습니다.
+## 저장소 정리 이력 (2026-10-03)
 
-검증: TypeScript 검사 및 기능·암호화 테스트 16개 통과.
+- 기존 `samganid51975197/care24-v3`(운영 웹 소스, 2026-09-26)과 `samganid51975197/care24`의 고유 내용을 이 저장소로 모았습니다.
+- `care-24-v2-android`(2.0.5)는 3.0.1이 그 코드를 모두 포함하므로 삭제했습니다.
+- 이전 `web-site/`는 운영 서버보다 오래된 소스여서 `nationwide/web/`(운영 기준)으로 교체했습니다. 그중 아직 운영에 반영되지 않은 비밀번호 재설정·이메일 설정 코드는 브랜치 `archive/web-site-2026-10-01`에 그대로 남겨 두었습니다.
+- 삭제된 파일은 모두 Git 기록에 남아 있어 언제든 되살릴 수 있습니다.
