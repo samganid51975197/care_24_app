@@ -1,1 +1,0 @@
-ALTER TABLE `care_contracts` ADD `name_tag_count` text DEFAULT '0' NOT NULL;

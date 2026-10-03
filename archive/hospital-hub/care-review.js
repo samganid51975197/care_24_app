@@ -1,0 +1,12 @@
+function enableCareReview(form,getHospital){
+ const saveSubmission=form.onsubmit;
+ const firstButton=form.querySelector('[type="submit"]');firstButton.textContent='내용 확인 후 저장';
+ form.insertAdjacentHTML('beforebegin','<p class="care-save-guide">입력 → 내용 확인 → 저장 완료 → 상황판 확인</p>');
+ form.insertAdjacentHTML('afterend',`<div class="care-save-bar"><span>확인 후 저장하면 상황판에 등록됩니다.</span><button class="primary" type="submit" form="${form.id}">내용 확인 후 저장</button></div><dialog class="care-review-dialog" aria-labelledby="careReviewTitle"><h2 id="careReviewTitle">간병의뢰 내용 확인</h2><div class="care-review-content"></div><p>아래 저장 버튼을 눌러야 접수가 완료되고 상황판에 표시됩니다.</p><div class="care-review-actions"><button class="secondary" type="button" data-review-edit>수정하기</button><button class="primary" type="button" data-review-save>확인 · 저장하고 상황판 보기</button></div></dialog>`);
+ const dialog=document.querySelector('.care-review-dialog'),bar=document.querySelector('.care-save-bar'),externalButton=bar.querySelector('button'),saveButton=dialog.querySelector('[data-review-save]');
+ const result=document.querySelector('#result');result.setAttribute('role','status');result.setAttribute('aria-live','polite');result.tabIndex=-1;
+ let saving=false;
+ dialog.querySelector('[data-review-edit]').onclick=()=>dialog.close();
+ form.onsubmit=e=>{e.preventDefault();if(saving||!form.reportValidity())return;const values=new FormData(form),h=getHospital(values);if(!h){result.textContent='병원을 선택해 주세요.';result.focus();return}const labels={building:'건물',floor:'층',room:'병실',bed:'침상',date:'간병 시작일',time:'시작 시간 (한국 시간)',endDate:'간병 종료일',endTime:'종료 시간 (한국 시간)',phone:'연락처',disease:'질환 구분',caregiver:'간병인 유형',memo:'전달사항'};dialog.querySelector('.care-review-content').innerHTML='<dl><div><dt>병원</dt><dd>'+escapeHtml(h.name)+'</dd></div>'+Object.entries(labels).filter(([key])=>values.get(key)).map(([key,label])=>'<div><dt>'+label+'</dt><dd>'+escapeHtml(values.get(key))+'</dd></div>').join('')+'</dl>';dialog.showModal()};
+ saveButton.onclick=async()=>{if(saving)return;if(!form.reportValidity()){dialog.close();return}saving=true;saveButton.disabled=true;externalButton.disabled=true;dialog.close();result.textContent='저장 중입니다…';try{await saveSubmission({preventDefault(){}})}finally{saving=false;saveButton.disabled=false;externalButton.disabled=false;if(result.isConnected){result.scrollIntoView({behavior:'smooth',block:'center'});result.focus()}}};
+}

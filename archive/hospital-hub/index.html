@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#F46A1B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="care-24 v2">
+  <title>care-24 v2 · 간병24 통합접수</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/care24-logo-original.png">
+  <link rel="apple-touch-icon" href="assets/care24-logo-original.png">
+  <link rel="stylesheet" href="styles.css?v=rehabilitation-swallow-20260921">
+  <link rel="stylesheet" href="directory.css">
+  <link rel="stylesheet" href="care.css">
+  <link rel="stylesheet" href="finder.css"><link rel="stylesheet" href="brand-standard.css?v=patient-orange-20260913">
+  <link rel="stylesheet" href="ward-board.css?v=rehabilitation-swallow-20260921">
+<link rel="stylesheet" href="rehabilitation.css?v=20260921"></head>
+<body>
+  <header class="topbar">
+    <div class="brand"><a class="care24-logo-link" href="#hospitals" aria-label="간병24 전국병원 보기"><img class="brand-logo" src="assets/care24-brand.webp" alt="간병24 로고"></a><span class="brand-copy"><strong id="brandHospital">전국 병원 통합 간병 앱</strong><small>대한노인돌봄서비스협회 관리</small></span></div>
+    <nav class="service-links" aria-label="병원 찾기"><a href="#nursing">요양병원 찾기</a><a href="#rehab">재활병원 찾기</a></nav>
+    <button id="adminBtn" class="ghost">관리자 통합 접수함</button>
+  </header>
+  <nav class="account-controls" aria-label="로그인 및 로그아웃"><span id="accountStatus" role="status">로그인 상태 확인 중…</span><a id="accountLogin" href="#admin">로그인</a><a id="accountLogout" href="#admin" hidden>로그아웃</a><a href="#admin">관리자 접수함</a></nav>
+  <nav class="nationwide-finder" aria-label="전국 병원 찾기"><a href="#hospitals">전국 병원 찾기</a></nav>
+  <main id="app"></main><footer style="padding:16px 24px 90px;text-align:center"><a href="#admin">관리자 로그인 · 통합 접수함</a></footer>
+  <nav class="bottom" aria-label="주 메뉴">
+    <a href="#home">홈</a><a href="#hospitals">전국 병원</a><a href="#nursing">요양병원</a><a href="#rehab">재활병원</a><a href="#secure-write">글쓰기</a>
+  </nav>
+  <script src="hospitals.js?v=seoul-top-20260921"></script>
+  <script src="care-facilities.js"></script>
+  <script src="ward-config.js?v=seoul-top-20260921"></script>
+  <script src="ward-board.js?v=rehabilitation-swallow-20260921"></script>
+  <script src="care-review.js?v=rehabilitation-swallow-20260921"></script>
+  <script src="room-edit.js?v=rehabilitation-swallow-20260921"></script><script src="admin-login.js?v=rehabilitation-swallow-20260921"></script><script src="auth-controls.js?v=rehabilitation-swallow-20260921"></script><script src="rehabilitation.js?v=20260921"></script><script src="app.js?v=rehabilitation-swallow-20260921"></script>
+</body>
+</html>
+

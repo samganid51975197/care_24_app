@@ -1,1 +1,0 @@
-ALTER TABLE `submissions` ADD `fee_period` text DEFAULT '1일' NOT NULL;

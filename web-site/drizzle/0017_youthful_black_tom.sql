@@ -1,1 +1,0 @@
-ALTER TABLE `care_requests` ADD `floor_name` text DEFAULT '' NOT NULL;

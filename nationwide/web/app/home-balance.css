@@ -1,0 +1,164 @@
+.home-screen .home-screen-inner .legacy-home-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.home-screen .home-screen-inner .legacy-home-actions button {
+  width: 100%;
+  min-height: 50px;
+  justify-content: center;
+  text-align: center;
+}
+
+.topbar .brand-home-link img.brandmark {
+  box-sizing: border-box;
+  width: 42px;
+  height: 40px;
+  padding: 3px;
+  border: 1px solid #71958d;
+  object-fit: contain;
+  background: white;
+  border-radius: 4px;
+  align-self: center;
+}
+
+@media (max-width: 620px) {
+  .topbar .brand-home-link img.brandmark { width: 38px; height: 36px; }
+}
+
+@media (max-width: 390px) {
+  .topbar .brand-home-link img.brandmark { width: 34px; height: 32px; padding: 2px; }
+}
+
+.brand-home-link {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  border-radius: 7px;
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.brand-tooltip {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 12px);
+  left: 0;
+  width: 290px;
+  border: 1px solid #b8d8cf;
+  border-radius: 11px;
+  background: #fff;
+  padding: 10px 12px;
+  color: #264f44;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+  box-shadow: 0 9px 24px rgba(20,70,58,.17);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .17s ease, transform .17s ease;
+}
+
+.brand-home-link:hover .brand-tooltip,
+.brand-home-link:focus-visible .brand-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logo-navigation-guide {
+  display: table;
+  margin: 14px auto 0;
+  border: 1px solid #b8d8cf;
+  border-radius: 999px;
+  background: #edf8f4;
+  padding: 8px 13px;
+  color: #176b50;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.inline-care24-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 3px;
+  object-fit: contain;
+  vertical-align: -5px;
+}
+
+@media (max-width: 620px) {
+  .brand-tooltip { display: none; }
+  .logo-navigation-guide { border-radius: 12px; }
+}
+
+.brand-home-link:hover,
+.brand-home-link:focus-visible {
+  transform: none;
+  filter: drop-shadow(0 4px 6px rgba(7,91,145,.2));
+  outline: 2px solid #16824b;
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .home-screen .home-screen-inner .legacy-home-actions {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.home-screen .home-screen-inner .legacy-home-actions button{display:flex;flex-direction:column;gap:4px;height:auto;min-height:76px;padding:12px 16px;line-height:1.35}
+.legacy-home-actions button small{font-size:13px;font-weight:500}
+.legacy-home-actions button strong{font-size:20px;font-weight:700}
+
+.home-screen .home-screen-inner .legacy-home-actions button{background:#b34532;color:#fff}
+.home-screen .home-screen-inner .legacy-home-actions button:hover{background:#983a2b}
+.home-screen .home-screen-inner .legacy-home-actions button.caregiver{background:#16704a;color:#fff}
+.home-screen .home-screen-inner .legacy-home-actions button.caregiver:hover{background:#115a3b}
+
+.care24-contribution{margin-top:24px;padding:24px;border:1px solid #c4ded4;border-radius:18px;background:#f5fbf7;color:#224939}
+.contribution-heading{display:flex;align-items:center;gap:14px}.contribution-rate{display:grid;place-items:center;flex:none;width:58px;height:58px;border-radius:50%;background:#16704a;color:#fff;font-size:25px;font-weight:800}
+.contribution-heading p{margin:0 0 4px;font-size:13px;font-weight:700;color:#16704a}.contribution-heading h2{margin:0;font-size:21px;line-height:1.4}
+.contribution-description{font-size:14px;line-height:1.6;margin:16px 0}.contribution-amounts{display:grid;grid-template-columns:1fr 1fr;gap:12px}.contribution-amounts>div{padding:16px;background:#fff;border-radius:12px;border:1px solid #dbe9e0}.contribution-amounts span{display:block;font-size:12px;color:#567266}.contribution-amounts strong{display:block;font-size:16px;margin-top:7px}.contribution-note{font-size:12px;line-height:1.6;color:#567266;margin:14px 0 0}
+@media(max-width:480px){.care24-contribution{padding:18px}.contribution-heading h2{font-size:18px}.contribution-amounts{grid-template-columns:1fr}}
+
+.contribution-admin{margin-top:16px}.contribution-admin summary{cursor:pointer;font-weight:700}.contribution-admin form{display:grid;gap:12px;margin-top:14px}.contribution-admin label{display:grid;gap:5px;font-size:14px}.contribution-admin input,.contribution-admin select{padding:10px;border:1px solid #bdd4c8;border-radius:8px;background:#fff;color:#183c2e;min-width:0}.contribution-admin .contribution-confirm{display:flex;align-items:center;gap:8px}.contribution-admin button{background:#16704a;color:white;border:0;border-radius:8px;padding:12px}.contribution-admin button:disabled{opacity:.6}.contribution-admin ul{padding-left:20px;font-size:13px}
+
+.care-entry-actions{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin:24px 0}.patient-entry,.caregiver-entry{padding:20px;border:1px solid #e7c6c0;border-radius:18px;background:#fff7f5}.care-entry-actions h2{margin:0;font-size:18px;font-weight:800;color:#682a20}.care-entry-actions p{margin:6px 0 16px;font-size:14px;line-height:1.6;color:#68514c}.patient-entry-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px}.patient-entry-buttons button,.patient-entry-buttons a,.caregiver-entry button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:138px;height:auto;padding:16px 10px;border-radius:12px;background:#b34532;color:white;text-decoration:none;line-height:1.4;width:100%}.care-entry-actions strong{font-size:23px;font-weight:800}.care-entry-actions small{font-size:13px}.patient-entry-buttons a>span{font-size:22px;font-weight:800}.patient-entry-buttons svg{width:24px;height:24px}.patient-entry-buttons button:hover,.patient-entry-buttons a:hover{background:#983a2b}.patient-entry-buttons a:focus-visible{outline:3px solid #123e50;outline-offset:4px}.caregiver-entry{background:#f1f8f4;border-color:#bed8c9}.caregiver-entry h2{color:#155238}.caregiver-entry p{color:#466553}.caregiver-entry button{background:#16704a}.caregiver-entry button:hover{background:#115a3b}@media(max-width:620px){.care-entry-actions{grid-template-columns:1fr;gap:12px}.patient-entry,.caregiver-entry{padding:16px}.caregiver-entry button{min-height:78px}.care-entry-actions strong{font-size:22px}.patient-entry-buttons{gap:10px}}
+
+.caregiver-guide{max-width:620px!important;max-height:85dvh;overflow-y:auto;z-index:10000!important;gap:12px}.caregiver-guide-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.caregiver-guide-heading h2{color:#155238;line-height:1.4}.caregiver-guide ol{list-style:decimal;padding-left:24px;margin:0}.caregiver-guide li{padding:7px 0 7px 4px;font-size:15px;line-height:1.5}.caregiver-guide li::marker{color:#16704a;font-weight:800}.caregiver-guide li p{margin:3px 0 0;color:#52635d;font-size:14px}.caregiver-guide-note{padding:12px;background:#eef8f2;border-radius:10px;color:#155238;font-size:14px;line-height:1.5}.caregiver-guide-actions{display:flex;gap:10px;flex-wrap:wrap}.caregiver-guide-actions button:first-child{background:#16704a;color:white}.caregiver-guide-actions button{min-height:44px}@media(max-width:480px){.caregiver-guide{padding:18px}.caregiver-guide-actions button{width:100%}}
+
+.document-completion{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;margin:12px 0;background:#eaf7ef;border:1px solid #9ec7b0;border-radius:12px;color:#155238;line-height:1.6}
+
+.patient-entry .phone-request-message{margin:14px 0 0;line-height:1.7;font-size:15px;word-break:keep-all}.patient-entry .phone-request-message strong{font-size:inherit;font-weight:800;color:#6e281c}.patient-entry .phone-request-message span{font-weight:400;color:#80716d}
+
+
+.recipient-strip.four{display:flex;flex-wrap:wrap;gap:8px}.contract-caregiver-delivery{padding:16px;margin:16px 0;background:#f0f7f4;border:1px solid #adc9bb;border-radius:12px}.contract-caregiver-delivery h3{font-size:18px;font-weight:800;color:#155238}.contract-caregiver-delivery p{line-height:1.6;margin:10px 0}.contract-caregiver-delivery small{display:block;margin-top:12px;line-height:1.6;color:#52635d}
+.workflow-panel{scroll-margin-top:160px}
+.workflow-selection{display:flex;flex-direction:column;gap:4px;padding:14px 16px;margin-bottom:16px;background:#eaf5ee;border:1px solid #b9d8c6;border-radius:10px;color:#185438}
+.workflow-selection b{font-size:18px}.workflow-selection span{font-size:14px}
+.workflow-panel.workflow-receipt{max-width:680px;margin:24px auto;padding:32px 24px;text-align:center;background:#f6fbf8;border:1px solid #b9d8c6;border-radius:16px}
+.workflow-receipt .workflow-receipt-check{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:#16704a;color:white;font-size:30px}
+.workflow-receipt .workflow-request-number{font-size:17px;font-weight:700;color:#16704a;margin:16px 0 8px}.workflow-receipt h3{font-size:24px;font-weight:800}.workflow-receipt p{line-height:1.7;margin:12px 0}.workflow-receipt .workflow-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px 0 16px}.workflow-receipt button{min-height:44px}.workflow-receipt small{color:#52675b}
+.applicant-birth{border:0;padding:0;min-width:0}.applicant-birth legend{font-size:14px;font-weight:500;margin-bottom:8px}.birth-selects{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:8px}.birth-selects select,.applicant-gender-select{width:100%;min-width:0;min-height:44px;border:1px solid #cbd5d1;border-radius:8px;padding:8px;background:white;color:#243d32;font-size:16px}.birth-selects select:focus-visible,.applicant-gender-select:focus-visible{outline:2px solid #16704a;outline-offset:2px}
+
+/* Shared hospital entry layout: balanced actions, directions across the full row. */
+.care-entry-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+.patient-entry,.caregiver-entry{min-width:0}
+.care-entry-directions{grid-column:1/-1;min-width:0}
+.care-entry-directions>section{margin-top:0}
+.care-entry-actions h2{word-break:keep-all}
+@media(max-width:760px){.care-entry-actions{grid-template-columns:minmax(0,1fr)}.care-entry-directions{grid-column:1}.patient-entry-buttons button,.patient-entry-buttons a{min-height:110px}}
+.patient-entry-buttons small{font-size:clamp(20px,2.2vw,28px);font-weight:800;line-height:1.4}.patient-entry-buttons button,.patient-entry-buttons a{gap:10px}
+
+.patient-entry-buttons .entry-label{display:flex;justify-content:space-between;width:min(100%,180px);font-size:clamp(18px,2.2vw,26px);font-weight:800;white-space:nowrap;gap:0}
+.menu-card:has(.hospital-floor-guide){width:min(760px,94vw);max-height:85dvh;overflow:auto}
+.hospital-floor-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.hospital-floor-buttons button{display:flex;flex-direction:column;gap:5px;text-align:left;border:2px solid #cadbd4;border-radius:12px;padding:12px;background:#f1f8f4;color:#184936;min-height:76px}
+.hospital-floor-buttons button[aria-pressed=true]{border-color:#16704a;background:#16704a;color:white}
+.hospital-floor-buttons button:focus-visible{outline:3px solid #d58a08;outline-offset:2px}
+.hospital-floor-buttons strong{font-size:22px}.hospital-floor-buttons span{font-size:14px}
+.hospital-floor-detail{border:1px solid #cadbd4;border-radius:12px;padding:16px}.hospital-floor-detail h3{font-size:21px;font-weight:800}.hospital-floor-detail ul{list-style:disc;padding-left:22px}.hospital-floor-source{font-size:12px;color:#53675c}.hospital-floor-guide>a{display:block;text-decoration:underline;margin:12px 0}
