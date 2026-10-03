@@ -1,6 +1,6 @@
 async function adminLogout(){const r=await fetch('/api/admin-auth/logout',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(!r.ok)throw Error('로그아웃하지 못했습니다. 다시 시도해 주세요.');await refreshAccountControls()}
 async function admin(){
- app.innerHTML=`<section class="admin-login card" aria-labelledby="adminLoginTitle"><a class="back" href="#home">← 홈으로</a><img src="assets/care24-brand.webp" alt="간병24" width="56" height="56"><p class="eyebrow">care-24 v2 · 관리자 전용</p><h1 id="adminLoginTitle">관리자 로그인</h1><div id="adminLoginState" role="status">로그인 상태를 확인하고 있습니다…</div></section>`;
+ app.innerHTML=`<section class="admin-login card" aria-labelledby="adminLoginTitle"><a class="back" href="#home">← 홈으로</a><img src="assets/care24-brand.webp?v=20261003-logo2" alt="간병24" width="56" height="56"><p class="eyebrow">care-24 v2 · 관리자 전용</p><h1 id="adminLoginTitle">관리자 로그인</h1><div id="adminLoginState" role="status">로그인 상태를 확인하고 있습니다…</div></section>`;
  const box=document.querySelector('#adminLoginState');
  try{
   if(new URLSearchParams(location.hash.split('?')[1]||'').get('logout')==='1'){await adminLogout();history.replaceState(null,'','#admin')}
