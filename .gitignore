@@ -8,6 +8,7 @@ service.env
 *.pem
 *.key
 keystore.properties
+key.properties
 local.properties
 # Data
 *.db
@@ -22,10 +23,12 @@ dist/
 **/build/
 .gradle/
 .idea/
-# Only the legacy release folder keeps APK/AAB files
+# Only release folders keep APK/AAB files
 *.apk
 *.aab
 !legacy-care24/releases/*.apk
 !legacy-care24/releases/*.aab
+!archive/care24-1.1.5/releases/*.apk
+!archive/care24-1.1.5/releases/*.aab
 .DS_Store
 Thumbs.db

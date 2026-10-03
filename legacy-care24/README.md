@@ -1,13 +1,18 @@
-# 간병24 1.1.5 (구 앱)
+# 구 간병24 앱 (com.fivegram.gb)
 
-분당서울대학교병원 통합간병 앱의 마지막 소스와 배포 파일입니다. **보존용**이며 새 기능은 `../nationwide/`에서 개발합니다.
+간병24.com 루트 사이트를 여는 구형 Play 앱 "간병24"의 소스입니다.
 
 | 항목 | 내용 |
 |---|---|
-| `android/` | Android 프로젝트 — `kr.or.care24.app` 1.1.5 (versionCode 15), TWA. 앱 내장 교육 화면(`assets/www`)은 2026-10-01 업데이트 포함 |
-| `releases/` | 1.1.4 APK, 1.1.5 debug/release APK, 1.1.5 AAB |
-| `CHANGELOG.md` | 1.1.5까지의 변경 내역 |
+| `android/` | Android 프로젝트 (Kotlin, WebView) — `applicationId com.fivegram.gb`, 4.0.2 (versionCode 40004), compileSdk·targetSdk 36, minSdk 24 |
+| `releases/gb_4.0.2-release.aab` | 4.0.2 서명된 AAB (2026-09-29 빌드) |
 
-주의: Play의 `kr.or.care24.app`은 현재 "전국병원간병" 3.0.x(versionCode 30001)로 갱신되어 있습니다. 이 1.1.5를 같은 패키지로 다시 올릴 수 없습니다(versionCode가 낮음).
+- 앱은 WebView로 `https://xn--24-ts1i486c.com/?ref=and`(간병24.com, 구형 서비스 서버)를 엽니다.
+- 다음 업데이트는 versionCode **40005 이상**이어야 합니다.
+- 가비아 DNS의 `@`, `www`는 이 앱이 쓰므로 수정하지 않습니다. 신규 서비스는 `care.간병24.com`입니다.
 
-1.1.5 당시 웹 소스는 Git 기록(이 저장소의 `web-site/`, 커밋 `6cd732c` 이전)에 남아 있습니다.
+## 저장소에 넣지 않은 파일 (원본 PC에만 보관)
+
+업로드 키(`gb24-upload.jks`), 키 비밀번호 파일(`key.properties`), 업로드 인증서(`upload_certificate.pem`), `local.properties`, 빌드·IDE 캐시(`build/`, `.gradle/`, `.idea/`, `.kotlin/`), 이전 설정 백업(`_backup_20260919`).
+
+release 서명 설정이 build.gradle.kts에 없으므로 Android Studio의 **Build → Generate Signed Bundle** 마법사에서 키 파일을 직접 선택해 서명합니다.
