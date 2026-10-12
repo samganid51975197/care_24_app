@@ -1,3 +1,5 @@
+const care24ReceptionServer='https://care24-hospital-hub.samganid5197259555.chatgpt.site';
+if(location.hostname==='127.0.0.1'||location.hostname==='localhost')location.replace(care24ReceptionServer+'/'+location.search+location.hash);
 const diseases=['노인성 질환(치매, 뇌질환, 파킨슨)','폐질환','당뇨질환','투석질환','안과질환','호스피스·완화의료'];
 const key='care24_requests_v1';
 const load=()=>JSON.parse(localStorage.getItem(key)||'[]');
