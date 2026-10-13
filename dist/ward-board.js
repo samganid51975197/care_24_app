@@ -1,4 +1,5 @@
 const locEscape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const wardApiOrigin=(location.hostname==='127.0.0.1'||location.hostname==='localhost')?'https://care24-hospital-hub.samganid5197259555.chatgpt.site':'';
 let wardRefreshTimer;
 function stopWardRefresh(){if(wardRefreshTimer){clearInterval(wardRefreshTimer);wardRefreshTimer=null}}
 function hospitalDirections(h){
@@ -41,7 +42,7 @@ async function mountWardBoard(h){
  };
  const refresh=async()=>{
   if(loading||!container.isConnected)return;loading=true;refreshButton.disabled=true;
-  try{const response=await fetch('/api/board?hospitalId='+encodeURIComponent(id),{cache:'no-store'}),data=await response.json();if(!response.ok)throw Error(data.error||'상황판을 불러오지 못했습니다.');if(!container.isConnected)return;const next=data.items;const unchanged=container.querySelector('.board-summary')&&JSON.stringify(next)===JSON.stringify(items);items=next;if(!unchanged)draw();const status=container.querySelector('#boardUpdateStatus');if(status)status.textContent=''}catch(e){if(!container.isConnected)return;const status=container.querySelector('#boardUpdateStatus');if(status)status.textContent='갱신 실패: '+e.message;else container.innerHTML=`<p class="notice error">${locEscape(e.message)} 새로고침을 눌러 다시 시도해 주세요.</p>`}finally{loading=false;refreshButton.disabled=false}
+  try{const response=await fetch(wardApiOrigin+'/api/board?hospitalId='+encodeURIComponent(id),{cache:'no-store'}),contentType=response.headers.get('content-type')||'',data=contentType.includes('application/json')?await response.json():{error:'상황판 서버에 연결하지 못했습니다.'};if(!response.ok)throw Error(data.error||'상황판을 불러오지 못했습니다.');if(!container.isConnected)return;const next=data.items;const unchanged=container.querySelector('.board-summary')&&JSON.stringify(next)===JSON.stringify(items);items=next;if(!unchanged)draw();const status=container.querySelector('#boardUpdateStatus');if(status)status.textContent=''}catch(e){if(!container.isConnected)return;const status=container.querySelector('#boardUpdateStatus');if(status)status.textContent='갱신 실패: '+e.message;else container.innerHTML=`<p class="notice error">${locEscape(e.message)} 새로고침을 눌러 다시 시도해 주세요.</p>`}finally{loading=false;refreshButton.disabled=false}
  };
  refreshButton.onclick=refresh;
  await refresh();if(!container.isConnected)return;
