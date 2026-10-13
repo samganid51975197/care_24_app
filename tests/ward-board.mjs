@@ -11,7 +11,7 @@ async function api(path,body,auth=true){return worker.fetch(new Request('https:/
 const request={hospitalId:'hospital-5',hospitalName:'삼성서울병원',category:'환자·보호자 의뢰',recipient:'both',title:'환자·보호자 의뢰 · 삼성서울병원',body:'PRIVATE MEDICAL MEMO',contact:'PRIVATE PHONE',board:{building:'암병원',floor:'8층',room:'확인된 병실',bed:'2번',date:'2026-09-25',time:'13:45',endDate:'2026-09-26',endTime:'09:00'}};
 let res=await api('/api/messages',request);assert.equal(res.status,201);const {reference}=await res.json();
 assert.equal((await api('/api/board?hospitalId=hospital-5',null,false)).status,200);const publicBoard=await (await api('/api/board?hospitalId=hospital-5',null,false)).json();assert(!JSON.stringify(publicBoard).includes('PRIVATE'));const anonymousHeaders={'Content-Type':'application/json','Origin':'https://test.local','cf-connecting-ip':'203.0.113.9'};const anonymousRequest={...request,board:{...request.board,room:'공개 병실'}};const anonymousResult=await worker.fetch(new Request('https://test.local/api/messages',{method:'POST',headers:anonymousHeaders,body:JSON.stringify(anonymousRequest)}),env);assert.equal(anonymousResult.status,201);const {reference:anonymousReference}=await anonymousResult.json();
-let board=await (await api('/api/board?hospitalId=hospital-5')).json();assert.equal(board.items.length,2);assert.equal(board.items[0].time,'13:45');assert.equal(board.items[0].reference,reference);assert(!JSON.stringify(board).includes('PRIVATE'));assert.deepEqual((await (await api('/api/board?hospitalId=snubh')).json()).items,[]);
+let board=await (await api('/api/board?hospitalId=hospital-5')).json();assert.equal(board.items.length,2);assert.deepEqual(Object.keys(board.items[0]).sort(),['building','floor','reference']);assert.equal(board.items[0].reference,reference);assert(!JSON.stringify(board).includes('PRIVATE'));assert.deepEqual((await (await api('/api/board?hospitalId=snubh')).json()).items,[]);
 const apply={hospitalId:'hospital-5',hospitalName:'삼성서울병원',category:'간병인 신청',recipient:'both',title:'간병인 신청 · 삼성서울병원',body:'지원 의뢰번호: '+reference,contact:'TEST',jobReference:reference,schedule:request.board};
 assert.equal((await api('/api/messages',apply)).status,201);assert.equal((await api('/api/messages',{...apply,hospitalId:'snubh'})).status,400);
 assert.equal((await api('/api/messages',{...request,board:{...request.board,time:'25:00'}})).status,400);
@@ -34,7 +34,6 @@ assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{
 assert.equal((await (await api('/api/session')).json()).admin,false);
 console.log('PASS: owner-only inbox, anonymous 401, ordinary user 403, no query override, own-message isolation and owner identity mapping');
 
-assert.equal(board.items[0].endTime,'09:00');
 for(const delta of [{endTime:''},{endDate:'2026-09-25',endTime:'12:00'},{endDate:'2026-02-30'},{endTime:'24:00'}]){assert.equal((await api('/api/messages',{...request,board:{...request.board,...delta}})).status,400);assert.equal((await api('/api/messages',{...apply,jobReference:undefined,schedule:{...request.board,...delta}})).status,400)}
 assert.equal((await api('/api/messages',{...apply,jobReference:undefined,schedule:undefined})).status,400);
 console.log('PASS: end time persistence, overnight range and invalid/missing schedule rejection for both forms');
