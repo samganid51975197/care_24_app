@@ -2,3 +2,4 @@
 .policy-note{margin:20px 0;padding:18px 20px;border:1px solid #f2cd74;border-radius:16px;background:#fff9e8;color:#4d3a0b}.policy-note strong{display:block;margin-bottom:7px;color:#7b5600}.policy-note p{margin:0 0 10px;line-height:1.65}.policy-note small{display:block;line-height:1.55;color:#705f36}.star-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-weight:800}.designation-star{display:inline-block;margin-left:8px;padding:5px 9px;border-radius:999px;font-size:.78rem;font-weight:900;vertical-align:middle}.designation-star.official{background:#fff0b8;color:#7b5200}.designation-star.expected{border:1px solid #d9b85f;background:#fffaf0;color:#75580d}@media(max-width:600px){.policy-note{padding:16px}.designation-star{display:block;width:max-content;margin:9px 0 0}}
 
 .filter-confirm{display:flex;justify-content:center;margin:16px 0 4px}.filter-confirm .primary{min-width:140px}
+.hospital-card-open{display:inline-block;margin-top:14px;color:#087982;font-weight:800}
