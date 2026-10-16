@@ -3,10 +3,9 @@ const wardApiOrigin=(location.hostname==='127.0.0.1'||location.hostname==='local
 let wardRefreshTimer;
 function stopWardRefresh(){if(wardRefreshTimer){clearInterval(wardRefreshTimer);wardRefreshTimer=null}}
 function hospitalDirections(h){
- const guide=hospitalGuides[h.id]||{},query=guide.address?`${h.name} ${guide.address}`:`${h.region} ${h.city} ${h.name}`;
- return `<section id="hospitalDirections" class="card hospital-directions"><h2>찾아오는 길</h2><strong>${locEscape(h.name)}</strong><p>${guide.address?locEscape(guide.address):'지도에서 병원명과 지역을 확인한 뒤 길찾기를 선택하세요.'}</p><div class="actions"><a class="secondary" href="https://map.naver.com/p/search/${encodeURIComponent(query)}" target="_blank" rel="noopener noreferrer">네이버 지도·내비 길찾기</a><a class="secondary" href="https://map.kakao.com/?q=${encodeURIComponent(query)}" target="_blank" rel="noopener noreferrer">카카오맵·내비 길찾기</a>${guide.phone?`<a class="secondary" href="tel:${guide.phone}">병원 문의 ${guide.phone}</a>`:''}</div>${guide.addressSource?`<p><a href="${locEscape(guide.addressSource)}" target="_blank" rel="noopener noreferrer">주소 확인 자료</a></p>`:''}</section>`;
-}
-function hospitalLanding(id){
+ const guide=hospitalGuides[h.id]||{},query=guide.address?`${h.name} ${guide.address}`:`${h.region} ${h.city} ${h.name}`,naverUrl=`https://map.naver.com/p/search/${encodeURIComponent(query)}`,kakaoUrl=Number.isFinite(guide.lat)&&Number.isFinite(guide.lng)?`https://map.kakao.com/link/to/${encodeURIComponent(h.name)},${guide.lat},${guide.lng}`:`https://map.kakao.com/?q=${encodeURIComponent(query)}`;
+ return `<section id="hospitalDirections" class="card hospital-directions"><h2>찾아오는 길</h2><strong>${locEscape(h.name)}</strong><p>${guide.address?locEscape(guide.address):'지도에서 병원명과 지역을 확인한 뒤 길찾기를 선택하세요.'}</p><div class="actions"><a class="secondary" href="${naverUrl}" target="_blank" rel="noopener noreferrer">네이버 지도에서 병원 위치 보기</a><a class="secondary" href="${kakaoUrl}" target="_blank" rel="noopener noreferrer">카카오맵 도착지 길찾기</a>${guide.phone?`<a class="secondary" href="tel:${guide.phone}">병원 문의 ${guide.phone}</a>`:''}</div>${guide.lat?'<p>카카오맵에서는 병원이 도착지로 자동 입력됩니다. 네이버 지도에서는 확인된 병원 주소를 검색해 위치를 엽니다.</p>':''}${guide.addressSource?`<p><a href="${locEscape(guide.addressSource)}" target="_blank" rel="noopener noreferrer">주소 확인 자료</a></p>`:''}</section>`;
+}function hospitalLanding(id){
  const h=findFacility(id);if(!h){home();return}
  const requestPath=h.kind?'care-request':'request',back=h.kind==='요양병원'?'nursing':h.kind==='재활병원'?'rehab':'hospitals';
  const submitted=new URLSearchParams(location.hash.split('?')[1]||'').get('submitted');

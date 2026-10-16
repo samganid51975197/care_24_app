@@ -10,5 +10,6 @@ wardBuildings['seoul-top']=[{name:'병원 건물',floors:['1층','2층','3층','
 const hospitalGuides={
  'seoul-top':{address:'서울특별시 동대문구 정릉천동로 102 (제기동)',phone:'02-2088-0580',addressSource:'https://www.nhimc.or.kr/ref/board/hospitalBoard1List.do?page=12',floorSource:'https://ot.chosun.ac.kr/ot/3001/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGb3QlMkYzOTMlMkYyMzEzOTklMkZhcnRjbFZpZXcuZG8lM0Y%3D',floorNote:'2026년 5월 7일 공개된 병원 채용안내 기준입니다. 지하 1층은 치료실, 지상 1~4층은 병동으로 안내되어 있습니다. 병실 번호·침상 배치와 현재 운영은 병원 확인이 필요합니다.'},
  'snubh':{address:'경기도 성남시 분당구 구미로173번길 82',addressSource:'https://www.snubh.org/dh/en/main/main.do'},
- 'hospital-5':{address:'서울특별시 강남구 일원로 81',addressSource:'https://www.samsunghospital.com/' }
+ 'hospital-5':{address:'서울특별시 강남구 일원로 81',addressSource:'https://www.samsunghospital.com/' },
+ 'hospital-254':{address:'경기도 고양시 덕양구 혜음로 9, 2층·3층 (고양동, 종호빌딩)',phone:'031-962-1515',lat:37.7015268,lng:126.9015817,addressSource:'https://hospipedia.com/hospital/goyang-deokyang-seoulsamseongjeonghyeongoegwauiwon'}
 };
