@@ -23,10 +23,12 @@ function hospitalsPage(){
  const input=document.querySelector('#hospitalSearch'),confirmButton=document.querySelector('#confirmHospitalFilters'),searchButton=document.querySelector('#searchHospitals'),clearButton=document.querySelector('#clearHospitalSearch');
  const updateConfirmButton=()=>{};
  const draw=()=>{const keywords=input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);const rows=hospitals.filter(h=>{const searchable=`${h.name} ${h.region} ${h.city} ${h.type} ${h.specialty} ${h.hospice?'호스피스':''} ${h.veterans?'보훈병원 보훈의료':''} ${h.hospiceServices}`.toLowerCase();return (appliedRegion==='전체'||h.region===appliedRegion||(appliedRegion==='서울'&&h.id==='snubh'))&&(appliedCategory==='전체'||(appliedCategory==='호스피스'?h.hospice:appliedCategory==='보훈병원'?h.veterans:hospitalCategory(h)===appliedCategory))&&keywords.every(keyword=>searchable.includes(keyword))});document.querySelector('#hospitalGrid').innerHTML=hospitalCards(rows);document.querySelector('#hospitalCount').textContent=`${rows.length}개 병원`};
- document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{category=b.dataset.category;categorySelected=true;document.querySelectorAll('[data-category]').forEach(x=>x.classList.toggle('active',x===b));updateConfirmButton()});
- document.querySelectorAll('[data-region]').forEach(b=>b.onclick=()=>{region=b.dataset.region;regionSelected=true;document.querySelectorAll('[data-region]').forEach(x=>x.classList.toggle('active',x===b));updateConfirmButton()});
- confirmButton.onclick=()=>{appliedRegion=region;appliedCategory=category;draw();const exact=hospitals.find(h=>h.name===input.value.trim());if(exact){location.hash='hospital/'+exact.id;return}};
- searchButton.onclick=()=>confirmButton.click();clearButton.onclick=()=>{input.value='';draw();input.focus()};input.oninput=()=>{draw();updateConfirmButton()};
+ const applyFilters=()=>{appliedRegion=region;appliedCategory=category;draw()};
+ document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{category=b.dataset.category;categorySelected=true;document.querySelectorAll('[data-category]').forEach(x=>x.classList.toggle('active',x===b));applyFilters();updateConfirmButton()});
+ document.querySelectorAll('[data-region]').forEach(b=>b.onclick=()=>{region=b.dataset.region;regionSelected=true;document.querySelectorAll('[data-region]').forEach(x=>x.classList.toggle('active',x===b));applyFilters();updateConfirmButton()});
+ const runSearch=()=>{applyFilters();const exact=hospitals.find(h=>h.name===input.value.trim());if(exact){location.hash='hospital/'+exact.id;return}};
+ confirmButton.onclick=runSearch;
+ searchButton.onclick=runSearch;clearButton.onclick=()=>{input.value='';applyFilters();input.focus()};input.oninput=()=>{draw();updateConfirmButton()};
  input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();confirmButton.click()}};draw()
 }
 function designationMark(h){if(h.kind!=='요양병원')return '';if(h.designationStatus==='official')return '<span class="designation-star official">★ 의료중심 요양병원 지정</span>';if(h.designationStatus==='expected')return '<span class="designation-star expected">☆ 지정예정 후보(공식 미확정)</span>';return ''}
