@@ -9,7 +9,7 @@ wardBuildings['seoul-stmary']=[{name:'서울성모병원',floors:['12층'],floor
 wardBuildings['seoul-top']=[{name:'병원 건물',floors:['1층','2층','3층','4층'],floorDescriptions:{'1층':'일반병동','2층':'감염관리병동 · 재활치료실','3층':'일반병동 · 재활치료실','4층':'일반병동'}}];
 
 // 공개 의료기관 정보에서 확인되는 입원실 총 29병상(일반 25·상급 4)과 소재 층(2·3층)만 등록한다. 병실번호·층별 침대 수는 병원 확인 전까지 임의로 만들지 않는다.
-wardBuildings['hospital-254']=[{name:'종호빌딩',floors:['2층','3층'],floorDescriptions:{'2층':'입원실 · 병실 번호와 침대 수 확인 필요','3층':'입원실 · 병실 번호와 침대 수 확인 필요'}}];
+wardBuildings['hospital-254']=[{name:'종호빌딩',floors:['2층','3층'],floorDescriptions:{'2층':'2층 입원실 · 병실 번호와 침대 수 확인 필요','3층':'3층 입원실 · 병실 번호와 침대 수 확인 필요'}}];
 const hospitalGuides={
  'seoul-top':{address:'서울특별시 동대문구 정릉천동로 102 (제기동)',phone:'02-2088-0580',addressSource:'https://www.nhimc.or.kr/ref/board/hospitalBoard1List.do?page=12',floorSource:'https://ot.chosun.ac.kr/ot/3001/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGb3QlMkYzOTMlMkYyMzEzOTklMkZhcnRjbFZpZXcuZG8lM0Y%3D',floorNote:'2026년 5월 7일 공개된 병원 채용안내 기준입니다. 지하 1층은 치료실, 지상 1~4층은 병동으로 안내되어 있습니다. 병실 번호·침상 배치와 현재 운영은 병원 확인이 필요합니다.'},
  'snubh':{address:'경기도 성남시 분당구 구미로173번길 82',addressSource:'https://www.snubh.org/dh/en/main/main.do'},
