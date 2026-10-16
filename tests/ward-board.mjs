@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
 const {default:worker}=await import('data:text/javascript;base64,'+fs.readFileSync(new URL('../dist/server/index.js',import.meta.url)).toString('base64'));
 const db=new DatabaseSync(':memory:');
-for(const file of ['0001_secure_messages.sql','0002_care_board.sql','0003_care_end_time.sql','0004_admin_auth.sql'])db.exec(fs.readFileSync(new URL('../drizzle/'+file,import.meta.url),'utf8'));
+for(const file of ['0001_secure_messages.sql','0002_care_board.sql','0003_care_end_time.sql','0004_admin_auth.sql','0005_care_fee_receipts.sql'])db.exec(fs.readFileSync(new URL('../drizzle/'+file,import.meta.url),'utf8'));
 const wrap=(sql,args=[])=>({bind(...values){return wrap(sql,values)},async first(){return db.prepare(sql).get(...args)},async all(){return {results:db.prepare(sql).all(...args)}},run(){return db.prepare(sql).run(...args)}});
 const env={DB:{prepare:wrap,async batch(stmts){return stmts.map(s=>s.run())}}};
 const headers={'Content-Type':'application/json','Origin':'https://test.local','oai-authenticated-user-id':'test-user','oai-authenticated-user-email':'test@example.invalid'};
@@ -31,6 +31,10 @@ assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{
 const setup=await worker.fetch(new Request('https://test.local/api/admin-auth/setup',{method:'POST',headers:ownerHeaders,body:JSON.stringify({username:'test-admin',password:'TEST-only-password-123'})}),env);assert.equal(setup.status,200);const adminCookie=setup.headers.get('set-cookie').split(';')[0];
 assert(setup.headers.get('set-cookie').includes('HttpOnly'));assert(setup.headers.get('set-cookie').includes('Secure'));
 assert.equal((await worker.fetch(new Request('https://test.local/api/messages',{headers:{Cookie:adminCookie}}),env)).status,200);
+assert.equal((await worker.fetch(new Request('https://test.local/api/care-fees',{headers:{Cookie:adminCookie}}),env)).status,200);
+const feeResponse=await worker.fetch(new Request('https://test.local/api/care-fees',{method:'POST',headers:{...headers,Cookie:adminCookie},body:JSON.stringify({hospitalId:'hospital-5',hospitalName:'삼성서울병원',amount:120000,reference})}),env);assert.equal(feeResponse.status,201);
+const fees=await (await worker.fetch(new Request('https://test.local/api/care-fees',{headers:{Cookie:adminCookie}}),env)).json();assert.equal(fees.total,120000);assert.equal(fees.hospitals[0].hospitalName,'삼성서울병원');
+assert.equal((await worker.fetch(new Request('https://test.local/api/care-fees',{method:'POST',headers,body:JSON.stringify({hospitalId:'hospital-5',hospitalName:'삼성서울병원',amount:0})}),env)).status,403);
 assert.equal((await (await api('/api/session')).json()).admin,false);
 console.log('PASS: owner-only inbox, anonymous 401, ordinary user 403, no query override, own-message isolation and owner identity mapping');
 
