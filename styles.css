@@ -33,3 +33,7 @@ img[src*="care24-brand"],img[src*="care24-logo"]{box-sizing:border-box;border:1p
 
 /* Pulmonary specialist lecture */
 .pulmonary-lecture-card{grid-column:span 2}.pulmonary-lecture-video{display:block;width:100%;max-width:760px;max-height:430px;margin:16px auto 10px;border-radius:14px;background:#102632}.pulmonary-lecture-card .hint{margin:0;color:#526475;font-size:.92rem}@media(max-width:720px){.pulmonary-lecture-card{grid-column:auto}.pulmonary-lecture-video{max-height:260px}}
+
+/* Keep action links below their card copy on every screen size. */
+.card > a.primary,.card > a.secondary{display:flex;width:fit-content;align-items:center;margin-top:16px;text-decoration:none}
+
