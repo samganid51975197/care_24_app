@@ -42,3 +42,8 @@ img[src*="care24-brand"],img[src*="care24-logo"]{box-sizing:border-box;border:1p
 
 
 .lecture-board{margin:16px 0 0;padding:16px 20px;border:6px solid #7a5838;border-radius:4px;background:#183d35;color:#fff7df;font-size:clamp(20px,3vw,30px);font-weight:800;letter-spacing:-.04em;text-align:center;box-shadow:inset 0 0 0 2px #315b50;text-shadow:0 1px 0 #0f2923}
+
+/* 선택한 답의 번호를 즉시 강조 */
+.exam-choice input:checked + .exam-choice-number{background:#0c5e83;color:#fff;border-radius:999px;box-shadow:0 0 0 3px #d9eff9}
+.exam-choice:has(input:checked){color:#0c5e83;font-weight:800}
+
