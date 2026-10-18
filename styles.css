@@ -40,3 +40,5 @@ img[src*="care24-brand"],img[src*="care24-logo"]{box-sizing:border-box;border:1p
 
 .pulmonary-syllabus ol{margin:18px 0;padding-left:22px;display:grid;gap:16px}.pulmonary-syllabus li{line-height:1.65}.pulmonary-syllabus .notice{margin:20px 0 0}
 
+
+.lecture-board{margin:16px 0 0;padding:16px 20px;border:6px solid #7a5838;border-radius:4px;background:#183d35;color:#fff7df;font-size:clamp(20px,3vw,30px);font-weight:800;letter-spacing:-.04em;text-align:center;box-shadow:inset 0 0 0 2px #315b50;text-shadow:0 1px 0 #0f2923}
