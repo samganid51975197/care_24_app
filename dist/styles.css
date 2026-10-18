@@ -37,3 +37,6 @@ img[src*="care24-brand"],img[src*="care24-logo"]{box-sizing:border-box;border:1p
 /* Keep action links below their card copy on every screen size. */
 .card > a.primary,.card > a.secondary{display:flex;width:fit-content;align-items:center;margin-top:16px;text-decoration:none}
 
+
+.pulmonary-syllabus ol{margin:18px 0;padding-left:22px;display:grid;gap:16px}.pulmonary-syllabus li{line-height:1.65}.pulmonary-syllabus .notice{margin:20px 0 0}
+
