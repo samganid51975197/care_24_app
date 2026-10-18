@@ -21,3 +21,15 @@
 
 /* Care24 brand images share the approved outline on every page. */
 img[src*="care24-brand"],img[src*="care24-logo"]{box-sizing:border-box;border:1px solid #71958d;border-radius:4px;background:#fff;padding:2px;object-fit:contain}
+
+/* 자격시험 문제·영역 구분 */
+.exam-question{border:1px solid #bdd9e9;background:#fcfeff;padding:18px 16px 16px}
+.exam-question legend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:100%;padding:0 6px;color:#17202a}
+.exam-question-badge{display:inline-flex;align-items:center;min-height:32px;padding:4px 11px;border-radius:8px;background:#e8f3fa;color:#0c5e83;font-size:.9rem;font-weight:900;letter-spacing:-.02em}
+.exam-area-badge{display:inline-flex;align-items:center;min-height:32px;padding:4px 11px;border:1px solid #16805c;border-radius:8px;background:#e8f7f1;color:#0b6648;font-size:.9rem;font-weight:900;letter-spacing:-.02em}
+.exam-question-title{flex:1 1 260px;font-weight:850;line-height:1.45}
+.exam-choices{margin-top:14px;padding-top:12px;border-top:1px solid #dbeaf1}
+@media(max-width:560px){.exam-question{padding:14px 12px}.exam-question-badge,.exam-area-badge{min-height:29px;padding:3px 9px;font-size:.84rem}.exam-question-title{flex-basis:100%;font-size:1rem}}
+
+/* Pulmonary specialist lecture */
+.pulmonary-lecture-card{grid-column:span 2}.pulmonary-lecture-video{display:block;width:100%;max-width:760px;max-height:430px;margin:16px auto 10px;border-radius:14px;background:#102632}.pulmonary-lecture-card .hint{margin:0;color:#526475;font-size:.92rem}@media(max-width:720px){.pulmonary-lecture-card{grid-column:auto}.pulmonary-lecture-video{max-height:260px}}
