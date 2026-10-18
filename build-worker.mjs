@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root=process.cwd();
 const textFiles=['rehabilitation.js','rehabilitation.css','index.html','styles.css','directory.css','care.css','finder.css','brand-standard.css','hospitals.js','care-facilities.js','app.js','care-review.js','room-edit.js','admin-login.js','auth-controls.js','ward-config.js','ward-board.js','ward-board.css','manifest.webmanifest','sw.js'];
-const binaryFiles=['assets/rehabilitation-reference.png','assets/care24-brand.webp','assets/care24-logo-original.png','assets/snubh-logo.png','assets/hichart.png','assets/icon-192.png','assets/icon-512.png','assets/icon.svg','assets/pulmonary-care-lecture.mp4','assets/orthopedic-care-lecture.mp4','assets/dementia-care-lecture.mp4'];
+const binaryFiles=['assets/rehabilitation-reference.png','assets/care24-brand.webp','assets/care24-logo-original.png','assets/snubh-logo.png','assets/hichart.png','assets/icon-192.png','assets/icon-512.png','assets/icon.svg','assets/pulmonary-care-lecture.mp4','assets/orthopedic-care-lecture.mp4','assets/dementia-care-lecture.mp4','assets/pulmonary-main-lecture.mp4'];
 const textAssets=Object.fromEntries(textFiles.map(name=>['/'+name,fs.readFileSync(path.join(root,name),'utf8')]));
 textAssets['/']=textAssets['/index.html'];
 const binaryAssets=Object.fromEntries(binaryFiles.map(name=>['/'+name,fs.readFileSync(path.join(root,name)).toString('base64')]));
