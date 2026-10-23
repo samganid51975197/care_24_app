@@ -1,5 +1,5 @@
 import {requestNotice} from '@/lib/notification-events';
-import {publicCareText,maskPatientName} from "@/lib/admin-privacy.mjs";
+import {publicCareText,maskPatientName,publicRequestSummary} from "@/lib/admin-privacy.mjs";
 import {requestBoardStatus} from "@/lib/request-board-status.mjs";
 import {withActor,hospitalFilter,scope,scopedId,ownership,workflowGuard,type Actor} from "../../../lib/auth";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
@@ -35,7 +35,7 @@ async function handleGET(req:Request, actor:Actor) {
       return w.applications.some((a:any)=>a.ownerId===actor.id);
     }).map(row=>({id:Number(row.request_id),status:'진행'}));
     return Response.json({progress,
-      requests: allRequests.map((item) => ({
+      requests: allRequests.map((item) => actor.role!=="admin"?publicRequestSummary({id:item.id,status:boardStatus(item)}):({
         id: item.id,
         contractNumber: contractNumber(item.id, item.createdAt),
         canPrepareContract: actor.role==='admin'||item.ownerUserId===actor.id,
@@ -78,7 +78,7 @@ async function handlePOST(req:Request, actor:Actor) {
     if(actor.role!=="admin"&&["careFee","feePeriod","paymentMethod","paymentDue","contractNote","contractVersion","contractSignedAt"].some(key=>String(body[key]||"").trim()))return Response.json({error:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});
     const required = ["requesterName", "requesterPhone", "patientName", "patientGender", "patientAge", "patientWeight", "diagnosis", "patientCondition", "building", "floorName", "ward", "careType", "startDate"];
     if (!required.every((key) => String(body[key] || "").trim())) return Response.json({ error: "필수 의뢰 항목을 모두 작성해 주세요." }, { status: 400 });
-    if (String(body.publicConsent) !== "동의") return Response.json({ error: "민감정보 공개 동의가 필요합니다." }, { status: 400 });
+    if (String(body.publicConsent) !== "동의") return Response.json({ error: "간병 의뢰 접수 및 개인정보 처리 동의가 필요합니다." }, { status: 400 });
 
     if(body.patientBirthYear && (!/^\d{4}$/.test(String(body.patientBirthYear)) || Number(body.patientBirthYear)>new Date().getFullYear() || Number(body.patientBirthYear)<new Date().getFullYear()-120)) return Response.json({error:"출생연도를 확인하세요."},{status:400});
     const room = String(body.roomStatus) === "emergency_waiting" ? "응급실 대기 중 (병실 미배정·간병인 미지정)" : String(body.room || "");

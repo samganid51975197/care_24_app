@@ -1,0 +1,7 @@
+.notices{display:grid;gap:12px;margin:18px 0}
+.notices p{display:grid;gap:6px;margin:0;padding:16px 18px;border:1px solid;border-left-width:5px;border-radius:10px;line-height:1.7;overflow-wrap:anywhere}
+.notices strong{font-size:1rem;font-weight:800}
+.notices span{font-weight:700}
+.notices .fee{color:#873700;background:#fff4e5;border-color:#d77b22}
+.notices .privacy{color:#124c85;background:#edf5ff;border-color:#3a79bb}
+@media(max-width:600px){.notices p{padding:14px;line-height:1.65}}
