@@ -45,3 +45,10 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 
 # Deployment completion preference (2026-09-24)
 - User requests every future completed change be reflected in the production site and Android APK. Verify production after deployment and build the matching APK; report site deployment, APK build, and phone installation separately. Never claim phone installation without device verification. Report concrete blockers.
+
+# Care24 production delivery authority (2026-10-24)
+- The only approved code storage and deployment destinations for the 간병24/전국병원간병 system are the GitHub repository `github.com/samganid51975197/care_24_app` and the Gabia production server `114.108.153.57` serving `https://care.xn--24-ts1i486c.com`.
+- Do not store, deploy, publish, or claim delivery of this project through ChatGPT Sites, ChatGPT-hosted site URLs, or any other OpenAI-hosted platform.
+- Before calling work complete, verify both: (1) the exact commit is pushed to the GitHub repository; and (2) the matching change is deployed and visible on the Gabia production domain. If either is unverified, say `아직 반영 안 됨` and name the blocker.
+- Do not change DNS for `간병24.com` or `care.간병24.com` without prior approval from 황세옥 님 or 도근 님.
+- Never write passwords, tokens, private keys, or key-file contents into chat, source files, commits, or reports.
