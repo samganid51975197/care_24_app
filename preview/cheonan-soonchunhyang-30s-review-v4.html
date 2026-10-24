@@ -1,0 +1,65 @@
++<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>순천향대학교 부속 천안병원 30초 영상 사전 미리보기</title>
+<style>
+  :root { --navy:#092a50; --blue:#1267ad; --orange:#f06a2d; --care:#08767a; }
+  * { box-sizing:border-box } body { margin:0; background:#e9eef4; font-family:Arial,"Noto Sans KR",sans-serif; color:#10233b; }
+  main { width:min(1100px,100%); margin:auto; padding:30px 18px 48px; }
+  h1 { margin:0 0 8px; font-size:27px } .notice { margin:0 0 24px; color:#52657a }
+  .phone { color:var(--care); font-weight:800 }
+  .story { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  .frame { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 8px 28px #10233b1a; min-height:530px; border:1px solid #d9e1e9; }
+  .time { padding:10px 16px; background:var(--navy); color:#fff; font-weight:800; font-size:15px }
+  .visual { min-height:255px; padding:18px; background:linear-gradient(#06111b22,#06111b22),url('../assets/cheonan-hospital-exterior-official.png') left center/cover; display:flex; align-items:flex-start; justify-content:flex-end; color:#fff; }
+  .hospital-logo { display:flex; gap:8px; align-items:center; width:180px; min-height:48px; padding:7px 10px; border-radius:10px; background:#092a5099; border:1px solid #ffffff99; color:#fff; max-width:42%; }
+  .mark { display:none; } .logo-image { width:100%; max-width:158px; max-height:29px; object-fit:contain; object-position:left center; display:block; }
+  .caption { margin-top:auto; margin-left:auto; max-width:172px; font-size:23px; font-weight:900; line-height:1.2; text-align:right; text-shadow:0 2px 12px #000; }
+  .copy { padding:20px 20px 26px; font-size:17px; line-height:1.65; }
+  .copy strong { color:var(--blue) } .care { color:var(--care) }
+  .avatar { min-height:280px; padding:25px; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(140deg,#eff8fb,#d1edf0); position:relative; overflow:hidden; }
+  .avatar::before { content:"황서윤"; position:absolute; right:20px; top:26px; font-size:64px; font-weight:900; color:#08767a18; }
+  .person { position:relative; width:156px; height:232px; align-self:center; border-radius:88px 88px 20px 20px; background:linear-gradient(#4b2a2e 0 32%,#c86143 32% 58%,#f2d4bf 58%); border:6px solid #fff; box-shadow:0 12px 20px #0002; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+  .person::before { content:""; position:absolute; z-index:1; top:16px; left:34px; width:76px; height:76px; border-radius:50%; border:3px solid #fff; background:url('https://files2.heygen.ai/talking_photo/f6fd3644ccf3b0b4400ef16b4b5466d4/901d00d4ee504b54aa4f3c7666a56a27.WEBP?Expires=1793414889&Signature=LrG7ZLxSSRXShozDfLAVCjF2JK5Z9nk6kGfsEv8IEnDsbqtvzvLJf9Ug1oeOTtn6vzU82OBG5xbA-srMbVmy9oJxJEW36oeSWG3~~qehtCRn5tfWH4UfcTSfxe9AIBjl8iTHD0FngVCT8uOn3oq5xNU11Tmg3QviH~o2QTIbie6V7kh7HLLRpNh6U3pMQX-6zUqmuxMbI5ucpEP1JiAjsEq3jd~Owk~WW2NclFulGHURj~mQ6kinSBI8C7Xm33CSdzkeFAkeOwtq3dSkxDm2qOaL-O5d9rzhc81g~UiM-Ba3GUYQCqt5KqtNz5plcTMjwAwJJJXABJHN7tM3JgZR5g__&Key-Pair-Id=K38HBHX5LX3X2H') center top/cover; }
+  .person::after { content:"따뜻한 겨울 재킷"; position:absolute; z-index:1; bottom:8px; left:8px; color:#fff; font-size:8px; font-weight:800; letter-spacing:.03em; }
+  /* 세로형 목걸이 사원증 표준 비율(약 54 × 86mm, 0.63:1) */
+  .badge { position:absolute; z-index:2; right:9px; bottom:7px; width:78px; height:124px; background:#fff; border-left:3px solid #08767a; border-right:3px solid #08767a; border-top:1px solid #08767a; border-bottom:1px solid #08767a; border-radius:5px; color:#07565a; text-align:left; padding:4px 4px; font-size:6.5px; font-weight:700; line-height:1.25; box-shadow:0 3px 8px #0002; }
+  .badge b { display:block; font-size:12px } .care24-inline-logo { width:54px; height:33px; object-fit:contain; object-position:center; vertical-align:middle; margin:0 2px; } .registered { font-weight:800; font-size:.55em; vertical-align:top; } .registered.on-dark { color:#fff; } .on-dark { background:#fff; border-radius:2px; } .care24-wordmark { font-family: Arial Black, Arial, sans-serif; font-weight:900; letter-spacing:-.10em; color:#050505; white-space:nowrap; } .care24-wordmark .red { color:#ef1d28; } .care24-wordmark sup { color:#050505; font-size:.45em; margin-left:3px; vertical-align:top; letter-spacing:0; } .badge-title { text-align:center; font-size:13px; font-weight:900; letter-spacing:.04em; color:#07565a; border-bottom:2px solid #08767a; padding:0 0 3px; margin:0 0 3px; } .badge-face { display:block; width:26px; height:26px; border-radius:50%; object-fit:cover; object-position:center top; border:2px solid #08767a; margin:0 auto 2px; } .care24-logo { display:block; width:38px; height:20px; object-fit:contain; margin:0 auto 3px; } .badge-line { display:block; white-space:nowrap; border-top:1px solid #d7e8e8; padding-top:2px; margin-top:2px; } .end { background:linear-gradient(135deg,#05696f,#044b55); color:#fff; min-height:255px; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:28px; }
+  .end h2 { font-size:34px; line-height:1.3; margin:0 0 16px }.end p { font-size:20px; margin:0; font-weight:700 }.narration { border-top:1px solid #d9e1e9; padding-top:14px; margin-top:12px; font-size:14px; color:#52657a; }
+  @media(max-width:760px) { .story{grid-template-columns:1fr}.frame{min-height:auto} }
+</style>
+</head>
+<body><main>
+<h1>순천향대학교 부속 천안병원 · 30초 영상 사전 미리보기 v4</h1>
+<p class="notice">HeyGen 전송 전 확인용 로컬 화면입니다. 아직 영상 생성·크레디트 차감은 없습니다.</p>
+<section class="story">
+  <article class="frame">
+    <div class="time">0–3초 · 병원 로고 + 건물 외관</div>
+    <div class="visual"><div class="caption">천안병원<br>길 안내</div></div>
+    <div class="copy"><strong>화면:</strong> 병원 건물에 실제 부착된 가로형 SCH·병원명 표기와 외관을 함께 표시합니다.<br><strong>나레이터:</strong> “순천향대학교 부속 천안병원은 충남 천안시 동남구 순천향6길 31에 있습니다.”</div>
+  </article>
+  <article class="frame">
+    <div class="time">3–15초 · 길 안내</div>
+    <div class="visual"><div class="caption">지도 앱에서<br>병원명 검색</div></div>
+    <div class="copy"><strong>나레이터:</strong> “지도 앱에서 병원명을 검색해 길 안내를 받으세요. 진료 예약은 1577-7523입니다.”<div class="narration">표시 정보: 충남 천안시 동남구 순천향6길 31 · 예약 1577-7523</div></div>
+  </article>
+  <article class="frame">
+    <div class="time">15–30초 · 간병 안내 + 엔딩</div>
+    <div class="avatar"><div class="person"><div class="badge"><div class="badge-title">사원증</div><img class="badge-face" src="https://files2.heygen.ai/talking_photo/f6fd3644ccf3b0b4400ef16b4b5466d4/901d00d4ee504b54aa4f3c7666a56a27.WEBP?Expires=1793414889&Signature=LrG7ZLxSSRXShozDfLAVCjF2JK5Z9nk6kGfsEv8IEnDsbqtvzvLJf9Ug1oeOTtn6vzU82OBG5xbA-srMbVmy9oJxJEW36oeSWG3~~qehtCRn5tfWH4UfcTSfxe9AIBjl8iTHD0FngVCT8uOn3oq5xNU11Tmg3QviH~o2QTIbie6V7kh7HLLRpNh6U3pMQX-6zUqmuxMbI5ucpEP1JiAjsEq3jd~Owk~WW2NclFulGHURj~mQ6kinSBI8C7Xm33CSdzkeFAkeOwtq3dSkxDm2qOaL-O5d9rzhc81g~UiM-Ba3GUYQCqt5KqtNz5plcTMjwAwJJJXABJHN7tM3JgZR5g__&Key-Pair-Id=K38HBHX5LX3X2H" alt="황서윤 AI 아바타 얼굴"><img class="care24-logo" src="../assets/care24-logo-original.png" alt="간병24 로고"><span class="badge-line">이름 : 황서윤</span><span class="badge-line">소속 : 홍보개발부</span><span class="badge-line">사원번호 : PD-003</span></div></div></div>
+    <div class="copy care"><strong>나레이터:</strong> “병원 동행과 간병 의뢰 신청은 <img class="care24-inline-logo" src="../assets/care24-brand.webp" alt="간병24 등록상표 로고"><sup class="registered">®</sup>가 돕습니다. 등록 전문간병사 돌봄 안내는 일육공공오하나구칠로 문의하세요.”</div>
+    <div class="end"><h2>간병의뢰는<br>1600-5197</h2><p><img class="care24-inline-logo on-dark" src="../assets/care24-brand.webp" alt="간병24 등록상표 로고"><sup class="registered on-dark">®</sup> · 나레이터 발음: 일육공공오하나구칠</p></div>
+  </article>
+</section></main></body></html>
+
+
+
+
+
+
+
+
+
+
+
