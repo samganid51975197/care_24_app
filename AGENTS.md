@@ -52,3 +52,4 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 - Before calling work complete, verify both: (1) the exact commit is pushed to the GitHub repository; and (2) the matching change is deployed and visible on the Gabia production domain. If either is unverified, say `아직 반영 안 됨` and name the blocker.
 - Do not change DNS for `간병24.com` or `care.간병24.com` without prior approval from 황세옥 님 or 도근 님.
 - Never write passwords, tokens, private keys, or key-file contents into chat, source files, commits, or reports.
+- For every production-affecting task, promptly send 도근 님 a concise status and approval request before deployment. This includes changes that affect GitHub delivery, Gabia deployment, DNS, the production domain, database migrations, server workers, or public hospital/promotion content. Routine local drafts still require this notice before they are promoted to production.
