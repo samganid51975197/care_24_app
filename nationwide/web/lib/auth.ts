@@ -8,7 +8,9 @@ export type Actor = { id: string; username: string; name: string; role: "admin" 
 export const cookieName = "care24_session";
 export class AccessError extends Error { constructor(public status: number, message: string) { super(message); } }
 export function requireOrigin(req: Request) {
-  if (!process.env.CARE24_ORIGIN || req.headers.get("origin") !== process.env.CARE24_ORIGIN) throw new AccessError(403, "잘못된 요청 출처입니다.");
+  const origin = req.headers.get("origin") || "";
+  const localDevelopment = process.env.NODE_ENV !== "production" && /^http:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/.test(origin);
+  if ((!process.env.CARE24_ORIGIN || origin !== process.env.CARE24_ORIGIN) && !localDevelopment) throw new AccessError(403, "잘못된 요청 출처입니다.");
 }
 export function sessionCookie(token: string, clear = false) {
   return `${cookieName}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${clear ? 0 : 28800}${process.env.CARE24_ORIGIN?.startsWith("https:") ? "; Secure" : ""}`;
