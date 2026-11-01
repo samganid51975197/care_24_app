@@ -5,13 +5,17 @@ import { fileURLToPath } from "node:url";
 
 const sourcePath = fileURLToPath(new URL("../app/live-matching.tsx", import.meta.url));
 
-test("care request form explains publication and identifies missing fields", async () => {
+test("care request form separates saving, publication, and caregiver application", async () => {
   const source = await readFile(sourcePath, "utf8");
 
   assert.match(source, /onInvalidCapture=\{showInvalidField\}/);
-  assert.match(source, /상황판에 저장·공개하기/);
-  assert.match(source, /별도의 ‘보내기’ 버튼은 필요 없습니다/);
+  assert.match(source, /1\. 의뢰서 저장/);
+  assert.match(source, /2\. 상황판 공개/);
+  assert.match(source, /3\. 간병인 간병 신청/);
+  assert.match(source, /의뢰서 저장/);
+  assert.match(source, /상황판 공개하기/);
+  assert.match(source, /저장한 비공개 의뢰/);
   assert.match(source, /상황판 저장·공개 완료/);
   assert.match(source, /현황판에서 의뢰 \{savedRequest\}번 보기/);
-  assert.match(source, /showPublishedRequest\(j.id\)/);
+  assert.match(source, /publishRequest\(savedRequest\)/);
 });
