@@ -51,7 +51,6 @@ public final class MainActivity extends Activity {
         title.setTypeface(null, android.graphics.Typeface.BOLD);
         content.addView(title);
         content.addView(text(getString(R.string.subtitle), 18));
-        addButton(content, R.string.open_home, "home");
         addButton(content, R.string.open_hospitals, "hospitals");
         addButton(content, R.string.open_admin, "admin");
         addButton(content, R.string.open_education, "education");
