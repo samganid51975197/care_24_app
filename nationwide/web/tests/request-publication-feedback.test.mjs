@@ -4,6 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const sourcePath = fileURLToPath(new URL("../app/live-matching.tsx", import.meta.url));
+const routePath = fileURLToPath(new URL("../app/api/care-requests/route.ts", import.meta.url));
 
 test("care request form separates saving, publication, and caregiver application", async () => {
   const source = await readFile(sourcePath, "utf8");
@@ -18,4 +19,12 @@ test("care request form separates saving, publication, and caregiver application
   assert.match(source, /상황판 저장·공개 완료/);
   assert.match(source, /현황판에서 의뢰 \{savedRequest\}번 보기/);
   assert.match(source, /publishRequest\(savedRequest\)/);
+});
+
+test("public visitors can submit only the completed care request", async () => {
+  const source = await readFile(routePath, "utf8");
+
+  assert.match(source, /public-care-request:/);
+  assert.match(source, /resolvePublicHospital/);
+  assert.match(source, /로그인 없이 작성한 의뢰는 이 기기에 임시 저장됩니다/);
 });
