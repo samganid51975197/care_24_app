@@ -12,4 +12,6 @@ test("care request form explains publication and identifies missing fields", asy
   assert.match(source, /상황판에 저장·공개하기/);
   assert.match(source, /별도의 ‘보내기’ 버튼은 필요 없습니다/);
   assert.match(source, /상황판 저장·공개 완료/);
+  assert.match(source, /현황판에서 의뢰 \{savedRequest\}번 보기/);
+  assert.match(source, /showPublishedRequest\(j.id\)/);
 });
