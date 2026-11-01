@@ -34,3 +34,7 @@
 - 구 간병24 앱(`com.fivegram.gb`) 소스를 도근 님 PC에서 가져와 `legacy-care24/`에 넣었습니다. 업로드 키·키 비밀번호·인증서·local.properties는 제외했습니다.
 - 간병24 1.1.5(분당서울대, `kr.or.care24.app`)는 전국병원간병 3.0.x로 대체되어 `archive/care24-1.1.5/`로 옮겼습니다.
 - 삭제된 파일은 모두 Git 기록에 남아 있어 언제든 되살릴 수 있습니다.
+## 최신 기준 확인 (2026-11-01)
+
+- `care_24_app`은 `care24-v3`보다 최신 기준이며, 활성 개발·배포 소스는 계속 `nationwide/` 하나만 사용합니다.
+- 대조 상세와 비공개 인계본에만 남은 자료의 처리 방침은 [CARE24_V3_CONSOLIDATION_20261101.md](nationwide/docs/CARE24_V3_CONSOLIDATION_20261101.md)를 참조하세요.
