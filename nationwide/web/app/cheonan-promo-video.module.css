@@ -1,0 +1,18 @@
+.promo {
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid #d5e3df;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.promo h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.promo p { margin: 8px 0; }
+.promo a { color: #176450; text-decoration: underline; }
+.video {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  background: #111;
+  border-radius: 8px;
+}

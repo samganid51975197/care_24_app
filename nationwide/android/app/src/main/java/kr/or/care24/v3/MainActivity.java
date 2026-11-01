@@ -20,6 +20,7 @@ import androidx.browser.customtabs.CustomTabsIntent;
 public final class MainActivity extends Activity {
     private TextView status;
     private ScrollView scroll;                              // [추가 2] 필드로 선언
+    private boolean externalBrowserOpened;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +67,10 @@ public final class MainActivity extends Activity {
         }
     }
 
-    @Override protected void onRestart() {                  // [추가 5] 브라우저에서 뒤로 돌아올 때
+    @Override protected void onRestart() {
         super.onRestart();
-        scroll.setVisibility(View.VISIBLE);
+        // 웹 화면을 닫거나 취소한 경우, 예전 시작 메뉴를 노출하지 않고 앱도 종료한다.
+        if (externalBrowserOpened) finish();
     }
 
     private void addButton(LinearLayout content, int label, String route) {
@@ -95,6 +97,7 @@ public final class MainActivity extends Activity {
                             .setToolbarColor(Color.WHITE).build())
                     .setShareState(CustomTabsIntent.SHARE_STATE_OFF)
                     .build();
+            externalBrowserOpened = true;
             tab.launchUrl(this, url);
         } catch (ActivityNotFoundException noBrowser) {
             scroll.setVisibility(View.VISIBLE);             // [추가 6] 실패 시 메뉴+오류문구 표시

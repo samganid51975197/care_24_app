@@ -1,0 +1,20 @@
+{
+  "hospital": "순천향대학교 부속 천안병원",
+  "requestedDurationSeconds": 30,
+  "chapterBoundarySeconds": 15,
+  "status": "generating",
+  "originalLookId": "f6fd3644ccf3b0b4400ef16b4b5466d4",
+  "badgeNumber": "PD-003",
+  "hospitalImageAssetId": "f2df77dae024439390b2315811a44476",
+  "originalLogoAssetId": "b936518c20594b71940eb59ba02a28c5",
+  "observedSubscriptionPremiumRemainingBefore": 604,
+  "apiEntitlementConfirmed": false,
+  "source": "https://www.schmc.ac.kr/cheonan/index.do",
+  "reviewBranch": "codex/cheonan-promo-video",
+  "productionDeploymentApproved": false,
+  "correctedLookId": "7bb6dc0913ecfc19c0f627fff857fed2",
+  "correctedAvatarAssetId": "55ef105172014a459c8c6b8b3c58e0e0",
+  "sessionId": "d4b5213909f7446d836756c755215229",
+  "sessionUrl": "https://app.heygen.com/video-agent/d4b5213909f7446d836756c755215229",
+  "videoId": "9a784d1e592d4c3f839ad09398f94a3e"
+}
