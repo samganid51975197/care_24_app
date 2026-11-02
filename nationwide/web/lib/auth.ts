@@ -27,7 +27,7 @@ export async function withActor(req: Request, handler: (actor: Actor) => Promise
   try {
     if (req.method !== "GET") requireOrigin(req);
     const actor = await currentActor(req);
-    if (!actor) throw new AccessError(401, "로그인이 필요합니다.");
+    if (!actor) throw new AccessError(401, "이 기능은 간병인 또는 관리자 계정에서 이용할 수 있습니다.");
     if (actor.status !== "active") throw new AccessError(403, "관리자 승인 후 이용할 수 있습니다.");
     if (admin && actor.role !== "admin") throw new AccessError(403, "관리자만 이용할 수 있습니다.");
     const privacyPath=decodeURIComponent(new URL(req.url).pathname).toLowerCase().replace(/\/$/,'');
