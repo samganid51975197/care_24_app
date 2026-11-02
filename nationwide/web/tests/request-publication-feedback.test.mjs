@@ -27,4 +27,8 @@ test("public visitors can submit only the completed care request", async () => {
   assert.match(source, /public-care-request:/);
   assert.match(source, /resolvePublicHospital/);
   assert.match(source, /로그인 없이 작성한 의뢰는 이 기기에 임시 저장됩니다/);
+  assert.match(source, /actor\?\.role!=="admin"/);
+  assert.match(source, /CARE24_REQUEST_ACCESS_PEPPER/);
+  assert.match(source, /trustedClientIp/);
+  assert.doesNotMatch(source, /get\('hospital'\)\|\|'snubh'/);
 });
