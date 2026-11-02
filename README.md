@@ -4,7 +4,7 @@
 
 | 폴더 | 앱 | 상태 |
 |---|---|---|
-| [`nationwide/`](nationwide/) | **전국병원간병** (신규, 현재 운영) | 운영 웹 소스 + Android 3.0.1 |
+| [`nationwide/`](nationwide/) | **전국병원간병** (신규, 현재 운영) | 운영 웹 소스 + Android 3.0.3 (`faf3521`) |
 | [`legacy-care24/`](legacy-care24/) | **구 간병24 앱** (`com.fivegram.gb`, 간병24.com) | Android 4.0.2 |
 | [`archive/`](archive/) | 참고용 보관 자료 (간병24 1.1.5, hospital-hub) | 실행·배포 대상 아님 |
 
