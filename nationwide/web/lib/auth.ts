@@ -8,7 +8,9 @@ export type Actor = { id: string; username: string; name: string; role: "admin" 
 export const cookieName = "care24_session";
 export class AccessError extends Error { constructor(public status: number, message: string) { super(message); } }
 export function requireOrigin(req: Request) {
-  if (!process.env.CARE24_ORIGIN || req.headers.get("origin") !== process.env.CARE24_ORIGIN) throw new AccessError(403, "잘못된 요청 출처입니다.");
+  const origin = req.headers.get("origin") || "";
+  const localDevelopment = process.env.NODE_ENV !== "production" && /^http:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/.test(origin);
+  if ((!process.env.CARE24_ORIGIN || origin !== process.env.CARE24_ORIGIN) && !localDevelopment) throw new AccessError(403, "잘못된 요청 출처입니다.");
 }
 export function sessionCookie(token: string, clear = false) {
   return `${cookieName}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${clear ? 0 : 28800}${process.env.CARE24_ORIGIN?.startsWith("https:") ? "; Secure" : ""}`;
@@ -25,7 +27,7 @@ export async function withActor(req: Request, handler: (actor: Actor) => Promise
   try {
     if (req.method !== "GET") requireOrigin(req);
     const actor = await currentActor(req);
-    if (!actor) throw new AccessError(401, "로그인이 필요합니다.");
+    if (!actor) throw new AccessError(401, "이 기능은 간병인 또는 관리자 계정에서 이용할 수 있습니다.");
     if (actor.status !== "active") throw new AccessError(403, "관리자 승인 후 이용할 수 있습니다.");
     if (admin && actor.role !== "admin") throw new AccessError(403, "관리자만 이용할 수 있습니다.");
     const privacyPath=decodeURIComponent(new URL(req.url).pathname).toLowerCase().replace(/\/$/,'');

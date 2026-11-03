@@ -1,7 +1,10 @@
 import {requestNotice} from '@/lib/notification-events';
 import {publicCareText,maskPatientName} from "@/lib/admin-privacy.mjs";
 import {requestBoardStatus} from "@/lib/request-board-status.mjs";
-import {withActor,hospitalFilter,scope,scopedId,ownership,workflowGuard,type Actor} from "../../../lib/auth";
+import {AccessError,withActor,hospitalFilter,scope,scopedId,ownership,privateJson,rateLimit,requireOrigin,workflowGuard,type Actor} from "../../../lib/auth";
+import {resolvePublicHospital} from "../../../lib/hospital-context";
+import {accessPhoneHash,assertNoNonAdminContractFields,assertPin,clientRateKey,ensurePublicCareRequestAccess,normalizePhone,trustedClientIp} from "../../../lib/public-care-request-access.mjs";
+import {hashPassword} from "../../../lib/auth-crypto.mjs";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
 import { getDb, getClient } from "../../../db";
 import { applications, careRequests } from "../../../db/schema";
@@ -14,7 +17,7 @@ async function handleGET(req:Request, actor:Actor) {
   try {
     const db = getDb();
     const [allRequests, profiles] = await Promise.all([
-      db.select().from(careRequests).where(actor.role==='caregiver'?and(eq(careRequests.publicConsent,"동의"),hospitalFilter(careRequests,actor)):scope(careRequests,actor)).orderBy(asc(careRequests.id)).limit(1000),
+      db.select().from(careRequests).where(actor.role==='caregiver'?and(eq(careRequests.publicConsent,"동의"),inArray(careRequests.status,["requesting","matching","matched"]),hospitalFilter(careRequests,actor)):scope(careRequests,actor)).orderBy(asc(careRequests.id)).limit(1000),
       db.select({ id: applications.id, applicantName: applications.applicantName, applicantGender: applications.applicantGender, careerYears: applications.careerYears, qualification: applications.qualification, preferredDate: applications.preferredDate, status: applications.status }).from(applications).where(scope(applications,actor)).orderBy(desc(applications.id)).limit(100),
     ]);
     const now = new Date(), dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime(), day = 86400000;
@@ -23,9 +26,10 @@ async function handleGET(req:Request, actor:Actor) {
     const workflowRows=await getClient().execute('SELECT request_id,payload FROM care_workflows');
     const {decryptText}=await import('../../../lib/data-crypto.mjs');
     const workflows=new Map(workflowRows.rows.map(row=>[Number(row.request_id),JSON.parse(decryptText(row.payload,'care_workflows.'+row.request_id))]));
+    const boardRequests=allRequests.filter(item=>item.status!=="draft");
     const boardStatus=(item:typeof allRequests[number])=>requestBoardStatus(item,workflows.get(item.id));
     const stats = Object.fromEntries(Object.entries(starts).map(([key, start]) => {
-      const rows = allRequests.filter((item) => new Date(item.createdAt.replace(" ", "T") + "Z").getTime() >= start);
+      const rows = boardRequests.filter((item) => new Date(item.createdAt.replace(" ", "T") + "Z").getTime() >= start);
       return [key, { total: rows.length, matched: rows.filter((item) => boardStatus(item) === "matched").length }];
     }));
     const progress=workflowRows.rows.filter(row=>{
@@ -35,7 +39,8 @@ async function handleGET(req:Request, actor:Actor) {
       return w.applications.some((a:any)=>a.ownerId===actor.id);
     }).map(row=>({id:Number(row.request_id),status:'진행'}));
     return Response.json({progress,
-      requests: allRequests.map((item) => ({
+      drafts:actor.role==='caregiver'?[]:allRequests.filter(item=>item.status==='draft').map(item=>({id:item.id,building:item.building,floorName:item.floorName,ward:item.ward,createdAt:item.createdAt})),
+      requests: boardRequests.map((item) => ({
         id: item.id,
         contractNumber: contractNumber(item.id, item.createdAt),
         canPrepareContract: actor.role==='admin'||item.ownerUserId===actor.id,
@@ -72,22 +77,27 @@ async function handleGET(req:Request, actor:Actor) {
   }
 }
 
-async function handlePOST(req:Request, actor:Actor) {
+async function handlePOST(req:Request, actor?:Actor) {
   try {
     const body = await req.json() as Record<string, unknown>;
-    if(actor.role!=="admin"&&["careFee","feePeriod","paymentMethod","paymentDue","contractNote","contractVersion","contractSignedAt"].some(key=>String(body[key]||"").trim()))return Response.json({error:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});
+    if(actor?.role!=="admin")try{assertNoNonAdminContractFields(body)}catch(e){return Response.json({error:e instanceof Error?e.message:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});}
     const required = ["requesterName", "requesterPhone", "patientName", "patientGender", "patientAge", "patientWeight", "diagnosis", "patientCondition", "building", "floorName", "ward", "careType", "startDate"];
     if (!required.every((key) => String(body[key] || "").trim())) return Response.json({ error: "필수 의뢰 항목을 모두 작성해 주세요." }, { status: 400 });
-    if (String(body.publicConsent) !== "동의") return Response.json({ error: "민감정보 공개 동의가 필요합니다." }, { status: 400 });
+    const draft = String(body.action) === "save";
+    if(!actor&&draft)return Response.json({error:"로그인 없이 작성한 의뢰는 이 기기에 임시 저장됩니다. 공개 동의 후 상황판 공개하기를 눌러 접수해 주세요."},{status:400});
+    const publicAccess=actor?null:{phone:normalizePhone(body.requesterPhone),pin:assertPin(body.requesterPin),secret:process.env.CARE24_REQUEST_ACCESS_PEPPER};
+    if(publicAccess&&!publicAccess.secret)return Response.json({error:"공개 의뢰 보안 설정이 완료되지 않았습니다."},{status:503});
+    if (!draft && String(body.publicConsent) !== "동의") return Response.json({ error: "상황판 공개를 위해 민감정보 공개 동의가 필요합니다." }, { status: 400 });
 
     if(body.patientBirthYear && (!/^\d{4}$/.test(String(body.patientBirthYear)) || Number(body.patientBirthYear)>new Date().getFullYear() || Number(body.patientBirthYear)<new Date().getFullYear()-120)) return Response.json({error:"출생연도를 확인하세요."},{status:400});
     const room = String(body.roomStatus) === "emergency_waiting" ? "응급실 대기 중 (병실 미배정·간병인 미지정)" : String(body.room || "");
     if (!room.trim()) return Response.json({ error: "병실을 입력하거나 응급실 대기 중을 선택해 주세요." }, { status: 400 });
     const [request] = await getDb().insert(careRequests).values({
-      ...ownership(actor), requesterName: String(body.requesterName), requesterPhone: String(body.requesterPhone), patientName: String(body.patientName), patientGender: String(body.patientGender), patientAge: String(body.patientAge), patientBirthYear: String(body.patientBirthYear || ""), patientWeight: String(body.patientWeight), diagnosis: String(body.diagnosis), patientCondition: String(body.patientCondition), precautions: String(body.precautions || ""), specialNotes: String(body.specialNotes || ""), publicConsent: "동의", building: String(body.building), floorName: String(body.floorName), ward: String(body.ward), room, careType: String(body.careType), startDate: String(body.startDate), requestNote: String(body.requestNote || ""), serviceSchedule: String(body.serviceSchedule || ""), serviceStartTime: String(body.serviceStartTime || ""), serviceEndTime: String(body.serviceEndTime || ""), restTime: String(body.restTime || "상호 협의"), holidayTerms: String(body.holidayTerms || "상호 협의"), careFee: String(body.careFee || ""), feePeriod: String(body.feePeriod || ""), paymentMethod: String(body.paymentMethod || ""), paymentDue: String(body.paymentDue || ""), serviceScope: String(body.serviceScope || ""), cancellationTerms: String(body.cancellationTerms || ""), contractNote: String(body.contractNote || ""), requesterSignature: String(body.requesterSignature || ""), contractConsent: "미동의", contractVersion: "", contractSignedAt: "", desiredGender: String(body.desiredGender || "무관"), desiredNationality: String(body.desiredNationality || "무관"), desiredExpertise: String(body.desiredExpertise || "무관"), desiredAge: String(body.desiredAge || "무관"), desiredPersonality: String(body.desiredPersonality || "무관"), desiredOther: String(body.desiredOther || ""), status: "requesting",
+      ...(actor?ownership(actor):{ownerUserId:null,hospitalId:await resolvePublicHospital(new URL(req.url).searchParams.get('hospital')||'')}), requesterName: String(body.requesterName), requesterPhone: String(body.requesterPhone), patientName: String(body.patientName), patientGender: String(body.patientGender), patientAge: String(body.patientAge), patientBirthYear: String(body.patientBirthYear || ""), patientWeight: String(body.patientWeight), diagnosis: String(body.diagnosis), patientCondition: String(body.patientCondition), precautions: String(body.precautions || ""), specialNotes: String(body.specialNotes || ""), publicConsent: draft ? "미동의" : "동의", building: String(body.building), floorName: String(body.floorName), ward: String(body.ward), room, careType: String(body.careType), startDate: String(body.startDate), requestNote: String(body.requestNote || ""), serviceSchedule: String(body.serviceSchedule || ""), serviceStartTime: String(body.serviceStartTime || ""), serviceEndTime: String(body.serviceEndTime || ""), restTime: String(body.restTime || "상호 협의"), holidayTerms: String(body.holidayTerms || "상호 협의"), careFee: "", feePeriod: "", paymentMethod: "", paymentDue: "", serviceScope: String(body.serviceScope || ""), cancellationTerms: String(body.cancellationTerms || ""), contractNote: "", requesterSignature: String(body.requesterSignature || ""), contractConsent: "미동의", contractVersion: "", contractSignedAt: "", desiredGender: String(body.desiredGender || "무관"), desiredNationality: String(body.desiredNationality || "무관"), desiredExpertise: String(body.desiredExpertise || "무관"), desiredAge: String(body.desiredAge || "무관"), desiredPersonality: String(body.desiredPersonality || "무관"), desiredOther: String(body.desiredOther || ""), status: draft ? "draft" : "requesting",
     }).returning();
-    const notification=await requestNotice(request,body);
-    return Response.json({notification,id:request.id, publicStatus:"공개 완료"}, { status: 201 });
+    if(publicAccess){const client=getClient();await ensurePublicCareRequestAccess(client);await client.execute({sql:'INSERT INTO care_request_access(request_id,phone_hash,pin_hash) VALUES(?,?,?)',args:[request.id,accessPhoneHash(publicAccess.phone,publicAccess.secret),await hashPassword(publicAccess.pin)]});}
+    const notification=draft?undefined:await requestNotice(request,body);
+    return Response.json({notification,id:request.id, publicStatus:draft?"저장 완료":"공개 완료"}, { status: 201 });
   } catch {
     return Response.json({ error: "간병 의뢰를 저장하지 못했습니다." }, { status: 500 });
   }
@@ -96,5 +106,5 @@ async function handlePOST(req:Request, actor:Actor) {
 async function handlePATCH(req:Request, actor:Actor){return Response.json({error:"의뢰번호를 클릭하고 신청서 저장·보내기와 협회 진행 화면을 이용하세요."},{status:409})}
 
 export const GET=(req:Request)=>withActor(req,async(actor)=>{await workflowGuard(req,actor);return handleGET(req,actor);});
-export const POST=(req:Request)=>withActor(req,async(actor)=>{await workflowGuard(req,actor);return handlePOST(req,actor);});
+export const POST=async(req:Request)=>{try{requireOrigin(req);const actor=await (await import('../../../lib/auth')).currentActor(req);if(actor?.status==='active'){await workflowGuard(req,actor);return handlePOST(req,actor);}const secret=process.env.CARE24_REQUEST_ACCESS_PEPPER;if(!secret)throw new AccessError(503,'공개 의뢰 보안 설정이 완료되지 않았습니다.');const ip=trustedClientIp(req);await rateLimit(`public-care-request:${clientRateKey(ip,secret)}`,5,900000);return handlePOST(req);}catch(e){return privateJson({error:e instanceof AccessError?e.message:'간병 의뢰를 처리하지 못했습니다.'},e instanceof AccessError?e.status:500);}};
 export const PATCH=(req:Request)=>withActor(req,async(actor)=>{await workflowGuard(req,actor);return handlePATCH(req,actor);});
