@@ -3,7 +3,7 @@ import {publicCareText,maskPatientName} from "@/lib/admin-privacy.mjs";
 import {requestBoardStatus} from "@/lib/request-board-status.mjs";
 import {AccessError,withActor,hospitalFilter,scope,scopedId,ownership,privateJson,rateLimit,requireOrigin,workflowGuard,type Actor} from "../../../lib/auth";
 import {resolvePublicHospital} from "../../../lib/hospital-context";
-import {accessPhoneHash,assertPin,clientRateKey,ensurePublicCareRequestAccess,normalizePhone,trustedClientIp} from "../../../lib/public-care-request-access.mjs";
+import {accessPhoneHash,assertNoNonAdminContractFields,assertPin,clientRateKey,ensurePublicCareRequestAccess,normalizePhone,trustedClientIp} from "../../../lib/public-care-request-access.mjs";
 import {hashPassword} from "../../../lib/auth-crypto.mjs";
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
 import { getDb, getClient } from "../../../db";
@@ -80,7 +80,7 @@ async function handleGET(req:Request, actor:Actor) {
 async function handlePOST(req:Request, actor?:Actor) {
   try {
     const body = await req.json() as Record<string, unknown>;
-    if(actor?.role!=="admin"&&["careFee","feePeriod","paymentMethod","paymentDue","contractNote","contractVersion","contractSignedAt"].some(key=>String(body[key]||"").trim()))return Response.json({error:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});
+    if(actor?.role!=="admin")try{assertNoNonAdminContractFields(body)}catch(e){return Response.json({error:e instanceof Error?e.message:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});}
     const required = ["requesterName", "requesterPhone", "patientName", "patientGender", "patientAge", "patientWeight", "diagnosis", "patientCondition", "building", "floorName", "ward", "careType", "startDate"];
     if (!required.every((key) => String(body[key] || "").trim())) return Response.json({ error: "필수 의뢰 항목을 모두 작성해 주세요." }, { status: 400 });
     const draft = String(body.action) === "save";

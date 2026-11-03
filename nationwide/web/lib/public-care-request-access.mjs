@@ -16,6 +16,11 @@ export function keyedHash(value,secret){
 }
 export function accessPhoneHash(phone,secret){return keyedHash(normalizePhone(phone),secret);}
 export function clientRateKey(ip,secret){return keyedHash(`client-ip:${ip}`,secret);}
+export const contractOnlyFields=['careFee','feePeriod','paymentMethod','paymentDue','contractNote','contractVersion','contractSignedAt'];
+export function assertNoNonAdminContractFields(body){
+ if(contractOnlyFields.some(key=>String(body?.[key]||'').trim()))throw Error('간병비·계약금액은 관리자만 입력할 수 있습니다.');
+}
+export function canSelfServiceRequest(status){return ['draft','requesting'].includes(String(status));}
 export async function ensurePublicCareRequestAccess(db){
   await db.execute(`CREATE TABLE IF NOT EXISTS care_request_access (
     request_id INTEGER PRIMARY KEY,

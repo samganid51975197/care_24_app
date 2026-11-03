@@ -4,13 +4,10 @@
 
 ## 가비아 프록시 설정
 
-운영 Node 서버는 외부 인터넷에 직접 공개하지 않고 Nginx만 공개한다. Nginx는 외부에서 들어온 같은 이름의 헤더를 제거하고, 실제 접속 주소 `$remote_addr`만 `X-Care24-Client-IP`로 전달한다.
+운영 Node 서버는 외부 인터넷에 직접 공개하지 않고 Nginx만 공개한다. 기존 운영 설정의 `proxy_pass` 주소와 포트(현재 운영은 3100)를 바꾸지 않고, 해당 `location` 블록에 아래 한 줄만 추가한다. 실제 접속 주소 `$remote_addr`가 `X-Care24-Client-IP`로 전달된다.
 
 ```nginx
 proxy_set_header X-Care24-Client-IP $remote_addr;
-proxy_set_header X-Forwarded-For "";
-proxy_set_header X-Real-IP "";
-proxy_pass http://127.0.0.1:3000;
 ```
 
 운영 환경 변수에는 `CARE24_TRUSTED_PROXY=gabia-nginx`와 별도 생성한 `CARE24_REQUEST_ACCESS_PEPPER`가 필요하다. 값은 저장소·PR·채팅에 기록하지 않는다. 두 값 또는 보안 헤더가 없으면 공개 의뢰 API는 실패 닫힘으로 거절한다.
