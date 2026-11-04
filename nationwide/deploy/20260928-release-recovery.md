@@ -10,28 +10,28 @@
 
 | 항목 | 복원 근거 | 반영 파일 |
 | --- | --- | --- |
-| 병원 첫 화면의 ‘간병으로 전하는 따뜻한 1% 나눔’ 내용보기 | 9/28 로컬 소스 `C:\care24\care24-v3\web` | `app/hospital-home.tsx`, `app/home-balance.css` |
-| 전국 병원 목록의 ‘기타’ 지역·분류 필터와 목록 안내 | 9/28 로컬 소스 및 지역목록 패치 | `public/regional/directory-navigation.js` |
-| 강남세브란스병원 1·2·3동 층별 병동·병실 안내 | 9/28 로컬 소스의 병동 목록 | `app/gangnam-sev-buildings.tsx`, `app/hospital-home.tsx` |
+| 전국 병원 목록의 ‘기타’ 병원 구분 필터 | 운영 release `20260928-remove-hospital-intro`와 `main`의 파일 단위 대조 | `public/regional/directory-navigation.js` |
+| 전국 병원 목록 스크립트 캐시 버전 | 운영 release `20260928-remove-hospital-intro`와 대조 | `public/regional/index.html` |
+| Play 계정 삭제 안내 | 운영 release 원문(띄어쓰기 3곳만 보정) | `public/delete-account.html` |
 
 ## 아직 원본을 찾지 못한 항목
 
 - 보험 영수증 및 보험 안내의 정확한 9/28 소스
-- 강남세브란스 세부 SVG 평면도 전체 연결 코드 (층별 안내와 공식 안내 링크는 복원했으며, 도면은 현장·공식 안내와 재확인 필요)
+- 강남세브란스 세부 평면도 전체 연결 코드
 - 병원 소개 제거의 전체 범위
 - care24tv 기능의 원본 소스
 - 서버에서 직접 수정된 `public/delete-account.html`
 
-위 항목은 빌드 산출물 또는 운영 release에만 있었던 것으로 보이며, 현재 확인 가능한 로컬 소스만으로는 안전하게 재구성할 수 없다. 추정 구현으로 덮어쓰지 않고, 도근이 보관한 release 비교본 또는 원본 소스를 받은 뒤 추가 복원한다.
+위 항목은 빌드 산출물에만 남아 있어 원본 소스 형태로 복원할 수 없다. 추정 구현으로 다시 만들지 않고, 도근의 별도 결정 또는 원본 소스를 받은 뒤 처리한다.
 
 ## 서버 직접 수정 파일
 
-- `public/regional/directory-navigation.js`: 로컬 9/28 소스와 지역목록 패치에 남아 있어 복원했다.
-- `public/delete-account.html`: 로컬 보관본에서 원문을 찾지 못해 반영하지 않았다.
+- `public/regional/directory-navigation.js`: 운영본과 대조하여 `기타` 분류 및 `보건의료원`·`치과병원` 조건만 반영했다. `기타` 지역, `coreRegions`, `matchesRegion`, `의료원` 분류는 운영본에 없으므로 이번 PR에 포함하지 않는다.
+- `public/delete-account.html`: 운영 원문을 반영하고 `hospital) and`, `records legally`, `before disposal`의 띄어쓰기만 보정했다.
 
 ## nginx 변경 설명
 
-2026-10-20 운영 nginx에 직접 변경이 있었다는 사실만 확인했다. 인증서, 비밀값, 실제 가상호스트 설정은 저장소에 기록하지 않는다. 공개 의뢰의 요청 제한에 필요한 비밀값 없는 예시는 `nginx.example.conf`에만 남긴다. 이 예시는 실제 운영 설정을 대체하거나 그대로 설치해서는 안 된다.
+2026-10-20 운영 nginx에 직접 변경이 있었다는 사실만 확인했다. 인증서, 비밀값, 실제 가상호스트 설정은 저장소에 기록하지 않는다. 이번 복원 PR에는 nginx 설정 변경을 포함하지 않는다.
 
 ## 검증과 서버 반영
 
