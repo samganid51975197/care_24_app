@@ -12,11 +12,12 @@
 | --- | --- | --- |
 | 병원 첫 화면의 ‘간병으로 전하는 따뜻한 1% 나눔’ 내용보기 | 9/28 로컬 소스 `C:\care24\care24-v3\web` | `app/hospital-home.tsx`, `app/home-balance.css` |
 | 전국 병원 목록의 ‘기타’ 지역·분류 필터와 목록 안내 | 9/28 로컬 소스 및 지역목록 패치 | `public/regional/directory-navigation.js` |
+| 강남세브란스병원 1·2·3동 층별 병동·병실 안내 | 9/28 로컬 소스의 병동 목록 | `app/gangnam-sev-buildings.tsx`, `app/hospital-home.tsx` |
 
 ## 아직 원본을 찾지 못한 항목
 
 - 보험 영수증 및 보험 안내의 정확한 9/28 소스
-- 강남세브란스 평면도 전체 연결 코드
+- 강남세브란스 세부 SVG 평면도 전체 연결 코드 (층별 안내와 공식 안내 링크는 복원했으며, 도면은 현장·공식 안내와 재확인 필요)
 - 병원 소개 제거의 전체 범위
 - care24tv 기능의 원본 소스
 - 서버에서 직접 수정된 `public/delete-account.html`
