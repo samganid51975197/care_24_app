@@ -13,11 +13,13 @@
 | 전국 병원 목록의 ‘기타’ 병원 구분 필터 | 운영 release `20260928-remove-hospital-intro`와 `main`의 파일 단위 대조 | `public/regional/directory-navigation.js` |
 | 전국 병원 목록 스크립트 캐시 버전 | 운영 release `20260928-remove-hospital-intro`와 대조 | `public/regional/index.html` |
 | Play 계정 삭제 안내 | 운영 release 원문(띄어쓰기 3곳만 보정) | `public/delete-account.html` |
+| 병원 첫 화면의 ‘간병으로 전하는 따뜻한 1% 나눔’ 내용보기 | 9/28 운영 화면 기능 확인 및 로컬 보관 화면 구성 | `app/hospital-home.tsx`, `app/home-balance.css` |
+| 강남세브란스병원 1·2·3동 병동 안내 | 9/28 운영 화면의 `gangnam-*` release 기능 및 로컬 보관 병동 목록 | `app/gangnam-sev-buildings.tsx`, `app/hospital-home.tsx` |
 
 ## 아직 원본을 찾지 못한 항목
 
 - 보험 영수증 및 보험 안내의 정확한 9/28 소스
-- 강남세브란스 세부 평면도 전체 연결 코드
+- 강남세브란스 세부 SVG 평면도 전체 연결 코드
 - 병원 소개 제거의 전체 범위
 - care24tv 기능의 원본 소스
 - 서버에서 직접 수정된 `public/delete-account.html`
@@ -26,7 +28,7 @@
 
 ## 서버 직접 수정 파일
 
-- `public/regional/directory-navigation.js`: 운영본과 대조하여 `기타` 분류 및 `보건의료원`·`치과병원` 조건만 반영했다. `기타` 지역, `coreRegions`, `matchesRegion`, `의료원` 분류는 운영본에 없으므로 이번 PR에 포함하지 않는다.
+- `public/regional/directory-navigation.js`: 운영본과 대조하여 `기타` 분류 및 `보건의료원`·`치과병원` 조건만 반영했다. `기타` 지역, `coreRegions`, `matchesRegion`, `의료원` 분류는 운영본에 없으므로 이번 PR에 포함하지 않는다. 이 둘은 별도 요청번호의 새 기능 PR로 분리한다.
 - `public/delete-account.html`: 운영 원문을 반영하고 `hospital) and`, `records legally`, `before disposal`의 띄어쓰기만 보정했다.
 
 ## nginx 변경 설명
