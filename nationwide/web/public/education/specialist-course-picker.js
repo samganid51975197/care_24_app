@@ -1,3 +1,35 @@
+const visualQuestionTemplates=[
+ {area:'공통안전·윤리',q:'[그림 문제] 그림의 손 위생 장면을 보고, 가장 알맞은 실천은 무엇인가요?',options:['환자 접촉 전과 후에 손 위생을 한다','장갑을 끼면 손 위생은 생략한다','근무 시작 때만 한 번 한다','눈에 보이는 오염이 있을 때만 한다'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 A · 손 위생'},
+ {area:'공통안전·윤리',q:'[그림 문제] 그림의 이동 전 준비에서 낙상 예방을 위해 먼저 확인할 것은 무엇인가요?',options:['바닥 물기를 정리하고 휠체어 브레이크를 확인한다','휠체어를 환자 가까이에만 둔다','환자를 먼저 일으켜 세운다','발판과 브레이크는 이동 중에 확인한다'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 B · 낙상 예방'},
+ {area:'통합 사례',q:'[그림 문제] 그림처럼 식사 보조를 할 때 가장 적절한 자세는 무엇인가요?',options:['상체를 세운 안정된 자세에서 삼킴을 관찰한다','완전히 누운 자세에서 빨리 먹인다','고개를 뒤로 젖힌다','걸어 다니면서 먹인다'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 C · 안전한 식사 자세'},
+ {area:'호흡기질환·감염',q:'[그림 문제] 그림과 같은 호흡곤란 의심 장면에서 돌봄인의 우선 행동은 무엇인가요?',options:['즉시 호출벨로 의료진에게 알리고 상태를 관찰한다','산소 유량을 임의로 높인다','물을 마시게 하며 기다린다','혼자 걸어서 화장실에 가게 한다'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 D · 호흡곤란 즉시 보고'},
+ {area:'공통안전·윤리',q:'[그림 문제] 뒤꿈치 압박 예방 그림에서 올바른 방법은 무엇인가요?',options:['종아리 전체를 넓게 지지해 뒤꿈치를 침대에서 띄운다','작은 수건을 발목·아킬레스건에 직접 받친다','붉은 부위를 강하게 문지른다','같은 자세를 오래 유지한다'],correct:0,src:'assets/heel-offloading-comparison.png',caption:'그림 · 뒤꿈치 압박 예방'},
+ {area:'공통안전·윤리',q:'[그림 문제] 휠체어 이동 전 그림에서 함께 확인해야 할 항목은 무엇인가요?',options:['브레이크 잠금과 발판 위치, 통로의 물기','창문 개방 여부와 TV 채널','환자의 휴대전화 화면','보호자 방문 시간'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 B · 휠체어 안전 확인'},
+ {area:'통합 사례',q:'[그림 문제] 식사 중 기침하거나 젖은 목소리가 생기면 어떻게 해야 하나요?',options:['식사를 멈추고 즉시 간호사에게 알린다','물을 많이 마시게 하며 계속 먹인다','자세를 눕혀 쉰다','음식을 더 크게 떠먹인다'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 C · 식사 중 관찰'},
+ {area:'호흡기질환·감염',q:'[그림 문제] 환자의 입술 색 변화와 숨참을 발견하면 어떤 내용을 보고해야 하나요?',options:['발견 시각·호흡 상태·의식 변화를 즉시 전달한다','원인을 추측해 진단명만 말한다','다음 근무자에게만 전한다','기록 없이 지켜본다'],correct:0,src:'assets/caregiver-safety-four-panel.png',caption:'그림 D · 관찰·보고'}
+];
+function applyVisualQuestions(questions,isActual,seed){const positions=isActual?[3,10,17,24,31,38,45,52]:[3,10,17,24,31];return questions.map((question,index)=>{const order=positions.indexOf(index);if(order<0)return question;const template=visualQuestionTemplates[(order+(isActual?0:seed-1))%visualQuestionTemplates.length],rot=rotateOptions(template.options,(seed+index)%4,template.correct);return{...question,area:template.area,type:'그림 사례형',q:template.q,...rot,visual:{src:template.src,caption:template.caption}}})}
+const baseMakeExamWithVisuals=makeExam;
+makeExam=function(seed,isActual=false){return applyVisualQuestions(baseMakeExamWithVisuals(seed,isActual),isActual,seed)};
+const baseRenderExamQuestionWithVisuals=renderExamQuestion;
+renderExamQuestion=function(){baseRenderExamQuestionWithVisuals();const previous=examCenter.querySelector('.exam-visual-question');if(previous)previous.remove();const visual=currentExam?.questions?.[currentExamIndex]?.visual;if(!visual)return;const figure=document.createElement('figure');figure.className='exam-visual-question';figure.innerHTML=`<img src="${visual.src}" alt="${visual.caption} 교육 그림"><figcaption>${visual.caption} · 그림을 보고 가장 안전한 행동을 고르세요.</figcaption>`;examQuestion.after(figure)};
+const baseRenderExamCardsWithVisuals=renderExamCards;
+renderExamCards=function(){baseRenderExamCardsWithVisuals();mockSetCards.querySelectorAll('p').forEach(node=>{if(!node.dataset.visualRatio){node.innerHTML+=' <br><small>그림 문제 5문항(12.5%) 포함</small>';node.dataset.visualRatio='true'}});const actualInfo=actualExamCard.querySelector('p');if(actualInfo&&!actualInfo.dataset.visualRatio){actualInfo.innerHTML+=' <br><small>그림 문제 8문항(13.3%) 포함</small>';actualInfo.dataset.visualRatio='true'}};
+const examVisualStyle=document.createElement('style');examVisualStyle.textContent='.exam-visual-question{margin:12px 0 18px;border:1px solid #c8ddd7;border-radius:12px;overflow:hidden;background:#fff}.exam-visual-question img{display:block;width:100%;max-height:360px;object-fit:contain;background:#f4f8f7}.exam-visual-question figcaption{padding:9px 12px;background:#eff8f5;color:#08796c;font-size:14px;font-weight:800}';document.head.append(examVisualStyle);
+
+const originalRenderCommonBasic=renderCommonBasic;
+const heelVisualStyle=document.createElement('style');
+heelVisualStyle.textContent='.heel-offloading-visual{margin:16px 0;border:1px solid #d4e2df;border-radius:12px;overflow:hidden;background:#fff}.heel-offloading-visual img{display:block;width:100%;height:auto}.heel-offloading-visual figcaption{display:grid;gap:6px;padding:12px 14px;color:#425866}.heel-offloading-visual figcaption b{color:#08796c}.heel-offloading-visual figcaption small{color:#6a7f89;font-size:12px}';
+document.head.append(heelVisualStyle);
+renderCommonBasic=function(){
+  originalRenderCommonBasic();
+  if(!selectedCommonCourse||commonBasicPlan[selectedCommonLesson]?.[1]!=='피부·배설 돌봄')return;
+  const visual=document.createElement('figure');
+  visual.className='heel-offloading-visual';
+  visual.innerHTML='<img src="assets/heel-offloading-comparison.png" alt="왼쪽은 발목에 작은 수건을 직접 받친 주의 예, 오른쪽은 종아리 전체를 넓은 베개로 지지해 뒤꿈치를 침대에서 띄운 올바른 예"><figcaption><b>욕창 예방 시연</b><span>발목·아킬레스건에 작은 수건을 직접 받치지 않습니다. 종아리 전체를 넓게 지지해 뒤꿈치가 침대에서 떠 있는지 손으로 확인합니다.</span><small>교육용 자체 제작 시청각 자료 · 환자별 병원 지침과 간호사 지시를 우선합니다.</small></figcaption>';
+  commonBasicContent.after(visual);
+};
+
 const specialistCourseChoices=[
  {id:'digestive',label:'소화기질환 전문간병사',icon:'🫄',note:'1급·2급 · 공통 기본교육 16시간부터 시작'},
  {id:'neuropsychiatric',label:'신경계·정신질환 전문간병사',icon:'🧠',note:'1급·2급 · 공통 기본교육 16시간부터 시작'},
