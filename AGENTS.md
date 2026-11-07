@@ -1,3 +1,46 @@
+# 작업·보고 규칙 (2026-11-07 도근 확정 — 이 파일의 다른 규칙보다 우선)
+
+이 저장소에서 작업하는 모든 AI(Codex, ChatGPT 등)는 아래 규칙을 먼저 따른다.
+
+## 1. 작업 위치 확인 (매 작업 시작 시)
+- 이 저장소 `samganid51975197/care_24_app`의 로컬 클론에서만 작업한다.
+- 시작할 때 `git remote -v`로 origin이 `https://github.com/samganid51975197/care_24_app`인지 확인하고, `git fetch origin` 후 최신 `origin/main`에서 새 브랜치를 만든다.
+- origin이 다르면(예: `scsa-korea/care-app`) 그 폴더에서는 아무것도 고치지 말고, "작업 폴더가 공식 저장소가 아님"이라고 황세옥 님께 알린다.
+
+## 2. 대상 앱과 폴더
+| 코드 | 앱 | 폴더 |
+| --- | --- | --- |
+| GB | 간병24 (구형, com.fivegram.gb) | `legacy-care24/` |
+| NW | 전국병원간병 (kr.or.care24.app, care.간병24.com) | `nationwide/` |
+| EL | 전문간병사 교육 | `el/` (공식 위치 확정 전 임시) |
+| VN | 베트남 간병사 시범사업 (com.scsakorea.careapp) | 이 저장소 아님 — `samganid51975197/care-vietnam` |
+
+모든 요청에는 요청번호 `앱코드-YYYYMMDD-NN`을 붙인다.
+
+## 3. 결과 제출: PR로만
+- `main`에 직접 push하지 않는다. 새 브랜치 → 커밋 → push → Pull Request.
+- PR 제목 앞에 요청번호를 붙이고, PR 설명에 작업 보고서(양식 B: 대상 앱, 변경 내용, 커밋, 테스트 결과, 서버 반영 = "도근에게 반영 요청", DB 변경, Play 배포 필요 여부, 알려진 문제)를 적는다.
+- 운영 기능을 바꾸는 PR은 바뀌는 화면·문구를 PR 설명에 적는다.
+
+## 4. 운영 반영은 도근만
+- AI는 운영 서버(114.108.153.57) 접속, 서버 파일 수정, release 생성, 서비스 재시작을 하지 않는다.
+- 운영 DB·Supabase에 마이그레이션을 적용하지 않고, 운영 데이터를 지우지 않는다.
+- Google Play에 업로드하지 않고, `applicationId`를 바꾸지 않으며, 서명키를 새로 만들지 않는다.
+- 배포는 도근이 PR을 검토·머지한 뒤 직접 한다.
+
+## 5. 보고·질문 경로
+- 작업 결과는 PR로, 질문·결정 요청은 dokeun98@gmail.com 메일로 보낸다(메일 도구가 있으면 AI가 직접 발송, 제목 앞에 요청번호).
+- 메일 도구가 없으면 PR 설명이나 PR 댓글에 남기고, 황세옥 님께는 "PR #번호 확인 요청" 한 줄만 전달하도록 안내한다.
+- 카카오톡에 붙여 넣을 대화 내용이나 긴 초안은 만들지 않는다.
+
+## 6. 현재 결정 사항
+- 전문간병사 교육은 EL로 옮긴다(2026-11-05 황세옥 님 결정). `nationwide/web/public/education/`에는 새 기능을 추가하지 않는다.
+- 민간자격 등록이 끝나기 전에는 '자격시험', '1급·2급', '자격 발급' 표현을 쓰지 않는다('합격/불합격'은 실습 평가 결과에만).
+- 비밀번호, API 키, 서명키, Supabase `service_role` 키, 환자 정보는 커밋·PR·메일·대화에 쓰지 않는다.
+- 가비아 DNS의 `@`, `www` 레코드는 바꾸지 않는다.
+
+---
+
 # Approved Care24 branding
 
 The user approved the header on 2026-09-13 and explicitly requested that it remain unchanged unless they ask.
@@ -43,5 +86,5 @@ The user approved the header on 2026-09-13 and explicitly requested that it rema
 
 - The board may show patient birth year and age. Full date of birth is not currently collected; never invent missing month/day.
 
-# Deployment completion preference (2026-09-24)
-- User requests every future completed change be reflected in the production site and Android APK. Verify production after deployment and build the matching APK; report site deployment, APK build, and phone installation separately. Never claim phone installation without device verification. Report concrete blockers.
+# Deployment completion preference (2026-09-24) — 폐기
+- 2026-11-07부로 폐기. 운영 서버·APK 반영은 AI가 하지 않고, 맨 위 "작업·보고 규칙" 4번에 따라 도근이 PR 머지 후 수행한다.
