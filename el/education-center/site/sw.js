@@ -1,6 +1,6 @@
 const CACHE_NAME = "pcec-static-v2";
 const CACHE_PREFIX = "pcec-static-";
-const SHELL = ["./index.html", "./manifest.webmanifest", "./app-icon.svg", "./style.css", "./app.js", "./home-course-catalog.js"];
+const SHELL = ["./index.html", "./manifest.webmanifest", "./app-icon.svg", "./home-course-catalog.js"];
 const PRIVATE_PATH = /(?:^|\/)(?:api|admin|exam-applicants|exam-roster|exam-enrollment|exam-operations|practicum-admin|practicum-submit|certificate-admin|certificate-verify)(?:\/|\.|$)/i;
 const LARGE_FILE = /\.(?:mp4|webm|pdf|mp3|wav|ogg|m4a|aac)$/i;
 
@@ -46,3 +46,4 @@ self.addEventListener("fetch", event => {
     return storePublicResponse(cache, request, response);
   })));
 });
+
