@@ -134,6 +134,7 @@
 .document-completion{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;margin:12px 0;background:#eaf7ef;border:1px solid #9ec7b0;border-radius:12px;color:#155238;line-height:1.6}
 
 .patient-entry .phone-request-message{margin:14px 0 0;line-height:1.7;font-size:15px;word-break:keep-all}.patient-entry .phone-request-message strong{font-size:inherit;font-weight:800;color:#6e281c}.patient-entry .phone-request-message span{font-weight:400;color:#80716d}
+.care-entry-actions .insurance-notice{margin:13px 0 0;padding-top:11px;border-top:1px solid currentColor;font-size:12px;line-height:1.55;color:#7b3a30;word-break:keep-all}.caregiver-entry .insurance-notice{color:#23613f}.care-entry-actions .insurance-notice strong{font-size:inherit;color:inherit}
 
 
 .recipient-strip.four{display:flex;flex-wrap:wrap;gap:8px}.contract-caregiver-delivery{padding:16px;margin:16px 0;background:#f0f7f4;border:1px solid #adc9bb;border-radius:12px}.contract-caregiver-delivery h3{font-size:18px;font-weight:800;color:#155238}.contract-caregiver-delivery p{line-height:1.6;margin:10px 0}.contract-caregiver-delivery small{display:block;margin-top:12px;line-height:1.6;color:#52635d}
@@ -154,11 +155,20 @@
 @media(max-width:760px){.care-entry-actions{grid-template-columns:minmax(0,1fr)}.care-entry-directions{grid-column:1}.patient-entry-buttons button,.patient-entry-buttons a{min-height:110px}}
 .patient-entry-buttons small{font-size:clamp(20px,2.2vw,28px);font-weight:800;line-height:1.4}.patient-entry-buttons button,.patient-entry-buttons a{gap:10px}
 
-.patient-entry-buttons .entry-label{display:flex;justify-content:space-between;width:min(100%,180px);font-size:clamp(18px,2.2vw,26px);font-weight:800;white-space:nowrap;gap:0}
+.patient-entry-buttons .entry-label{display:block;width:auto;max-width:100%;white-space:nowrap;text-align:center;word-spacing:normal;letter-spacing:-.025em;line-height:1.35}
+.patient-entry-buttons .entry-label>span{display:inline;letter-spacing:inherit}
+.patient-entry-buttons strong.entry-label{font-size:28px;font-weight:800}
+.patient-entry-buttons small.entry-label{font-size:22px;font-weight:600;letter-spacing:0}
+.caregiver-entry button strong{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.35}.caregiver-entry button small{font-size:16px;font-weight:600;line-height:1.45;max-width:100%}
+.patient-entry-buttons button,.patient-entry-buttons a{min-height:138px;padding:24px 12px;gap:10px}
+@media(max-width:480px){.patient-entry-buttons strong.entry-label,.caregiver-entry button strong{font-size:24px}.patient-entry-buttons small.entry-label{font-size:20px}.caregiver-entry button small{font-size:14px}.patient-entry-buttons button,.patient-entry-buttons a{min-height:124px;padding:20px 8px;gap:8px}}
+.hospital-sharing{margin:20px 0;border:2px solid #21816b;padding:20px}.hospital-sharing h2{color:#17654d;font-size:clamp(28px,3vw,38px);font-weight:900;line-height:1.25;letter-spacing:-.04em}.hospital-sharing>p{line-height:1.75}.hospital-sharing-details{margin-top:18px;border:1px solid #b9d5cd;border-radius:10px;background:#f5faf8}.hospital-sharing-details summary{cursor:pointer;padding:13px 16px;font-weight:800;color:#17654d}.hospital-sharing-details>div{padding:0 16px 16px}.hospital-sharing-details li{margin:8px 0;line-height:1.65}
+.hospital-introduction h2{font-size:clamp(28px,3vw,38px);font-weight:900;line-height:1.25;letter-spacing:-.04em}
 .menu-card:has(.hospital-floor-guide){width:min(760px,94vw);max-height:85dvh;overflow:auto}
 .hospital-floor-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
 .hospital-floor-buttons button{display:flex;flex-direction:column;gap:5px;text-align:left;border:2px solid #cadbd4;border-radius:12px;padding:12px;background:#f1f8f4;color:#184936;min-height:76px}
 .hospital-floor-buttons button[aria-pressed=true]{border-color:#16704a;background:#16704a;color:white}
 .hospital-floor-buttons button:focus-visible{outline:3px solid #d58a08;outline-offset:2px}
 .hospital-floor-buttons strong{font-size:22px}.hospital-floor-buttons span{font-size:14px}
+.legacy-buildings .gangnam-building-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.legacy-buildings .gangnam-building-row button{min-height:116px;border:1px solid #b8d1d5;border-radius:18px;background:#0a6873;color:#fff;padding:18px;text-align:center;cursor:pointer}.legacy-buildings .gangnam-building-row button:hover{background:#075b65}.legacy-buildings .gangnam-building-row strong,.legacy-buildings .gangnam-building-row span{display:block}.legacy-buildings .gangnam-building-row strong{font-size:28px}.legacy-buildings .gangnam-building-row span{margin-top:8px;font-size:14px}@media(max-width:760px){.legacy-buildings .gangnam-building-row{gap:8px}.legacy-buildings .gangnam-building-row button{min-height:88px;padding:10px}.legacy-buildings .gangnam-building-row strong{font-size:21px}.legacy-buildings .gangnam-building-row span{font-size:12px}}
 .hospital-floor-detail{border:1px solid #cadbd4;border-radius:12px;padding:16px}.hospital-floor-detail h3{font-size:21px;font-weight:800}.hospital-floor-detail ul{list-style:disc;padding-left:22px}.hospital-floor-source{font-size:12px;color:#53675c}.hospital-floor-guide>a{display:block;text-decoration:underline;margin:12px 0}
