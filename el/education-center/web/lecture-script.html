@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>보충 설명 강의 · 전문간병사 교육</title>
+  <link rel="stylesheet" href="lecture-script.css?v=1">
+</head>
+<body>
+  <nav><a href="specialty-courses.html">← 전문간병사 교육과정</a></nav>
+  <main>
+    <p class="eyebrow">AI 강사 · 교안 보충 설명</p>
+    <h1 id="title">보충 설명 강의</h1>
+    <p id="scope" class="scope"></p>
+    <div class="status" role="status">
+      <strong>보충 설명 대본이 준비되었습니다.</strong>
+      <span>교안 내용을 쉬운 풀이·핵심 원리·현장 사례·안전 행동으로 보완합니다.</span>
+      <small>현재 화면은 강사용 대본입니다. 아바타 영상은 아직 생성되지 않았습니다.</small>
+    </div>
+    <div class="toolbar">
+      <span id="meta"></span>
+      <button id="print" type="button">인쇄 / PDF 저장</button>
+    </div>
+    <article id="script" aria-live="polite">강의 대본을 불러오는 중입니다.</article>
+    <p id="error" class="error" hidden></p>
+  </main>
+  <script type="module" src="lecture-script.mjs?v=1"></script>
+</body>
+</html>

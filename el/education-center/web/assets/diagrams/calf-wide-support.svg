@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 440" role="img" aria-labelledby="title desc">
+  <title id="title">종아리를 넓게 받쳐 뒤꿈치 압력을 줄이는 예</title>
+  <desc id="desc">누운 다리의 종아리 아래 넓은 지지 쿠션을 대어 하퇴의 하중을 분산하고 뒤꿈치는 침대에 닿지 않게 띄운 측면 그림입니다.</desc>
+  <rect width="1120" height="440" rx="28" fill="#f5f9fc"/>
+  <text x="48" y="58" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#174767">종아리 넓은 면을 받쳐 뒤꿈치를 띄우기</text>
+  <rect x="58" y="316" width="1004" height="42" rx="20" fill="#d9e7ef" stroke="#66869a" stroke-width="5"/>
+  <path d="M330 316 Q346 255 397 242 Q505 219 625 230 Q744 239 828 270 Q849 279 865 316 Z" fill="#bce5d9" stroke="#368a70" stroke-width="7"/>
+  <path d="M210 284 C280 244 335 196 408 180 C500 160 616 170 710 177 C765 181 798 194 833 209 L887 222 C911 228 930 225 949 211 L1001 174 C1018 162 1041 167 1052 183 C1063 200 1057 219 1040 231 L983 270 C950 293 915 303 872 296 L813 286 C722 273 612 267 516 278 C420 290 349 307 291 316 L210 316 Z" fill="#416f87"/>
+  <path d="M819 302 Q858 323 900 304" fill="none" stroke="#c12f4d" stroke-width="5" stroke-dasharray="9 8"/>
+  <path d="M866 132 L866 196" stroke="#c12f4d" stroke-width="7" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#c12f4d"/></marker></defs>
+  <path d="M548 113 L548 218" stroke="#26745f" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <defs><marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#26745f"/></marker></defs>
+  <rect x="362" y="78" width="372" height="52" rx="26" fill="#e3f3ee"/>
+  <text x="548" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#205d4e">종아리 길이를 따라 넓게 지지</text>
+  <rect x="760" y="72" width="245" height="52" rx="26" fill="#fff0f2"/>
+  <text x="882" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#9e2941">뒤꿈치는 뜬 상태</text>
+  <text x="560" y="397" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#35576a">무릎 뒤·아킬레스건·발에 압력이 몰리지 않는지 확인</text>
+</svg>

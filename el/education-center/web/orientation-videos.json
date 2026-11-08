@@ -1,0 +1,72 @@
+{
+  "dementia": {
+    "videoId": "b4f015774eaeeeabdcd76d0f29ae3fbf",
+    "status": "waiting",
+    "title": "치매전문간병사"
+  },
+  "musculoskeletal": {
+    "videoId": "e2581cd02573b9c5a03f3b4f3e6fa4bc",
+    "status": "waiting",
+    "title": "근골격계질환 전문간병사"
+  },
+  "respiratory": {
+    "videoId": "2534f5a447fd112df146d3c09fe690cf",
+    "status": "waiting",
+    "title": "호흡기질환 전문간병사"
+  },
+  "circulatory": {
+    "videoId": "8b79811f0af706570942546e5b32a21d",
+    "status": "waiting",
+    "title": "순환계질환 전문간병사"
+  },
+  "sensory": {
+    "videoId": "f97088b6b02bb4567939cd63d78edf4c",
+    "status": "waiting",
+    "title": "감각계질환 전문간병사"
+  },
+  "neurological": {
+    "videoId": "01eee32447dc7bf4624845fbdfb01720",
+    "status": "waiting",
+    "title": "신경계·정신질환 전문간병사"
+  },
+  "digestive": {
+    "videoId": "7672a486c383cc67244e461f426f6456",
+    "status": "waiting",
+    "title": "소화기질환 전문간병사"
+  },
+  "renal": {
+    "videoId": "3bd27fe055325f1fcc9a46d2e9535ded",
+    "status": "waiting",
+    "title": "신장·비뇨기계질환 전문간병사"
+  },
+  "hematology": {
+    "videoId": "3918de6f2939833f9a5132477850d55d",
+    "status": "waiting",
+    "title": "혈액질환 전문간병사"
+  },
+  "skin": {
+    "videoId": "bc8ac2e8e0e3de87bc6192863dce75e0",
+    "status": "waiting",
+    "title": "피부질환 전문간병사"
+  },
+  "endocrine": {
+    "videoId": "fe539c5255cbfad730ae905bbcbf277d",
+    "status": "waiting",
+    "title": "내분비·대사질환 전문간병사"
+  },
+  "head-neck": {
+    "videoId": "c2d563ade7da3527c6b61e4c46707a6c",
+    "status": "waiting",
+    "title": "두경부암 전문간병사"
+  },
+  "hospice": {
+    "videoId": "efe80a375a2d4c81c8b4944f7671971e",
+    "status": "waiting",
+    "title": "호스피스·완화돌봄전문간병사"
+  },
+  "pressure": {
+    "videoId": "df4c906e846023dc955b9a587a68bf39",
+    "status": "waiting",
+    "title": "욕창전문간병사"
+  }
+}

@@ -1,0 +1,11 @@
+.pressure-position-guide{margin:22px 0;padding:20px;background:#edf5f7;border:1px solid #c8d9e1;border-radius:16px;color:#203746}
+.pressure-position-guide>h2{margin:0 0 8px;color:#164c63}
+.pressure-position-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+.pressure-position-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,1fr);gap:18px;align-items:center;background:#fff;border:1px solid #d3e0e6;border-radius:13px;padding:12px}
+.pressure-position-card img{display:block;width:100%;height:auto;max-height:210px;object-fit:cover;border-radius:9px;background:#eef4f6}
+.pressure-position-copy h3{margin:0 0 8px;color:#174a63;font-size:1.15rem}
+.pressure-position-copy p{margin:7px 0;line-height:1.65}
+.pressure-position-copy p:first-of-type{font-weight:700}
+.pressure-position-manual-link{display:inline-block;margin-top:14px;color:#155d4e;font-weight:750}
+@media(max-width:720px){.pressure-position-guide{padding:14px}.pressure-position-card{grid-template-columns:1fr;gap:10px}.pressure-position-card img{max-height:none}.pressure-position-copy h3{font-size:1.08rem}}
+@media print{.pressure-position-guide{break-inside:avoid}.pressure-position-card{break-inside:avoid}}

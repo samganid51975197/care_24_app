@@ -1,0 +1,26 @@
+{
+  "clinicalReview": "pending",
+  "integratedIntoLessons": false,
+  "videos": [
+    {
+      "id": "pressure",
+      "videoId": "1b8d66684fca42fe84cbb1cd708476f9",
+      "status": "waiting"
+    },
+    {
+      "id": "feeding",
+      "videoId": "f2891d333ca74c51a6792b32aada27c7",
+      "status": "waiting"
+    },
+    {
+      "id": "suction",
+      "videoId": "24fae65891eb4bfdb5f093e5fd879998",
+      "status": "waiting"
+    },
+    {
+      "id": "nebulizer",
+      "videoId": "a24e68088b864d4e936058a43c50ca39",
+      "status": "waiting"
+    }
+  ]
+}

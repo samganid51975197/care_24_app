@@ -1,11 +1,12 @@
 # 간병24 통합 저장소
 
-이 저장소에는 **두 가지 앱만** 최신 상태로 둡니다.
+이 저장소에는 기존 운영 앱 두 개와 별도 검토 중인 EL 교육센터 소스를 둡니다.
 
 | 폴더 | 앱 | 상태 |
 |---|---|---|
 | [`nationwide/`](nationwide/) | **전국병원간병** (신규, 현재 운영) | 운영 웹 소스 + Android 3.0.3 (`faf3521`) |
 | [`legacy-care24/`](legacy-care24/) | **구 간병24 앱** (`com.fivegram.gb`, 간병24.com) | Android 4.0.2 |
+| [`el/education-center/`](el/education-center/) | **전문간병사 교육지원센터** (EL, 별도 웹앱) | HTTPS 도메인·가비아 경로 미확정, PR 검토 전 |
 | [`archive/`](archive/) | 참고용 보관 자료 (간병24 1.1.5, hospital-hub) | 실행·배포 대상 아님 |
 
 > 작업을 시작하기 전에 [HANDOFF-2026-10-03.md](HANDOFF-2026-10-03.md)를 먼저 읽어 주세요. 남은 기능에 대한 결정 질문이 정리되어 있습니다.
@@ -17,6 +18,7 @@
 - **Android 앱**(Play "전국병원간병", `kr.or.care24.app`) → `nationwide/android/`
   - 다음 버전은 versionCode **30002 이상**이어야 합니다.
 - **구 간병24 앱**(Play "간병24", `com.fivegram.gb`) → `legacy-care24/android/` (다음 버전 versionCode 40005 이상)
+- **전문간병사 교육지원센터**(EL) → 공개 후보 `el/education-center/site/`; HTTPS 주소와 서버 경로 미확정, 도근 PR 검토 및 별도 배포 필요
 - 운영 현황·배포 기록 → `nationwide/STATUS.md` (코드를 바꾸면 함께 갱신)
 - 수동 배포 방법 → `nationwide/deploy/README.md`
 
@@ -38,3 +40,4 @@
 
 - `care_24_app`은 `care24-v3`보다 최신 기준이며, 활성 개발·배포 소스는 계속 `nationwide/` 하나만 사용합니다.
 - 대조 상세와 비공개 인계본에만 남은 자료의 처리 방침은 [CARE24_V3_CONSOLIDATION_20261101.md](nationwide/docs/CARE24_V3_CONSOLIDATION_20261101.md)를 참조하세요.
+

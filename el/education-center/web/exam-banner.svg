@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="5000" height="1000" viewBox="0 0 5000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">전문간병사 자격시험 시험장 안내 현수막</title>
+  <desc id="desc">시험장 주소, 오전·오후 시험 시간, 30분 전 입실 안내</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102f46"/>
+      <stop offset="1" stop-color="#174d68"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f4c66a"/>
+      <stop offset="1" stop-color="#ffe4a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="5000" height="1000" fill="url(#bg)"/>
+  <path d="M0 0h5000v28H0z" fill="url(#gold)"/>
+  <path d="M0 972h5000v28H0z" fill="url(#gold)"/>
+  <circle cx="4780" cy="140" r="300" fill="#ffffff" opacity=".035"/>
+  <circle cx="80" cy="920" r="260" fill="#ffffff" opacity=".035"/>
+
+  <g font-family="Noto Sans KR, Malgun Gothic, Apple SD Gothic Neo, sans-serif" fill="#ffffff">
+    <rect x="145" y="110" width="950" height="105" rx="52" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-opacity=".35" stroke-width="4"/>
+    <text x="620" y="184" text-anchor="middle" font-size="52" font-weight="700" letter-spacing="5">전문간병사 자격시험</text>
+
+    <text x="145" y="400" font-size="170" font-weight="900" letter-spacing="8">시험장 안내</text>
+    <rect x="145" y="465" width="1640" height="7" rx="3.5" fill="url(#gold)"/>
+    <text x="145" y="585" font-size="53" font-weight="700" fill="#cfe8f1" letter-spacing="3">시험 장소</text>
+    <text x="145" y="700" font-size="70" font-weight="800" letter-spacing="1">서울특별시 강남구 강남대로154길 39</text>
+    <text x="145" y="815" font-size="70" font-weight="800" letter-spacing="1">동림빌딩 4층</text>
+
+    <rect x="1940" y="120" width="1850" height="760" rx="42" fill="#ffffff"/>
+    <text x="2045" y="245" font-size="53" font-weight="700" fill="#527184" letter-spacing="3">시험 시간 · 매월 첫째 토요일 및 일요일</text>
+    <text x="2045" y="390" font-size="79" font-weight="800" fill="#15384f">오전 10:00–11:20</text>
+    <text x="2045" y="505" font-size="79" font-weight="800" fill="#15384f">오후 14:00–15:20</text>
+    <line x1="2045" y1="555" x2="3680" y2="555" stroke="#d9e5eb" stroke-width="5"/>
+    <rect x="2045" y="610" width="1635" height="172" rx="25" fill="#fff4da"/>
+    <text x="2862" y="681" text-anchor="middle" font-size="52" font-weight="700" fill="#795412">원활한 시험 진행을 위해</text>
+    <text x="2862" y="750" text-anchor="middle" font-size="65" font-weight="900" fill="#8c342e">시험 시작 30분 전까지 입실해 주세요</text>
+
+    <g transform="translate(4000 202)">
+      <circle cx="320" cy="210" r="162" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-opacity=".75" stroke-width="8"/>
+      <path d="M320 105v119l83 54" fill="none" stroke="url(#gold)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="320" y="445" text-anchor="middle" font-size="52" font-weight="800" letter-spacing="2">신분증 지참</text>
+      <text x="320" y="525" text-anchor="middle" font-size="42" fill="#d5e7ef">접수 시간 확인</text>
+    </g>
+  </g>
+</svg>
