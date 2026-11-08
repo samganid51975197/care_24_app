@@ -1,5 +1,15 @@
 # 운영 상태 — 2026-09-26 확인
 
+## 운영 배포 — 2026-11-08 (도근)
+
+- 20:00 release `/opt/care24/releases/20261108-port-60b48a0` (main `1ffcdfe`, PR #5 + PR #10): 비로그인 간병 의뢰 저장·공개, 전화번호+4자리 본인 확인, care24-v3 9/28 커밋 이식(간병인 보험·현금영수증 안내, 강남세브란스 배치도).
+- 20:3x release `/opt/care24/releases/20261108-fix-4b3f7d0` (PR #11): 저장 버튼 action 누락·오류 사유 미표시 수정. 운영에서 비로그인 의뢰 37번 저장·공개 성공 확인.
+- 실행 지정: `/etc/systemd/system/care24.service.d/` 의 `z`×51 + `-20261108-fix.conf` (직전 `z`×50 `-20261108-port.conf`, 9/28 운영본 `...-zz-remove-hospital-intro.conf`). 이전 release는 복구용으로 보존.
+- nginx `sites-available/care24` 두 location에 `proxy_set_header X-Care24-Client-IP $remote_addr;` 추가. `sites-enabled/care24.bak-20261020` 은 `/root/care24-backup-20261103/` 으로 이동.
+- `service.env`에 `CARE24_TRUSTED_PROXY`, `CARE24_REQUEST_ACCESS_PEPPER` 추가(값 비공개, PEPPER는 변경 금지).
+- DB: 첫 공개 의뢰 시 `care_request_access` 테이블 생성. 배포 전 백업 `/root/care24-backup-20261108/`.
+- 9/28 운영본 대비 미복원: 지도 새 탭·병원 화면 복귀 버튼(hospital-navigation), 병원 소개 카드 숨김(remove-hospital-intro) — care24-v3 저장소에도 커밋 없음.
+
 ## 저장소 통합 — 2026-10-03
 
 - care24-v3 저장소의 web·deploy·STATUS를 `care_24_app/nationwide/`로 옮김. 코드 변경 없음, 운영 서버·APK 변경 없음.
