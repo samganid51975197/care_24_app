@@ -1,9 +1,10 @@
 export function maskPatientName(value){const name=Array.from(String(value||'').trim());if(name.length<2)return '○';if(name.length===2)return name[0]+'○';return name[0]+'○'.repeat(name.length-2)+name[name.length-1];}
 const privateRoutes=new Set(['/api/applications','/api/submissions','/api/documents','/api/consents','/api/care-contracts','/api/document-media','/api/ward-board','/api/ward-assignments','/api/contribution']);
 export function requiresPrivateAdmin(path,method,body={}) {
- if(privateRoutes.has(path)||/^\/api\/care-requests\/[^/]+$/.test(path))return true;
+ if(privateRoutes.has(path))return true;
+ if(/^\/api\/care-requests\/[^/]+$/.test(path))return !['GET','PATCH'].includes(method);
  if(path==='/api/care-requests')return !['GET','POST'].includes(method)||(method==='POST'&&['careFee','feePeriod','paymentMethod','paymentDue','contractNote','contractVersion','contractSignedAt'].some(key=>String(body[key]||'').trim()));
- if(path==='/api/care-workflow'&&method!=='GET')return !['save_application','send_application','uniform','start','save_diary','ack_instruction'].includes(body.action)||(['save_application','send_application'].includes(body.action)&&!!String(body.note||'').trim());
+ if(path==='/api/care-workflow'&&method!=='GET')return !['save_application','send_application','uniform','start','save_diary','ack_instruction','save_evaluation','send_evaluation'].includes(body.action)||(['save_application','send_application'].includes(body.action)&&!!String(body.note||'').trim());
  return false;
 }
 const statusKeys=['requesting','matching','matched'];
@@ -20,12 +21,14 @@ export function nonAdminResponse(path,data) {
   restricted:true,admin:false,
   requests:(data.requests||[]).map(r=>({id:r.id,status:statusKeys.includes(r.status)?r.status:'requesting',canPrepareContract:false,patientName:maskPatientName(r.patientName),...Object.fromEntries(['building','floorName','ward','patientGender','patientAge','patientBirthYear','patientWeight','diagnosis','patientCondition','precautions','specialNotes','desiredGender','desiredNationality','desiredExpertise','desiredAge','desiredPersonality','desiredOther'].map(key=>[key,publicCareText(r[key])]))})),
   profiles:(data.profiles||[]).map(p=>({id:p.id,applicantName:`본인 프로필 ${p.id}`,careerYears:'비공개'})),
+  drafts:(data.drafts||[]).map(d=>({id:d.id,status:'draft'})),
   progress:(data.progress||[]).map(p=>({id:p.id,status:'진행'})),
   stats:Object.fromEntries(['day','week','month','year'].map(k=>[k,{total:Number(data.stats?.[k]?.total)||0,matched:Number(data.stats?.[k]?.matched)||0}]))
  };
  if(path==='/api/care-workflow')return {
   id:data.id,admin:false,restricted:true,ownPatient:false,ownSelected:!!data.ownSelected,
   applications:(data.applications||[]).map(a=>({profileId:a.profileId,status:a.status==='sent'?'sent':'draft',name:'비공개'})),
+  canEvaluate:!!data.canEvaluate,ownEvaluation:data.ownEvaluation,
   selected:data.selected,notifiedAt:data.notifiedAt,uniformAt:data.uniformAt,startedAt:data.startedAt,
   canWriteDiary:!!data.ownSelected&&!!data.canWriteDiary,diary:data.ownSelected?(data.diary||[]):[],submissions:{}
  };
