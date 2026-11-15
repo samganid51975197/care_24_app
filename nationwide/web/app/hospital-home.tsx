@@ -293,6 +293,25 @@ export default function Home({hospital}:{hospital?:{id:string;name:string;region
         <div className="home-screen-inner">{completionNotice&&<div className="document-completion" role="status"><span>{completionNotice}</span><Button type="button" variant="outline" onClick={()=>setCompletionNotice("")}>확인</Button></div>}
           {homeStep === "buildings" ? <>
             <div className="legacy-home-title"><p>{hospitalName} 통합간병 앱</p><h1>입원 병동을 선택하세요</h1><span>{isSamsung?"본관·암병원·별관을 누르면 층별 병동이 표시됩니다.":hospital?"병동 안내를 확인하거나 간병 의뢰서를 작성하세요.":"동을 누르면 층별 병동이 표시됩니다."}</span><b className="logo-navigation-guide">아이콘(<img className="inline-care24-icon" src="/ganbyeong24-logo-cropped.webp" alt="간병24 아이콘" />)을 클릭하면 전국병원 사이트가 열립니다.</b></div>
+            <section className="night-dispatch" aria-labelledby="night-dispatch-title">
+              <div className="night-dispatch-copy">
+                <p className="night-dispatch-eyebrow">야간·휴일 갑작스러운 입원 간병 연결</p>
+                <h2 id="night-dispatch-title">간병24 전국야간기동센터</h2>
+                <p>중앙에서 요청을 접수해 지역 대기 간병인 연결을 상담합니다. 실제 배정 여부와 도착 시간은 지역과 대기 인력 상황에 따라 달라집니다.</p>
+                <div className="night-dispatch-actions">
+                  <a className="night-dispatch-call" href="tel:16005197" aria-label="간병24 전화 상담 1600-5197">
+                    <Phone aria-hidden="true" />
+                    <span>전화 상담 <b>1600-5197</b></span>
+                  </a>
+                  <Button className="night-dispatch-online" type="button" variant="outline" onClick={openCareRequest}>온라인 간병 의뢰</Button>
+                </div>
+              </div>
+              <div className="night-dispatch-ambulance">
+                <b>구급차 제휴 연계</b>
+                <span>허가받은 이송업체와 제휴 준비 중입니다.</span>
+                <small>생명이 위급한 응급상황은 <a href="tel:119">119 신고</a>가 우선입니다.</small>
+              </div>
+            </section>
             <div className="legacy-cloud"><ShieldCheck /><div><b>병원 클라우드와 분리 운영</b><p>이 사이트는 {hospitalName} 전산·EMR·클라우드와 연결되지 않은 별도 관리 서비스입니다. 대한노인돌봄서비스협회(간병24)가 관리하며, 실제 연동은 병원 승인 후에만 가능합니다.</p></div><span>외부 독립 운영</span></div>
             {isSamsung ? <SamsungBuildings onSelect={building => {setSelectedBuilding(building);setHomeStep("wards")}}/> : <div className="legacy-buildings">{hospital&&hospital.name==="강남세브란스병원"?<div className="gangnam-building-row" aria-label="강남세브란스병원 입원동 선택">{["1동 병동","2동 병동","3동 병동"].map(building=><button type="button" key={building} onClick={()=>{setGangnamBuilding(building);setMenuCard("병동·병실 안내")}}><strong>{building.replace(" 병동","")}</strong><span>병동·병실 안내</span></button>)}</div>:hospital&&<button type="button" onClick={()=>hospital.name==='혜민병원'?window.location.assign('/hospitals/hyemin/wards'):setMenuCard("병동·병실 안내")}><div className="teal"><Building2/><strong>입원병동</strong></div><section><h2>병동·병실 안내</h2><p>{hospital.name==='혜민병원'||hospital.name.replace(/\s/g,'')==='대전대학교서울한방병원'?'층별 병동·병실 보기':'현장 배치 자료 등록 대기'}</p><b>안내 보기 <ChevronRight/></b></section></button>}
               {!hospital&&Object.keys(hospitalWards).map((building, index) => <button type="button" key={building} onClick={() => { setSelectedBuilding(building); setHomeStep("wards"); }}><div className={index === 0 ? "teal" : "navy"}><Building2 /><strong>{building}</strong></div><section><h2>{building} 입원병동</h2><p>{hospitalWards[building].length}개 층별 병동 안내</p><b>층별 병동 보기 <ChevronRight /></b></section></button>)}
