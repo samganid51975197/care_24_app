@@ -143,6 +143,20 @@ export const privacyConsents = sqliteTable("privacy_consents", {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
 });
+export const membershipApplications = sqliteTable("membership_applications", {
+  id: integer("id").primaryKey({ autoIncrement: true),
+  memberType: text("member_type").notNull(),
+  applicationPayload: encryptedText("application_payload", "membership_applications.application_payload").notNull(),
+  signatureImage: encryptedText("signature_image", "membership_applications.signature_image").notNull(),
+  signerName: encryptedText("signer_name", "membership_applications.signer_name").notNull(),
+  termsVersion: text("terms_version").notNull(),
+  signedAt: text("signed_at").notNull(),
+  draftTokenHash: text("draft_token_hash").notNull(),
+  status: text("status").notNull().default("saved"),
+  sentAt: text("sent_at"),
+  completedAt: text("completed_at"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
 export const careContracts = sqliteTable("care_contracts", {
   ownerUserId: text("owner_user_id"),
   hospitalId: text("hospital_id"),

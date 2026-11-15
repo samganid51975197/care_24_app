@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./auth.css";
+import "./membership.css";
 import AuthGate from "./auth-gate";
 import PrivacyFooter from "./privacy-footer";
 
