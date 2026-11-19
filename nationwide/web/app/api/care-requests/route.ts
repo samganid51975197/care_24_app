@@ -13,9 +13,10 @@ const contractNumber = (id: number, createdAt: string) => `CR-${createdAt.slice(
 async function handleGET(req:Request, actor:Actor) {
   try {
     const db = getDb();
-    const [allRequests, profiles] = await Promise.all([
-      db.select().from(careRequests).where(actor.role==='caregiver'?and(eq(careRequests.publicConsent,"동의"),hospitalFilter(careRequests,actor)):scope(careRequests,actor)).orderBy(asc(careRequests.id)).limit(1000),
+    const [allRequests, profiles, drafts] = await Promise.all([
+      db.select().from(careRequests).where(and(eq(careRequests.publicConsent,"동의"),actor.role==='caregiver'?hospitalFilter(careRequests,actor):scope(careRequests,actor))).orderBy(asc(careRequests.id)).limit(1000),
       db.select({ id: applications.id, applicantName: applications.applicantName, applicantGender: applications.applicantGender, careerYears: applications.careerYears, qualification: applications.qualification, preferredDate: applications.preferredDate, status: applications.status }).from(applications).where(scope(applications,actor)).orderBy(desc(applications.id)).limit(100),
+      actor.role==='admin'?Promise.resolve([]):db.select({id:careRequests.id}).from(careRequests).where(and(eq(careRequests.ownerUserId,actor.id),eq(careRequests.publicConsent,"미동의"),hospitalFilter(careRequests,actor))).orderBy(desc(careRequests.id)).limit(20),
     ]);
     const now = new Date(), dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime(), day = 86400000;
     const starts: Record<string, number> = { day: dayStart, week: dayStart - 6 * day, month: new Date(now.getFullYear(), now.getMonth(), 1).getTime(), year: new Date(now.getFullYear(), 0, 1).getTime() };
@@ -34,7 +35,7 @@ async function handleGET(req:Request, actor:Actor) {
       const w=JSON.parse(decryptText(row.payload,'care_workflows.'+row.request_id));
       return w.applications.some((a:any)=>a.ownerId===actor.id);
     }).map(row=>({id:Number(row.request_id),status:'진행'}));
-    return Response.json({progress,
+    return Response.json({progress,drafts:drafts.map((draft)=>({id:draft.id})),
       requests: allRequests.map((item) => ({
         id: item.id,
         contractNumber: contractNumber(item.id, item.createdAt),
@@ -78,16 +79,17 @@ async function handlePOST(req:Request, actor:Actor) {
     if(actor.role!=="admin"&&["careFee","feePeriod","paymentMethod","paymentDue","contractNote","contractVersion","contractSignedAt"].some(key=>String(body[key]||"").trim()))return Response.json({error:"간병비·계약금액은 관리자만 입력할 수 있습니다."},{status:403});
     const required = ["requesterName", "requesterPhone", "patientName", "patientGender", "patientAge", "patientWeight", "diagnosis", "patientCondition", "building", "floorName", "ward", "careType", "startDate"];
     if (!required.every((key) => String(body[key] || "").trim())) return Response.json({ error: "필수 의뢰 항목을 모두 작성해 주세요." }, { status: 400 });
-    if (String(body.publicConsent) !== "동의") return Response.json({ error: "민감정보 공개 동의가 필요합니다." }, { status: 400 });
+    const saveDraft=body.action==="save";
+    if (!saveDraft&&String(body.publicConsent) !== "동의") return Response.json({ error: "상황판에 보내려면 민감정보 공개 동의가 필요합니다." }, { status: 400 });
 
     if(body.patientBirthYear && (!/^\d{4}$/.test(String(body.patientBirthYear)) || Number(body.patientBirthYear)>new Date().getFullYear() || Number(body.patientBirthYear)<new Date().getFullYear()-120)) return Response.json({error:"출생연도를 확인하세요."},{status:400});
     const room = String(body.roomStatus) === "emergency_waiting" ? "응급실 대기 중 (병실 미배정·간병인 미지정)" : String(body.room || "");
     if (!room.trim()) return Response.json({ error: "병실을 입력하거나 응급실 대기 중을 선택해 주세요." }, { status: 400 });
     const [request] = await getDb().insert(careRequests).values({
-      ...ownership(actor), requesterName: String(body.requesterName), requesterPhone: String(body.requesterPhone), patientName: String(body.patientName), patientGender: String(body.patientGender), patientAge: String(body.patientAge), patientBirthYear: String(body.patientBirthYear || ""), patientWeight: String(body.patientWeight), diagnosis: String(body.diagnosis), patientCondition: String(body.patientCondition), precautions: String(body.precautions || ""), specialNotes: String(body.specialNotes || ""), publicConsent: "동의", building: String(body.building), floorName: String(body.floorName), ward: String(body.ward), room, careType: String(body.careType), startDate: String(body.startDate), requestNote: String(body.requestNote || ""), serviceSchedule: String(body.serviceSchedule || ""), serviceStartTime: String(body.serviceStartTime || ""), serviceEndTime: String(body.serviceEndTime || ""), restTime: String(body.restTime || "상호 협의"), holidayTerms: String(body.holidayTerms || "상호 협의"), careFee: String(body.careFee || ""), feePeriod: String(body.feePeriod || ""), paymentMethod: String(body.paymentMethod || ""), paymentDue: String(body.paymentDue || ""), serviceScope: String(body.serviceScope || ""), cancellationTerms: String(body.cancellationTerms || ""), contractNote: String(body.contractNote || ""), requesterSignature: String(body.requesterSignature || ""), contractConsent: "미동의", contractVersion: "", contractSignedAt: "", desiredGender: String(body.desiredGender || "무관"), desiredNationality: String(body.desiredNationality || "무관"), desiredExpertise: String(body.desiredExpertise || "무관"), desiredAge: String(body.desiredAge || "무관"), desiredPersonality: String(body.desiredPersonality || "무관"), desiredOther: String(body.desiredOther || ""), status: "requesting",
+      ...ownership(actor), requesterName: String(body.requesterName), requesterPhone: String(body.requesterPhone), patientName: String(body.patientName), patientGender: String(body.patientGender), patientAge: String(body.patientAge), patientBirthYear: String(body.patientBirthYear || ""), patientWeight: String(body.patientWeight), diagnosis: String(body.diagnosis), patientCondition: String(body.patientCondition), precautions: String(body.precautions || ""), specialNotes: String(body.specialNotes || ""), publicConsent: saveDraft?"미동의":"동의", building: String(body.building), floorName: String(body.floorName), ward: String(body.ward), room, careType: String(body.careType), startDate: String(body.startDate), requestNote: String(body.requestNote || ""), serviceSchedule: String(body.serviceSchedule || ""), serviceStartTime: String(body.serviceStartTime || ""), serviceEndTime: String(body.serviceEndTime || ""), restTime: String(body.restTime || "상호 협의"), holidayTerms: String(body.holidayTerms || "상호 협의"), careFee: String(body.careFee || ""), feePeriod: String(body.feePeriod || ""), paymentMethod: String(body.paymentMethod || ""), paymentDue: String(body.paymentDue || ""), serviceScope: String(body.serviceScope || ""), cancellationTerms: String(body.cancellationTerms || ""), contractNote: String(body.contractNote || ""), requesterSignature: String(body.requesterSignature || ""), contractConsent: "미동의", contractVersion: "", contractSignedAt: "", desiredGender: String(body.desiredGender || "무관"), desiredNationality: String(body.desiredNationality || "무관"), desiredExpertise: String(body.desiredExpertise || "무관"), desiredAge: String(body.desiredAge || "무관"), desiredPersonality: String(body.desiredPersonality || "무관"), desiredOther: String(body.desiredOther || ""), status: saveDraft?"draft":"requesting",
     }).returning();
-    const notification=await requestNotice(request,body);
-    return Response.json({notification,id:request.id, publicStatus:"공개 완료"}, { status: 201 });
+    const notification=saveDraft?undefined:await requestNotice(request,body);
+    return Response.json({notification,id:request.id,draft:saveDraft,publicStatus:saveDraft?"비공개 저장 완료":"공개 완료"}, { status: 201 });
   } catch {
     return Response.json({ error: "간병 의뢰를 저장하지 못했습니다." }, { status: 500 });
   }

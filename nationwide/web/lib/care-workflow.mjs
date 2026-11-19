@@ -1,6 +1,6 @@
 import {encryptText,decryptText} from './data-crypto.mjs';
 export async function ensureWorkflow(db){await db.execute('CREATE TABLE IF NOT EXISTS care_workflows(request_id INTEGER PRIMARY KEY,payload TEXT NOT NULL,updated_at TEXT NOT NULL)')}
-export const emptyWorkflow=()=>({applications:[],selected:null,patientContract:'',caregiverContract:'',patientSigned:'',caregiverSigned:'',scheduledAt:'',notifiedAt:'',uniformAt:'',startedAt:'',audit:[]});
+export const emptyWorkflow=()=>({applications:[],selected:null,patientContract:'',caregiverContract:'',patientSigned:'',caregiverSigned:'',scheduledAt:'',notifiedAt:'',uniformAt:'',startedAt:'',evaluations:[],audit:[]});
 export async function readWorkflow(db,id){await ensureWorkflow(db);const r=await db.execute({sql:'SELECT payload FROM care_workflows WHERE request_id=?',args:[id]});return r.rows.length?JSON.parse(decryptText(r.rows[0].payload,'care_workflows.'+id)):emptyWorkflow()}
 export function transition(w,b,actor,context,now=new Date()){
  const admin=actor.role==='admin',action=b.action,stamp=now.toISOString();const fail=m=>{throw Error(m)};
@@ -29,6 +29,24 @@ export function transition(w,b,actor,context,now=new Date()){
  }else if(action==='uniform'||action==='start'){
   const selected=w.applications.find(x=>x.profileId===w.selected);if(!admin&&selected?.ownerId!==actor.id)fail('선정된 간병인 또는 협회 관리자만 처리할 수 있습니다.');
   if(!w.notifiedAt)fail('계약·일정 통보가 먼저 필요합니다.');if(action==='uniform'){if(b.confirmed!==true)fail('실제 유니폼 수령을 확인하세요.');if(w.uniformAt)fail('이미 수령 확인했습니다.');w.uniformAt=stamp}else{if(!w.uniformAt)fail('유니폼 수령 확인이 필요합니다.');if(now.getTime()<new Date(w.scheduledAt).getTime())fail('약속한 시작 시간 이후에 근무를 시작할 수 있습니다.');if(w.startedAt)fail('이미 근무를 시작했습니다.');if(b.confirmed!==true)fail('실제 근무 시작을 확인하세요.');w.startedAt=stamp}
+ }else if(['save_evaluation','send_evaluation'].includes(action)){
+  const canEvaluate=context.requestOwner===actor.id||(actor.role==='hospital'&&context.canEvaluateHospital===true);
+  if(!canEvaluate)fail('해당 의뢰의 간호사·환자·보호자만 평가할 수 있습니다.');
+  if(!w.startedAt)fail('근무 시작 확인 후 간병인을 평가할 수 있습니다.');
+  w.evaluations??=[];let entry=w.evaluations.find(x=>x.authorId===actor.id&&x.status==='draft');
+  if(action==='send_evaluation'&&!entry)fail('먼저 평가서를 저장해 주세요.');
+  if(action==='save_evaluation'){
+   if(w.evaluations.some(x=>x.authorId===actor.id&&x.status!=='draft'))fail('이미 보낸 평가는 수정할 수 없습니다.');
+   const evaluatorType=String(b.evaluatorType||'');if(!['간호사','환자','보호자'].includes(evaluatorType))fail('평가자 구분을 선택하세요.');if(actor.role==='hospital'&&evaluatorType!=='간호사')fail('병원 담당자는 간호사 평가자로 선택해야 합니다.');if(context.requestOwner===actor.id&&!admin&&!['환자','보호자'].includes(evaluatorType))fail('환자 또는 보호자 평가자로 선택하세요.');
+   const rating=Number(b.rating);if(!Number.isInteger(rating)||rating<1||rating>5)fail('별점은 1점부터 5점까지 선택하세요.');
+   const note=String(b.note||'').trim();if(note.length>2000)fail('평가 의견은 2000자 이내로 작성하세요.');
+   const data={evaluatorType,rating,note,authorId:actor.id,authorName:String(actor.name||actor.username||'평가자'),caregiverName:String(w.applications.find(x=>x.profileId===w.selected)?.name||''),status:'draft',updatedAt:stamp};
+   if(entry)Object.assign(entry,data);else w.evaluations.push({id:(w.evaluations.at(-1)?.id||0)+1,...data});
+  }else{
+   if(entry.authorId!==actor.id)fail('본인이 작성한 평가만 보낼 수 있습니다.');entry.status='sent';entry.sentAt=stamp;
+  }
+ }else if(action==='confirm_evaluation'){
+  adminOnly();w.evaluations??=[];const entry=w.evaluations.find(x=>x.id===Number(b.evaluationId));if(!entry||entry.status!=='sent')fail('관리자 확인 대기 중인 평가를 찾을 수 없습니다.');entry.status='confirmed';entry.confirmedAt=stamp;entry.confirmedBy=actor.id;
  }else if(action==='save_diary'){
   const selected=w.applications.find(x=>x.profileId===w.selected);
   if(actor.role!=='caregiver'||selected?.ownerId!==actor.id)fail('선정된 담당 간병인만 간병일지를 작성할 수 있습니다.');
