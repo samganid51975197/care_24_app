@@ -1,10 +1,7 @@
 import {createHmac} from 'node:crypto';
+import {normalizeKoreanPhone} from './korean-phone.mjs';
 
-export function normalizePhone(value){
-  const phone=String(value||'').replace(/\D/g,'');
-  if(!/^01\d{8,9}$/.test(phone))throw Error('연락처를 확인해 주세요.');
-  return phone;
-}
+export const normalizePhone=normalizeKoreanPhone;
 export function assertPin(value){
   const pin=String(value||'');
   if(!/^\d{4}$/.test(pin))throw Error('숫자 4자리 비밀번호를 입력해 주세요.');

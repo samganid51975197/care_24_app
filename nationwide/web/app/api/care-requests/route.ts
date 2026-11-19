@@ -84,7 +84,6 @@ async function handlePOST(req:Request, actor?:Actor) {
     const required = ["requesterName", "requesterPhone", "patientName", "patientGender", "patientAge", "patientWeight", "diagnosis", "patientCondition", "building", "floorName", "ward", "careType", "startDate"];
     if (!required.every((key) => String(body[key] || "").trim())) return Response.json({ error: "필수 의뢰 항목을 모두 작성해 주세요." }, { status: 400 });
     const draft = String(body.action) === "save";
-    if(!actor&&draft)return Response.json({error:"로그인 없이 작성한 의뢰는 이 기기에 임시 저장됩니다. 공개 동의 후 상황판 공개하기를 눌러 접수해 주세요."},{status:400});
     let publicAccess:{phone:string,pin:string,secret:string|undefined}|null=null;
     if(!actor){try{publicAccess={phone:normalizePhone(body.requesterPhone),pin:assertPin(body.requesterPin),secret:process.env.CARE24_REQUEST_ACCESS_PEPPER};}catch(e){return Response.json({error:e instanceof Error?e.message:"연락처와 4자리 비밀번호를 확인해 주세요."},{status:400});}}
     if(publicAccess&&!publicAccess.secret)return Response.json({error:"공개 의뢰 보안 설정이 완료되지 않았습니다."},{status:503});
