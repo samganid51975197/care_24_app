@@ -53,8 +53,16 @@ export async function workflowGuard(req: Request, actor: Actor) {
   const body = req.headers.get("content-type")?.includes("multipart/form-data") ? Object.fromEntries(await req.clone().formData()) : await req.clone().json();
   if (["confirm","complete"].includes(String(body.action))) throw new AccessError(403, "담당자 확인은 병원 담당자 또는 관리자만 할 수 있습니다.");
 }
+let authLimitsReady:Promise<void>|null=null;
+async function ensureAuthLimits(){
+  const client=getClient();
+  if(!authLimitsReady)authLimitsReady=client.execute('CREATE TABLE IF NOT EXISTS auth_limits (key TEXT PRIMARY KEY, window_start INTEGER NOT NULL, count INTEGER NOT NULL)').then(()=>undefined).catch(error=>{authLimitsReady=null;throw error;});
+  await authLimitsReady;
+  return client;
+}
 export async function rateLimit(key: string, max: number, windowMs = 900000) {
+  const client=await ensureAuthLimits();
   const start = Math.floor(Date.now()/windowMs)*windowMs;
-  const result = await getClient().execute({sql: `INSERT INTO auth_limits (key,window_start,count) VALUES(?,?,1) ON CONFLICT(key) DO UPDATE SET count=CASE WHEN window_start=excluded.window_start THEN count+1 ELSE 1 END,window_start=excluded.window_start RETURNING count`,args:[key,start]});
+  const result = await client.execute({sql: `INSERT INTO auth_limits (key,window_start,count) VALUES(?,?,1) ON CONFLICT(key) DO UPDATE SET count=CASE WHEN window_start=excluded.window_start THEN count+1 ELSE 1 END,window_start=excluded.window_start RETURNING count`,args:[key,start]});
   if (Number(result.rows[0].count)>max) throw new AccessError(429,"요청이 많습니다. 잠시 후 다시 시도해 주세요.");
 }
