@@ -107,6 +107,19 @@ async function handlePOST(req:Request, actor?:Actor) {
 
 async function handlePATCH(req:Request, actor:Actor){return Response.json({error:"의뢰번호를 클릭하고 신청서 저장·보내기와 협회 진행 화면을 이용하세요."},{status:409})}
 
-export const GET=(req:Request)=>withActor(req,async(actor)=>{await workflowGuard(req,actor);return handleGET(req,actor);});
+async function handlePublicBoardSummary(req:Request){
+  try{
+    const hospital= new URL(req.url).searchParams.get('hospital')||'';
+    const hospitalId=await resolvePublicHospital(hospital);
+    const requests=await getDb().select({status:careRequests.status,createdAt:careRequests.createdAt}).from(careRequests).where(and(eq(careRequests.hospitalId,hospitalId),eq(careRequests.publicConsent,'동의'),inArray(careRequests.status,['requesting','matching','matched'])));
+    const koreaOffset=9*60*60*1000,now=new Date(),koreaNow=new Date(now.getTime()+koreaOffset);
+    const dayStart=Date.UTC(koreaNow.getUTCFullYear(),koreaNow.getUTCMonth(),koreaNow.getUTCDate())-koreaOffset,day=86400000;
+    const starts:Record<string,number>={day:dayStart,week:dayStart-6*day,month:Date.UTC(koreaNow.getUTCFullYear(),koreaNow.getUTCMonth(),1)-koreaOffset,year:Date.UTC(koreaNow.getUTCFullYear(),0,1)-koreaOffset};
+    const createdAtTime=(value:string|null)=>{const normalized=String(value||'').replace(' ','T');const parsed=Date.parse(/[zZ]|[+-]\d{2}:?\d{2}$/.test(normalized)?normalized:normalized+'Z');return Number.isFinite(parsed)?parsed:0;};
+    const stats=Object.fromEntries(Object.entries(starts).map(([key,start])=>{const rows=requests.filter(item=>createdAtTime(item.createdAt)>=start);return[key,{total:rows.length,matched:rows.filter(item=>item.status==='matched').length}];}));
+    return Response.json({stats},{headers:{'Cache-Control':'no-store'}});
+  }catch(e){return Response.json({error:e instanceof AccessError?e.message:'현황을 불러오지 못했습니다.'},{status:e instanceof AccessError?e.status:500,headers:{'Cache-Control':'no-store'}});}
+}
+export const GET=(req:Request)=>new URL(req.url).searchParams.get('summary')==='1'?handlePublicBoardSummary(req):withActor(req,async(actor)=>{await workflowGuard(req,actor);return handleGET(req,actor);});
 export const POST=async(req:Request)=>{try{requireOrigin(req);const actor=await (await import('../../../lib/auth')).currentActor(req);if(actor?.status==='active'){await workflowGuard(req,actor);return handlePOST(req,actor);}const secret=process.env.CARE24_REQUEST_ACCESS_PEPPER;if(!secret)throw new AccessError(503,'공개 의뢰 보안 설정이 완료되지 않았습니다.');const ip=trustedClientIp(req);await rateLimit(`public-care-request:${clientRateKey(ip,secret)}`,5,900000);return handlePOST(req);}catch(e){return privateJson({error:e instanceof AccessError?e.message:'간병 의뢰를 처리하지 못했습니다.'},e instanceof AccessError?e.status:500);}};
 export const PATCH=(req:Request)=>withActor(req,async(actor)=>{await workflowGuard(req,actor);return handlePATCH(req,actor);});
