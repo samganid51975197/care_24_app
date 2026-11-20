@@ -45,6 +45,7 @@ export async function POST(req: Request) {
     const valid=await verifyPassword(password,String(user?.password_hash || dummy));
     if (!user || !valid) throw new AccessError(401,"아이디 또는 비밀번호가 올바르지 않습니다.");
     if(user.status!=='active') throw new AccessError(403,user.status==='pending'?"관리자 승인 대기 중입니다.":"이용이 제한된 계정입니다. 관리자에게 문의해 주세요.");
+    if(b.expectedRole==='caregiver'&&user.role!=='caregiver') throw new AccessError(403,"간병 신청은 승인된 간병인 계정으로 로그인해 주세요.");
     const token=newToken();
     await db.execute({sql:'DELETE FROM auth_sessions WHERE expires_at<=?',args:[Date.now()]});
     await db.execute({sql:'INSERT INTO auth_sessions(token_hash,user_id,expires_at) VALUES(?,?,?)',args:[tokenHash(token),user.id,Date.now()+28800000]});
