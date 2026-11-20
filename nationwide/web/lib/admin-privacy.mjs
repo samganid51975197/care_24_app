@@ -24,7 +24,7 @@ export function nonAdminResponse(path,data) {
   stats:Object.fromEntries(['day','week','month','year'].map(k=>[k,{total:Number(data.stats?.[k]?.total)||0,matched:Number(data.stats?.[k]?.matched)||0}]))
  };
  if(path==='/api/care-workflow')return {
-  id:data.id,admin:false,restricted:true,ownPatient:false,ownSelected:!!data.ownSelected,
+  id:data.id,admin:false,restricted:true,canApply:data.canApply===true,ownPatient:false,ownSelected:!!data.ownSelected,
   applications:(data.applications||[]).map(a=>({profileId:a.profileId,status:a.status==='sent'?'sent':'draft',name:'비공개'})),
   selected:data.selected,notifiedAt:data.notifiedAt,uniformAt:data.uniformAt,startedAt:data.startedAt,
   canWriteDiary:!!data.ownSelected&&!!data.canWriteDiary,diary:data.ownSelected?(data.diary||[]):[],submissions:{}
