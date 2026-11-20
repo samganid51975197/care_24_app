@@ -2,6 +2,7 @@ import { getClient } from "../../../../db";
 import { AccessError, currentActor, privateJson, rateLimit, readToken, requireOrigin, sessionCookie } from "../../../../lib/auth";
 import { hashPassword, newToken, tokenHash, verifyPassword } from "../../../../lib/auth-crypto.mjs";
 import { isLegacyPreviewLogout } from "../../../../lib/logout-origin.mjs";
+import { notifyEvent } from "../../../../lib/notifications.mjs";
 export const runtime = "nodejs";
 const actionOf = (req: Request) => new URL(req.url).pathname.split('/').pop();
 export async function GET(req: Request) {
@@ -36,8 +37,12 @@ export async function POST(req: Request) {
       const exists=await db.execute({sql:'SELECT id FROM auth_users WHERE username=?',args:[username]});
       if(exists.rows.length) throw new AccessError(409,"사용할 수 없는 아이디입니다.");
       const encoded=await hashPassword(password);
-      await db.execute({sql:`INSERT INTO auth_users(id,username,name,password_hash,requested_role,requested_hospital,role,status,created_at) VALUES(?,?,?,?,?,?,'caregiver','pending',?)`,args:[crypto.randomUUID(),username,name,encoded,requestedRole,requestedHospital,Date.now()]});
-      return privateJson({ok:true,message:"가입 신청이 완료되었습니다. 관리자 승인 후 이용할 수 있습니다."},201);
+      const id=crypto.randomUUID();
+      await db.execute({sql:`INSERT INTO auth_users(id,username,name,password_hash,requested_role,requested_hospital,role,status,created_at) VALUES(?,?,?,?,?,?,'caregiver','pending',?)`,args:[id,username,name,encoded,requestedRole,requestedHospital,Date.now()]});
+      // The pending account is the durable admin inbox. SMS is a secondary alert and
+      // must never turn a successfully saved application into a failed signup.
+      const notification=await notifyEvent(db,`signup:${id}`,'signup');
+      return privateJson({ok:true,message:"가입 승인 신청이 접수되어 관리자 승인 대기 목록에 등록되었습니다.",notification:notification.state},201);
     }
     const found=await db.execute({sql:'SELECT * FROM auth_users WHERE username=?',args:[username]});
     const user=found.rows[0];
@@ -45,9 +50,15 @@ export async function POST(req: Request) {
     const valid=await verifyPassword(password,String(user?.password_hash || dummy));
     if (!user || !valid) throw new AccessError(401,"아이디 또는 비밀번호가 올바르지 않습니다.");
     if(user.status!=='active') throw new AccessError(403,user.status==='pending'?"관리자 승인 대기 중입니다.":"이용이 제한된 계정입니다. 관리자에게 문의해 주세요.");
+    if(b.expectedRole==='caregiver'&&user.role!=='caregiver') throw new AccessError(403,"간병 신청은 승인된 간병인 계정으로 로그인해 주세요.");
     const token=newToken();
     await db.execute({sql:'DELETE FROM auth_sessions WHERE expires_at<=?',args:[Date.now()]});
     await db.execute({sql:'INSERT INTO auth_sessions(token_hash,user_id,expires_at) VALUES(?,?,?)',args:[tokenHash(token),user.id,Date.now()+28800000]});
     return privateJson({ok:true},200,{'Set-Cookie':sessionCookie(token)});
-  } catch(e) { return privateJson({error:e instanceof AccessError?e.message:"로그인 요청을 처리하지 못했습니다."},e instanceof AccessError?e.status:500); }
+  } catch(e) {
+    if(e instanceof AccessError)return privateJson({error:e.message},e.status);
+    console.error(`auth ${actionOf(req)||'unknown'} request failed`,e);
+    const action=actionOf(req);
+    return privateJson({error:action==='signup'?'가입 승인 신청을 저장하지 못했습니다. 잠시 후 다시 시도하거나 안내된 연락처로 문의해 주세요.':'로그인 요청을 처리하지 못했습니다.'},500);
+  }
 }
