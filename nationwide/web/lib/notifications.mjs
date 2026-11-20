@@ -1,6 +1,6 @@
 import {createHmac,randomBytes,createHash} from 'node:crypto';
 import {encryptText,decryptText} from './data-crypto.mjs';
-export const noticeLabels={request:'간병 의뢰 접수',profile:'간병인 신청서 접수',application:'간병 신청 접수',selected:'간병인 선정',matched:'계약·근무 일정 안내',test:'자동 알림 연결 확인'};
+export const noticeLabels={signup:'간병인 가입 승인 신청',request:'간병 의뢰 접수',profile:'간병인 신청서 접수',application:'간병 신청 접수',selected:'간병인 선정',matched:'계약·근무 일정 안내',test:'자동 알림 연결 확인'};
 export const phone=value=>{const p=String(value||'').replace(/[^0-9]/g,'');return /^01[016789][0-9]{7,8}$/.test(p)?p:''};
 export function managerPhones(value){const values=String(value||'').split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);if(!values.length||values.length>5||values.some(x=>!phone(x)))throw Error('수신번호를 쉼표로 구분해 최대 5개 입력하세요.');return [...new Set(values.map(phone))];}
 export async function ensureNotifications(db){await db.execute('CREATE TABLE IF NOT EXISTS notification_settings(id INTEGER PRIMARY KEY,payload TEXT NOT NULL)');await db.execute('CREATE TABLE IF NOT EXISTS notification_preferences(entity TEXT PRIMARY KEY,enabled INTEGER NOT NULL)');await db.execute('CREATE TABLE IF NOT EXISTS notification_outbox(event_key TEXT PRIMARY KEY,kind TEXT NOT NULL,recipient TEXT NOT NULL,state TEXT NOT NULL,payload TEXT NOT NULL,provider_id TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL)');}
