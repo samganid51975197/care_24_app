@@ -111,13 +111,27 @@ async function handlePublicBoardSummary(req:Request){
   try{
     const hospital= new URL(req.url).searchParams.get('hospital')||'';
     const hospitalId=await resolvePublicHospital(hospital);
-    const requests=await getDb().select({status:careRequests.status,createdAt:careRequests.createdAt}).from(careRequests).where(and(eq(careRequests.hospitalId,hospitalId),eq(careRequests.publicConsent,'동의'),inArray(careRequests.status,['requesting','matching','matched'])));
+    const requests=await getDb().select().from(careRequests).where(and(eq(careRequests.hospitalId,hospitalId),eq(careRequests.publicConsent,'동의'),inArray(careRequests.status,['requesting','matching','matched']))).orderBy(desc(careRequests.id)).limit(100);
     const koreaOffset=9*60*60*1000,now=new Date(),koreaNow=new Date(now.getTime()+koreaOffset);
     const dayStart=Date.UTC(koreaNow.getUTCFullYear(),koreaNow.getUTCMonth(),koreaNow.getUTCDate())-koreaOffset,day=86400000;
     const starts:Record<string,number>={day:dayStart,week:dayStart-6*day,month:Date.UTC(koreaNow.getUTCFullYear(),koreaNow.getUTCMonth(),1)-koreaOffset,year:Date.UTC(koreaNow.getUTCFullYear(),0,1)-koreaOffset};
     const createdAtTime=(value:string|null)=>{const normalized=String(value||'').replace(' ','T');const parsed=Date.parse(/[zZ]|[+-]\d{2}:?\d{2}$/.test(normalized)?normalized:normalized+'Z');return Number.isFinite(parsed)?parsed:0;};
     const stats=Object.fromEntries(Object.entries(starts).map(([key,start])=>{const rows=requests.filter(item=>createdAtTime(item.createdAt)>=start);return[key,{total:rows.length,matched:rows.filter(item=>item.status==='matched').length}];}));
-    return Response.json({stats},{headers:{'Cache-Control':'no-store'}});
+    const publicRequests=requests.map(item=>({
+      id:item.id,contractNumber:'',canPrepareContract:false,
+      building:publicCareText(item.building,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      floorName:item.floorName||'미입력',ward:publicCareText(item.ward,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      patientGender:item.patientGender,patientAge:item.patientAge,patientBirthYear:item.patientBirthYear,
+      patientName:maskPatientName(item.patientName),diagnosis:publicCareText(item.diagnosis,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      patientCondition:[publicCareText(item.patientCondition,[item.patientName,item.requesterName,item.requesterPhone,item.room]),item.patientAge&&`${item.patientAge}세`,item.patientWeight&&`${item.patientWeight}kg`].filter(Boolean).join(' · '),
+      precautions:publicCareText(item.precautions,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      specialNotes:publicCareText(item.specialNotes,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      desiredGender:item.desiredGender,desiredNationality:item.desiredNationality,
+      desiredExpertise:publicCareText(item.desiredExpertise,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      desiredAge:item.desiredAge,desiredPersonality:publicCareText(item.desiredPersonality,[item.patientName,item.requesterName,item.requesterPhone,item.room]),
+      desiredOther:publicCareText(item.desiredOther,[item.patientName,item.requesterName,item.requesterPhone,item.room]),status:item.status,
+    }));
+    return Response.json({stats,requests:publicRequests},{headers:{'Cache-Control':'no-store'}});
   }catch(e){return Response.json({error:e instanceof AccessError?e.message:'현황을 불러오지 못했습니다.'},{status:e instanceof AccessError?e.status:500,headers:{'Cache-Control':'no-store'}});}
 }
 export const GET=(req:Request)=>new URL(req.url).searchParams.get('summary')==='1'?handlePublicBoardSummary(req):withActor(req,async(actor)=>{await workflowGuard(req,actor);return handleGET(req,actor);});
