@@ -1,7 +1,7 @@
 "use client";
 import CareDepositGuide from "./care-deposit-guide";
 import {hospitalFetch as fetch} from "@/lib/hospital-fetch";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Phone, BarChart3, CalendarDays, CheckCircle2, Clock3, HeartHandshake, RefreshCw, ShieldCheck, UserRoundCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -70,9 +70,33 @@ export default function LiveMatching({requestSequence=0,hospitalId}:{requestSequ
   const [accessPhone,setAccessPhone]=useState(""),[accessPin,setAccessPin]=useState(""),[accessRows,setAccessRows]=useState<{id:number;status:string;createdAt:string}[]>([]);
   const [activeRequest,setActiveRequest]=useState<number|null>(null);
   const [progress,setProgress]=useState<{id:number;status:string}[]>([]);
-  const [requests,setRequests]=useState<RequestRow[]>([]),[drafts,setDrafts]=useState<DraftRequest[]>([]),[profiles,setProfiles]=useState<Profile[]>([]),[stats,setStats]=useState<Stats>(emptyStats),[formOpen,setFormOpen]=useState(false),[busy,setBusy]=useState(false),[message,setMessage]=useState(""),[updated,setUpdated]=useState(""),[flashId,setFlashId]=useState<number|null>(null),[publishedId,setPublishedId]=useState<number|null>(null),[lastContract,setLastContract]=useState<string>("");
-  async function load(){try{const r=await fetch("/api/care-requests",{cache:"no-store"}),j=await r.json();if(r.ok){setPublicRequestMode(false);setRestricted(j.restricted===true);setRequests(j.requests||[]);const applyAfterLogin=Number(window.sessionStorage.getItem("care24-apply-request"));if(applyAfterLogin&&j.requests?.some((request:RequestRow)=>request.id===applyAfterLogin)){window.sessionStorage.removeItem("care24-apply-request");setActiveRequest(applyAfterLogin)}setDrafts(j.drafts||[]);setProgress(j.progress||[]);setProfiles(j.profiles||[]);setStats(j.stats||emptyStats);setUpdated(new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",second:"2-digit"}));}else if(r.status===401){setPublicRequestMode(true);setRestricted(true);setRequests([]);setDrafts([]);setProgress([]);setProfiles([]);setStats(emptyStats);setUpdated("간병 신청은 간병인 로그인 후 가능합니다");if(hospitalId){const summaryResponse=await fetch(`/api/care-requests?summary=1&hospital=${encodeURIComponent(hospitalId)}`,{cache:"no-store"}),summary=await summaryResponse.json();if(summaryResponse.ok){setStats(summary.stats||emptyStats);setRequests(summary.requests||[]);}}}else{setMessage(j.error||"현황을 불러오지 못했습니다.")}}catch{setMessage("현황을 불러오지 못했습니다. 새로고침해 주세요.")}}
-  useEffect(()=>{load();const timer=window.setInterval(load,5000);return()=>window.clearInterval(timer)},[]);
+  const [requests,setRequests]=useState<RequestRow[]>([]),[drafts,setDrafts]=useState<DraftRequest[]>([]),[profiles,setProfiles]=useState<Profile[]>([]),[stats,setStats]=useState<Stats>(emptyStats),[boardLoading,setBoardLoading]=useState(true),[formOpen,setFormOpen]=useState(false),[busy,setBusy]=useState(false),[message,setMessage]=useState(""),[updated,setUpdated]=useState(""),[flashId,setFlashId]=useState<number|null>(null),[publishedId,setPublishedId]=useState<number|null>(null),[lastContract,setLastContract]=useState<string>("");
+  const loadGeneration=useRef(0);
+  async function load(){
+    const generation=++loadGeneration.current;
+    try{
+      const r=await fetch("/api/care-requests",{cache:"no-store"}),j=await r.json();
+      if(generation!==loadGeneration.current)return;
+      if(r.ok){
+        setPublicRequestMode(false);setRestricted(j.restricted===true);setRequests(j.requests||[]);
+        const applyAfterLogin=Number(window.sessionStorage.getItem("care24-apply-request"));
+        if(applyAfterLogin&&j.requests?.some((request:RequestRow)=>request.id===applyAfterLogin)){window.sessionStorage.removeItem("care24-apply-request");setActiveRequest(applyAfterLogin)}
+        setDrafts(j.drafts||[]);setProgress(j.progress||[]);setProfiles(j.profiles||[]);setStats(j.stats||emptyStats);setBoardLoading(false);
+        setUpdated(new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",second:"2-digit"}));
+      }else if(r.status===401){
+        setPublicRequestMode(true);setRestricted(true);setDrafts([]);setProgress([]);setProfiles([]);setUpdated("간병 신청은 간병인 로그인 후 가능합니다");
+        const routeHospitalId=window.location.pathname.match(/^\/hospitals\/([^/]+)\/?$/)?.[1];
+        const publicHospitalId=hospitalId|| (routeHospitalId?decodeURIComponent(routeHospitalId):"");
+        if(publicHospitalId){
+          const summaryResponse=await fetch(`/api/care-requests?summary=1&hospital=${encodeURIComponent(publicHospitalId)}`,{cache:"no-store"}),summary=await summaryResponse.json();
+          if(generation!==loadGeneration.current)return;
+          if(summaryResponse.ok){setStats(summary.stats||emptyStats);setRequests(summary.requests||[]);setBoardLoading(false)}
+          else{setMessage(summary.error||"상황판 공개 의뢰를 불러오지 못했습니다.");setBoardLoading(false)}
+        }else{setRequests([]);setStats(emptyStats);setBoardLoading(false)}
+      }else{setMessage(j.error||"현황을 불러오지 못했습니다.");setBoardLoading(false)}
+    }catch{if(generation===loadGeneration.current){setMessage("현황을 불러오지 못했습니다. 새로고침해 주세요.");setBoardLoading(false)}}
+  }
+  useEffect(()=>{load();const timer=window.setInterval(load,5000);return()=>{loadGeneration.current++;window.clearInterval(timer)}},[hospitalId]);
   useEffect(()=>{if(requestSequence>0){setEditing(null);setFormOpen(true)}},[requestSequence]);
   useEffect(()=>{if(!formOpen)return;const frame=window.requestAnimationFrame(()=>{document.getElementById("patient-care-request")?.scrollIntoView({behavior:"instant",block:"start"});document.getElementById("patient-care-request-title")?.focus({preventScroll:true})});return()=>window.cancelAnimationFrame(frame)},[formOpen,requestSequence,editing]);
   useEffect(()=>{if(!flashId)return;const timer=window.setTimeout(()=>{const row=Array.from(document.querySelectorAll<HTMLElement>(".care-table-item")).find(item=>item.querySelector(".care-table-row>strong")?.textContent===String(flashId));if(!row)return;row.classList.add("just-applied");const badge=row.querySelector<HTMLElement>(".match-status");if(badge){badge.dataset.originalText=badge.textContent||"매칭상담중";badge.textContent="신청완료 · 매칭상담중"}},60);return()=>{window.clearTimeout(timer);document.querySelectorAll<HTMLElement>(".care-table-item.just-applied").forEach(item=>{item.classList.remove("just-applied");const badge=item.querySelector<HTMLElement>(".match-status");if(badge?.dataset.originalText)badge.textContent=badge.dataset.originalText})}},[flashId,requests]);
@@ -99,11 +123,11 @@ export default function LiveMatching({requestSequence=0,hospitalId}:{requestSequ
     {message&&<p className="matching-message">{message}</p>}{lastContract&&<div className="auto-contract"><CheckCircle2/><div><b>간병 의뢰계약서 자동생성</b><span>계약번호 {lastContract} · 개인정보 비공개 저장 · 공개 동의 항목만 공개</span></div></div>}
     <div className="matching-workspace">
       <div className="matching-queue">
-        <div className="today-queue-head"><div><span>오늘 접수</span><strong>{stats.day.total}건</strong></div><p><i></i>간병인이 새 의뢰를 확인하고 저장된 프로필로 바로 신청할 수 있습니다.</p></div>
-        <div className="status-guide"><span className="requesting"><Clock3/>전체 간병의뢰 {requests.filter(x=>x.status==="requesting").length}</span><span className="matching"><UserRoundCheck/>전체 매칭상담 {requests.filter(x=>x.status==="matching").length}</span><span className="matched"><CheckCircle2/>오늘 매칭완료 {stats.day.matched}</span></div>{publicRequestMode&&stats.day.total>0&&<section className="request-save-receipt caregiver-login-gate"><h3>간병인 로그인 후 신청하세요</h3><p>오늘 접수된 공개 의뢰가 {stats.day.total}건 있습니다. 로그인하면 의뢰 목록에서 번호를 눌러 간병 신청을 할 수 있습니다.</p><Button type="button" onClick={()=>{window.location.href="/login"}}>간병인 로그인</Button></section>}
-        <div className="building-queues">{(hospitalId?[...new Set(requests.map(r=>r.building))]:["1동","2동"]).map(buildingTable)}{hospitalId&&!requests.length&&<p className="empty">{publicRequestMode&&stats.day.total>0?"공개된 의뢰 목록과 번호는 간병인 로그인 후 표시됩니다. 로그인하면 번호를 눌러 간병 신청을 할 수 있습니다.":"이 병원에 등록된 간병 의뢰가 없습니다. 위의 간병 의뢰 버튼으로 작성하세요."}</p>}</div>
+        <div className="today-queue-head"><div><span>오늘 접수</span><strong>{boardLoading?"불러오는 중…":`${stats.day.total}건`}</strong></div><p><i></i>간병인이 새 의뢰를 확인하고 저장된 프로필로 바로 신청할 수 있습니다.</p></div>
+        <div className="status-guide">{boardLoading?<span>상황판 목록·건수 불러오는 중…</span>:<><span className="requesting"><Clock3/>전체 간병의뢰 {requests.filter(x=>x.status==="requesting").length}</span><span className="matching"><UserRoundCheck/>전체 매칭상담 {requests.filter(x=>x.status==="matching").length}</span><span className="matched"><CheckCircle2/>오늘 매칭완료 {stats.day.matched}</span></>}</div>{!boardLoading&&publicRequestMode&&stats.day.total>0&&<section className="request-save-receipt caregiver-login-gate"><h3>간병인 로그인 후 신청하세요</h3><p>오늘 접수된 공개 의뢰가 {stats.day.total}건 있습니다. 로그인하면 의뢰 목록에서 번호를 눌러 간병 신청을 할 수 있습니다.</p><Button type="button" onClick={()=>{window.location.href=`/login?role=caregiver&next=${encodeURIComponent(window.location.pathname)}`}}>간병인 로그인</Button></section>}
+        <div className="building-queues">{(hospitalId?[...new Set(requests.map(r=>r.building))]:["1동","2동"]).map(buildingTable)}{hospitalId&&boardLoading&&!requests.length&&<p className="empty">공개 의뢰 목록을 불러오는 중입니다.</p>}{hospitalId&&!boardLoading&&!requests.length&&<p className="empty">공개된 간병 의뢰가 없습니다. 위의 간병 의뢰 버튼으로 작성하세요.</p>}</div>
       </div>
-      <aside className="matching-summary"><header><BarChart3/><div><b>누적 현황</b><span>실시간 자동 집계</span></div></header><div className="matching-stats">{[["일",stats.day],["주",stats.week],["월",stats.month],["년",stats.year]].map(([label,value]:any)=><article key={label}><CalendarDays/><span><b>{label} 누적 {value.total}건</b><small>매칭완료 {value.matched}건</small></span></article>)}</div></aside>
+      <aside className="matching-summary"><header><BarChart3/><div><b>누적 현황</b><span>실시간 자동 집계</span></div></header><div className="matching-stats">{[["일",stats.day],["주",stats.week],["월",stats.month],["년",stats.year]].map(([label,value]:any)=><article key={label}><CalendarDays/><span><b>{boardLoading?`${label} 집계 중…`:`${label} 누적 ${value.total}건`}</b>{!boardLoading&&<small>매칭완료 {value.matched}건</small>}</span></article>)}</div></aside>
     </div>
   </section></>
 }
