@@ -54,11 +54,35 @@ export async function workflowGuard(req: Request, actor: Actor) {
   if (["confirm","complete"].includes(String(body.action))) throw new AccessError(403, "담당자 확인은 병원 담당자 또는 관리자만 할 수 있습니다.");
 }
 let authLimitsReady:Promise<void>|null=null;
-async function ensureAuthLimits(){
+let authSchemaReady:Promise<void>|null=null;
+async function ensureAuthSchema(){
   const client=getClient();
-  if(!authLimitsReady)authLimitsReady=client.execute('CREATE TABLE IF NOT EXISTS auth_limits (key TEXT PRIMARY KEY, window_start INTEGER NOT NULL, count INTEGER NOT NULL)').then(()=>undefined).catch(error=>{authLimitsReady=null;throw error;});
-  await authLimitsReady;
+  if(!authSchemaReady)authSchemaReady=(async()=>{
+    await client.execute('CREATE TABLE IF NOT EXISTS auth_hospitals (id TEXT PRIMARY KEY, name TEXT NOT NULL)');
+    await client.execute(`CREATE TABLE IF NOT EXISTS auth_users (
+      id TEXT PRIMARY KEY,
+      username TEXT NOT NULL UNIQUE,
+      name TEXT NOT NULL,
+      password_hash TEXT NOT NULL,
+      requested_role TEXT NOT NULL,
+      requested_hospital TEXT NOT NULL DEFAULT '',
+      role TEXT NOT NULL,
+      hospital_id TEXT,
+      status TEXT NOT NULL DEFAULT 'pending',
+      created_at INTEGER NOT NULL
+    )`);
+    await client.execute('CREATE TABLE IF NOT EXISTS auth_sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES auth_users(id) ON DELETE CASCADE, expires_at INTEGER NOT NULL)');
+    await client.execute('CREATE TABLE IF NOT EXISTS auth_audit (id INTEGER PRIMARY KEY AUTOINCREMENT, actor_id TEXT NOT NULL, target_id TEXT NOT NULL, action TEXT NOT NULL, created_at INTEGER NOT NULL)');
+    await client.execute('CREATE TABLE IF NOT EXISTS auth_bootstrap (id INTEGER PRIMARY KEY CHECK(id=1), token_hash TEXT NOT NULL, expires_at INTEGER NOT NULL)');
+    await client.execute('CREATE TABLE IF NOT EXISTS auth_limits (key TEXT PRIMARY KEY, window_start INTEGER NOT NULL, count INTEGER NOT NULL)');
+  })().catch(error=>{authSchemaReady=null;throw error;});
+  await authSchemaReady;
   return client;
+}
+async function ensureAuthLimits(){
+  if(!authLimitsReady)authLimitsReady=ensureAuthSchema().then(()=>undefined).catch(error=>{authLimitsReady=null;throw error;});
+  await authLimitsReady;
+  return getClient();
 }
 export async function rateLimit(key: string, max: number, windowMs = 900000) {
   const client=await ensureAuthLimits();
