@@ -131537,5 +131537,18 @@
     "source": "https://opendata.hira.or.kr/op/opc/selectOpenData.do?sno=11925",
     "sourceDate": "2026-06",
     "sourceLabel": "심평원 한방병원 현황"
+  },
+  {
+    "id": "hospital-366",
+    "name": "서울요양병원",
+    "region": "서울",
+    "city": "강동구",
+    "address": "서울특별시 강동구 진황도로61길 53",
+    "phone": "02-2225-1123",
+    "type": "요양병원",
+    "kind": "요양병원",
+    "directoryVerified": true,
+    "source": "https://www.bohun.or.kr/main/cm/cntnts/cntntsView.do?cntntsId=1341&mi=32782",
+    "sourceLabel": "한국보훈복지의료공단 소속기구 안내 · 중앙보훈병원 서울요양병원"
   }
 ]
