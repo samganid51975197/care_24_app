@@ -9753,5 +9753,24 @@ const koreanHospitalDirectory=[
     "source": "https://opendata.hira.or.kr/op/opc/selectOpenData.do?sno=11925",
     "sourceDate": "2026-06",
     "sourceLabel": "심평원 한방병원 현황"
-  }
-];
+  },
+  {
+    "id": "hira-c6ab77bdc6003a40",
+    "name": "다사랑중앙병원",
+    "region": "경기",
+    "city": "의왕시",
+    "address": "경기도 의왕시 등칙골1길 22, (오전동)",
+    "phone": "031-340-5000",
+    "type": "정신병원",
+    "kind": "정신병원",
+    "legalType": "정신병원",
+    "rehabDepartment": true,
+    "rehabSpecialists": 0,
+    "inpatientBeds": 0,
+    "inpatientVerified": false,
+    "directoryVerified": true,
+    "directoryHidden": false,
+    "source": "https://opendata.hira.or.kr/op/opc/selectOpenData.do?sno=11925",
+    "sourceDate": "2026-06",
+    "sourceLabel": "건강보험심사평가원 진료과목 재활의학과 신고 현황 (2026년 6월)"
+  }];
